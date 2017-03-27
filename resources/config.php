@@ -16,6 +16,7 @@ return [
 
 /* Database Configuration Settings */
   'dbhost' => 'localhost',
+  'dbname' => 'dbname',
   'dbuser' => 'dbuser',
   'dbpassword' => 'dbpassword',
 
