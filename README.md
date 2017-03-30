@@ -3,7 +3,7 @@ Remaking the outdated Biola University CSCI website
 
 
 
-####Directory Structure:
+#### Directory Structure:
 
 img — All your image files.  
 css — All your css files.  
