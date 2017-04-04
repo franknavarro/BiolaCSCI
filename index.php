@@ -1,8 +1,5 @@
 <?php
 
-include('resources/libary/db.php');
-include('resources/config.php');
-
 <!DOCTYPE html>
 <html >
 <head>
