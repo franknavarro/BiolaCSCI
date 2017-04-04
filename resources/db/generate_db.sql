@@ -165,18 +165,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `cscidb`.`files`
+-- Table `cscidb`.`folder`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cscidb`.`files` (
-  `FileName` VARCHAR(45) NOT NULL,
-  `FileText` BLOB NULL,
-  `UpdateTime` DATETIME NULL,
-  `FileSize` INT NULL,
-  `ParentFolderID` VARCHAR(45) NULL,
+CREATE TABLE IF NOT EXISTS `cscidb`.`folder` (
+  `folderID` INT NOT NULL,
+  `folderName` VARCHAR(45) NULL,
+  `parentFolderID` VARCHAR(45) NULL,
+  `childFileID` VARCHAR(45) NULL,
   `user_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`FileName`),
-  INDEX `fk_Files_user1_idx` (`user_email` ASC),
-  CONSTRAINT `fk_Files_user1`
+  PRIMARY KEY (`folderID`),
+  INDEX `fk_Folder_user1_idx` (`user_email` ASC),
+  CONSTRAINT `fk_Folder_user1`
     FOREIGN KEY (`user_email`)
     REFERENCES `cscidb`.`user` (`email`)
     ON DELETE NO ACTION
@@ -185,27 +184,26 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `cscidb`.`folder`
+-- Table `cscidb`.`files`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `cscidb`.`folder` (
-  `FolderID` INT NOT NULL,
-  `FolderName` VARCHAR(45) NULL,
-  `ParentFolderID` VARCHAR(45) NULL,
-  `ChildFolderID` VARCHAR(45) NULL,
-  `ChildFileID` VARCHAR(45) NULL,
-  `Files_FileName` VARCHAR(45) NOT NULL,
-  `user_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`FolderID`),
-  INDEX `fk_Folder_Files1_idx` (`Files_FileName` ASC),
-  INDEX `fk_Folder_user1_idx` (`user_email` ASC),
-  CONSTRAINT `fk_Folder_Files1`
-    FOREIGN KEY (`Files_FileName`)
-    REFERENCES `cscidb`.`files` (`FileName`)
+CREATE TABLE IF NOT EXISTS `cscidb`.`files` (
+  `fileName` VARCHAR(45) NOT NULL,
+  `fileBody` BLOB NULL,
+  `updateTime` DATETIME NULL,
+  `fileSize` FLOAT NULL,
+  `fileOwner` VARCHAR(45) NOT NULL,
+  `folder_folderID` INT NOT NULL,
+  PRIMARY KEY (`fileName`),
+  INDEX `fk_Files_user1_idx` (`fileOwner` ASC),
+  INDEX `fk_files_folder1_idx` (`folder_folderID` ASC),
+  CONSTRAINT `fk_Files_user1`
+    FOREIGN KEY (`fileOwner`)
+    REFERENCES `cscidb`.`user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_Folder_user1`
-    FOREIGN KEY (`user_email`)
-    REFERENCES `cscidb`.`user` (`email`)
+  CONSTRAINT `fk_files_folder1`
+    FOREIGN KEY (`folder_folderID`)
+    REFERENCES `cscidb`.`folder` (`folderID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -220,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`Folder_has_Folder` (
   INDEX `fk_Folder_has_Folder_Folder2_idx` (`Folder_FolderID1` ASC),
   CONSTRAINT `fk_Folder_has_Folder_Folder2`
     FOREIGN KEY (`Folder_FolderID1`)
-    REFERENCES `cscidb`.`folder` (`FolderID`)
+    REFERENCES `cscidb`.`folder` (`folderID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -237,12 +235,12 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`Folder_has_Files` (
   INDEX `fk_Folder_has_Files_Folder1_idx` (`Folder_FolderID` ASC),
   CONSTRAINT `fk_Folder_has_Files_Folder1`
     FOREIGN KEY (`Folder_FolderID`)
-    REFERENCES `cscidb`.`folder` (`FolderID`)
+    REFERENCES `cscidb`.`folder` (`folderID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Folder_has_Files_Files1`
     FOREIGN KEY (`Files_FileName`)
-    REFERENCES `cscidb`.`files` (`FileName`)
+    REFERENCES `cscidb`.`files` (`fileName`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -252,14 +250,13 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`channels`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`channels` (
-  `ChannelID` INT NOT NULL,
-  `MessageID` INT NULL,
-  `CreatorID` INT NULL,
-  `user_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`ChannelID`),
-  INDEX `fk_Channels_user1_idx` (`user_email` ASC),
+  `channelID` INT NOT NULL,
+  `channel_name` VARCHAR(45) NULL,
+  `creatorID` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`channelID`),
+  INDEX `fk_Channels_user1_idx` (`creatorID` ASC),
   CONSTRAINT `fk_Channels_user1`
-    FOREIGN KEY (`user_email`)
+    FOREIGN KEY (`creatorID`)
     REFERENCES `cscidb`.`user` (`email`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
@@ -270,22 +267,22 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`messages`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`messages` (
-  `MessageID` INT NOT NULL,
+  `messageID` INT NOT NULL,
   `postTime` DATETIME NULL,
-  `Message` LONGTEXT NULL,
-  `Channels_ChannelID` INT NOT NULL,
+  `message` LONGTEXT NULL,
   `posterID` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`MessageID`),
-  INDEX `fk_Messages_Channels1_idx` (`Channels_ChannelID` ASC),
+  `channels_channelID` INT NOT NULL,
+  PRIMARY KEY (`messageID`),
   INDEX `fk_Messages_user1_idx` (`posterID` ASC),
-  CONSTRAINT `fk_Messages_Channels1`
-    FOREIGN KEY (`Channels_ChannelID`)
-    REFERENCES `cscidb`.`channels` (`ChannelID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_messages_channels1_idx` (`channels_channelID` ASC),
   CONSTRAINT `fk_Messages_user1`
     FOREIGN KEY (`posterID`)
     REFERENCES `cscidb`.`user` (`email`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_messages_channels1`
+    FOREIGN KEY (`channels_channelID`)
+    REFERENCES `cscidb`.`channels` (`channelID`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
