@@ -1,3 +1,8 @@
+<?php
+
+include('resources/libary/db.php');
+include('resources/config.php');
+
 <!DOCTYPE html>
 <html >
 <head>
@@ -5,14 +10,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Biola CSCI Website</title>
-    
+
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Default CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- Login Page CSS -->
     <link rel="stylesheet" href="css/login.css">
-    
+
 
     <title>Biola CSCI Website</title>
     <link rel="stylesheet" href="css/style.css">
@@ -36,7 +41,7 @@
             </div>
         </div>
     </div>
-    
+
     <!-- jQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <!-- Bootstrap JS -->
@@ -44,3 +49,6 @@
 
 </body>
 </html>
+
+
+?>
