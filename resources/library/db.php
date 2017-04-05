@@ -2,6 +2,12 @@
 
 $config = include('resources/config.php'); //Import Database Settings
 
+$dbhost = $config['dbhost'];
+$dbport = $config['dbport'];
+$dbname = $config['dbname'];
+$dbuser = $config['dbuser'];
+$dbpassword = $config['dbpassword'];
+
 class db {
 
 	/* Connect Function
@@ -9,9 +15,14 @@ class db {
 	*/
 
 	private static function connect(){
-		$pdo = new PDO('mysql:host=$config['dbhost'];dbname=$config['dbname'];charset=utf8', $config['dbuser'], $config['dbpassword']);
-		$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-		return $pdo;
+		try{
+			$pdo = new PDO('mysql:host=$dbhost;port=$dbport;dbname=$dbname;charset=utf8', $dbuser, $dbpassword);
+			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+			return $pdo;
+		} catch (PDOException $e){
+			print "Error!: " . $e->getMessage() . "<br/>";
+    		die();
+		}
 	}
 
 	/* Query Function
@@ -19,7 +30,7 @@ class db {
 	*/
 
 	public static function query($query, $params = array()){
-		$statement = self::connect()->prepare($query)
+		$statement = self::connect()->prepare($query);
 		$statement->execute($params);
 
 		if (explode(' ', $query)[0] == 'SELECT'){
