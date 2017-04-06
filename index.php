@@ -27,15 +27,13 @@ if(isset($POST['login'])) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Default CSS -->
     <link href="css/style.css" rel="stylesheet">
-    <!-- Login Page CSS -->
-    <link rel="stylesheet" href="css/login.css">
-
 
     <title>Biola CSCI Website</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
+    <div id="login-page">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
@@ -52,6 +50,7 @@ if(isset($POST['login'])) {
                 </div>
             </div>
         </div>
+    </div>
     </div>
 
     <!-- jQuery -->
