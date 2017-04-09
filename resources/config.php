@@ -9,7 +9,6 @@ $config = include('resources/config.php');
 echo $config['dbhost']; // 'localhost'
 ?>
 
-
 */
 
 /* Configuration Variables */
@@ -21,6 +20,5 @@ return [
         'dbpassword' => 'root',
         'dbport' => '8889'
 ];
-
 
 ?>

@@ -14,9 +14,8 @@ class db {
 
 	private static function connect(){
 
-		$config = include('../config.php');
-		$dbuser = $config['dbuser'];
-		$dbpassword = $config['dbpassword'];
+		$dbuser = "root";
+		$dbpassword = "root";
 
 		try{
 			$pdo = new PDO('mysql:host=127.0.0.1;port=8889;dbname=cscidb;charset=utf8', $dbuser, $dbpassword);
