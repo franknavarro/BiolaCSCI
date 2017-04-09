@@ -1,21 +1,3 @@
-<?php
-
-include('resources/library/db.php');
-
-if(isset($POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if(DB::query('SELECT email FROM user WHERE email=:email', array(':email'=>$email))){
-
-    } else {
-        echo "User not registered!";
-    }
-
-}
-
-?>
-
 <html>
 <head>
     <meta charset="UTF-8">
@@ -41,11 +23,11 @@ if(isset($POST['login'])) {
             <div class="col-6">
                 <div class="login-container">
                     <div class="form">
-                        <form class="login-form" action="index.php" method="post">
+                        <form class="login-form" action="resources/library/login.php" method="post">
                             <fieldset>
                                 <input type="text" placeholder="Biola Email" name="email" required/>
                                 <input type="password" placeholder="Password" name="password" required/>
-                                <button value="login">login</button>
+                                <input type="submit">
                             </fieldset>
                         </form>
                     </div>
