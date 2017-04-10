@@ -25,9 +25,14 @@ class login{
             }
         }
 
-    // public static function loginUser($email, $password){
-    //     echo DB::query('SELECT COUNT(*) FROM user WHERE email=:email AND password=:password', array(':email'=>$email, ':password'=>$password));
-    // }
+    public static function loginUser($email, $password){
+        $result = DB::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        if(!empty($result)){
+            return 1;
+        } else {
+            return "The Email or Password is Incorrect";
+        }
+    }
 }
 
  ?>

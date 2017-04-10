@@ -42,17 +42,17 @@
                         echo '</div>';
                         $errormessage = "";
                     }
-                    // $errormessage = login::loginUser($email, $password);
-                    // if ($errormessage == "1") {
-                    //     echo '<div class="alert alert-success">';
-                    //     echo '<strong>Success!</strong> You are logged in as ', $email;
-                    //     echo '</div>';
-                    // } else {
-                    //     echo '<div class="alert alert-warning">';
-                    //     echo '<strong>Warning! </strong>', $errormessage;
-                    //     echo '</div>';
-                    //     $errormessage = "";
-                    // }
+                    $errormessage = login::loginUser($email, $password);
+                    if ($errormessage == 1) {
+                        echo '<div class="alert alert-success">';
+                        echo '<strong>Success!</strong> You are logged in as ', $email;
+                        echo '</div>';
+                    } else {
+                        echo '<div class="alert alert-warning">';
+                        echo '<strong>Warning! </strong>', $errormessage;
+                        echo '</div>';
+                        $errormessage = "";
+                    }
 
                 }
 
