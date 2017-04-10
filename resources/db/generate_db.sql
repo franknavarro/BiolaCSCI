@@ -24,7 +24,6 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`user` (
   `password` VARCHAR(45) NULL,
   `lastsignin` DATETIME NULL,
   `lastipaddress` VARCHAR(45) NULL,
-  `activeCookie` VARCHAR(45) NULL,
   PRIMARY KEY (`email`))
 ENGINE = InnoDB;
 
