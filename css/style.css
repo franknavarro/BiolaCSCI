@@ -42,6 +42,7 @@ Login Page
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
+    max-height: 50px;
 }
 .form .submit-button {
     font-family: "Roboto", sans-serif;
