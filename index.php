@@ -19,9 +19,7 @@ if(isset($_SESSION['user_id'])){
     <!-- Default CSS -->
     <link href="css/style.css" rel="stylesheet">
 
-    <title>Biola CSCI Website</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+    </head>
 
 <body>
     <div id="login-page">
