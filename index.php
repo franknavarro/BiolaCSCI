@@ -1,3 +1,12 @@
+<?php ob_start(); session_start(); ?>
+
+<?php
+if(isset($_SESSION['user_id'])){
+    header("Location: dashboard.php");
+    exit();
+}
+ ?>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -19,34 +28,32 @@
             <div class="col-6">
                 <?php
 
-                include_once('resources/library/login.php');
-
-
+                include_once('resources/library/user.php');
 
                 if(isset($_POST['email'])){
                     $email = $_POST['email'];
                     $password = $_POST['password'];
                     $errormessage = "";
 
-                    $errormessage = login::validateEmail($email);
+                    $errormessage = user::validateEmail($email);
                     if (!$errormessage == "") {
                         echo '<div class="alert alert-warning">';
                         echo '<strong>Warning! </strong>', $errormessage;
                         echo '</div>';
                         $errormessage = "";
                     }
-                    $errormessage = login::validatePassword($password);
+                    $errormessage = user::validatePassword($password);
                     if (!$errormessage == "") {
                         echo '<div class="alert alert-warning">';
                         echo '<strong>Warning! </strong>', $errormessage;
                         echo '</div>';
                         $errormessage = "";
                     }
-                    $errormessage = login::loginUser($email, $password);
+                    $errormessage = user::validateUser($email, $password);
                     if ($errormessage == 1) {
-                        echo '<div class="alert alert-success">';
-                        echo '<strong>Success!</strong> You are logged in as ', $email;
-                        echo '</div>';
+                        header("Location: dashboard.php");
+                        exit();
+
                     } else {
                         echo '<div class="alert alert-warning">';
                         echo '<strong>Warning! </strong>', $errormessage;
