@@ -25,6 +25,9 @@ if(isset($_SESSION['user_id'])){
     <!-- Login Page CSS -->
     <link rel="stylesheet" href="css/login.css">
 
+    <!-- Login Page CSS -->
+    <link rel="stylesheet" href="css/login.css">
+
 </head>
 
 <body>
@@ -76,7 +79,7 @@ if(isset($_SESSION['user_id'])){
                             <fieldset>
                                 <input type="text" placeholder="Biola Email" name="email" required/>
                                 <input type="password" placeholder="Password" name="password" required/>
-                                <input type="submit">
+                                <input type="submit" class="submit-button">
                             </fieldset>
                         </form>
                     </div>
