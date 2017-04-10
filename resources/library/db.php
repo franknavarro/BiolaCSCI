@@ -14,11 +14,11 @@ class db {
 
 	private static function connect(){
 
-		$dbuser = "dev_csci";
-		$dbpassword = "na34Unah+t+S";
+		$dbuser = "root";
+		$dbpassword = "root";
 
 		try{
-			$pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=cscidb;charset=utf8', $dbuser, $dbpassword);
+			$pdo = new PDO('mysql:host=127.0.0.1;port=8889;dbname=cscidb;charset=utf8', $dbuser, $dbpassword);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $pdo;
 		} catch (PDOException $e){

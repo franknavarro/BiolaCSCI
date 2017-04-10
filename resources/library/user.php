@@ -10,8 +10,6 @@ class user{
           } else {
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                   return "Invalid email format";
-              } else if (!DB::query('SELECT email FROM user WHERE email=:email', array(':email'=>$email))){
-                  return "Email Not Found";
               }
             }
         }
