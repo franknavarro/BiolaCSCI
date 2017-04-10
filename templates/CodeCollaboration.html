@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>MozillaJS</title>
+</head>
+<body onload="TogetherJS(this); return false;">
+<div id="container">
+    <label for="ta"></label>
+    <div class="twrap"><textarea id="ta" name="ta" cols="50" rows="10"></textarea></div>
+</div>
+<style>
+label {
+    float: left
+}
+.twrap {
+    overflow: hidden;
+    padding: 0 4px 0 12px
+}
+textarea {
+    border: none;
+    width: 100%;
+    height: 3000px;
+}
+</style>
+
+<script type="text/javascript">
+//Makes the textarea tab-capable
+
+var textareas = document.getElementsByTagName('textarea');
+var count = textareas.length;
+for(var i=0;i<count;i++){
+    textareas[i].onkeydown = function(e){
+        if(e.keyCode==9 || e.which==9){
+            e.preventDefault();
+            var s = this.selectionStart;
+            this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+            this.selectionEnd = s+1;
+        }
+    }
+}
+</script>
+<script src="https://togetherjs.com/togetherjs-min.js"></script>
+
+</body>
+</html>
