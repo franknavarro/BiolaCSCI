@@ -14,8 +14,6 @@
 
 </head>
 
-<!-- The #page-top ID is part of the scrolling feature - the data-spy and data-target are part of the built-in Bootstrap scrollspy function -->
-
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
 
     <!-- Navigation -->
@@ -37,7 +35,9 @@
                     <li class="nav-item dropdown">
                         <a href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classes</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <!-- Here is where each class is displayed. Use PHP to load each item as a link with <a> tag with the class "dropdown-item" -->
                             <a class="dropdown-item" href="#">Introduction to Computer Science</a>
+                            <!-- Use horizontal rule to seperate each class -->
                             <hr>
                             <a class="dropdown-item" href="#">Computer Organization & Assembly Language Programming</a>
                             <hr>
@@ -57,7 +57,7 @@
         <!-- /.container -->
     </nav>
     
-    <!-- Only used for scroll effect -->
+    <!-- Only used for scroll effect in navbar-->
     <div style="height: 150%;"></div>
     
      <!-- jQuery -->
@@ -66,7 +66,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="/js/bootstrap.min.js"></script>
 
-    <!-- Scrolling Nav JavaScript -->
+    <!-- Scrolling Navbar JavaScript-->
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/navbar.js"></script>
     
