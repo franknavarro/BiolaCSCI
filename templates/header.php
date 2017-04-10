@@ -1,3 +1,5 @@
+<?php ob_start(); session_start(); ?>
+
 <html lang="en">
 
 <head>
@@ -56,10 +58,10 @@
         </div>
         <!-- /.container -->
     </nav>
-    
+
     <!-- Only used for scroll effect in navbar-->
     <div style="height: 150%;"></div>
-    
+
      <!-- jQuery -->
     <script src="/js/jquery.js"></script>
 
@@ -69,7 +71,7 @@
     <!-- Scrolling Navbar JavaScript-->
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/navbar.js"></script>
-    
+
 </body>
 
 </html>
