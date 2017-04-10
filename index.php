@@ -1,20 +1,11 @@
+<?php ob_start(); session_start(); ?>
+
 <?php
-
-include('resources/library/db.php');
-
-if(isset($POST['login'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-
-    if(DB::query('SELECT email FROM user WHERE email=:email', array(':email'=>$email))){
-
-    } else {
-        echo "User not registered!";
-    }
-
+if(isset($_SESSION['user_id'])){
+    header("Location: dashboard.php");
+    exit();
 }
-
-?>
+ ?>
 
 <html>
 <head>
@@ -27,9 +18,14 @@ if(isset($POST['login'])) {
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Default CSS -->
     <link href="css/style.css" rel="stylesheet">
+<<<<<<< HEAD
 
     <title>Biola CSCI Website</title>
     <link rel="stylesheet" href="css/style.css">
+=======
+    <!-- Login Page CSS -->
+    <link rel="stylesheet" href="css/login.css">
+>>>>>>> 384deb11b3d0646028aff793c1ef3918b82e03ae
 </head>
 
 <body>
@@ -37,13 +33,51 @@ if(isset($POST['login'])) {
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-6">
+                <?php
+
+                include_once('resources/library/user.php');
+
+                if(isset($_POST['email'])){
+                    $email = $_POST['email'];
+                    $password = $_POST['password'];
+                    $errormessage = "";
+
+                    $errormessage = user::validateEmail($email);
+                    if (!$errormessage == "") {
+                        echo '<div class="alert alert-warning">';
+                        echo '<strong>Warning! </strong>', $errormessage;
+                        echo '</div>';
+                        $errormessage = "";
+                    }
+                    $errormessage = user::validatePassword($password);
+                    if (!$errormessage == "") {
+                        echo '<div class="alert alert-warning">';
+                        echo '<strong>Warning! </strong>', $errormessage;
+                        echo '</div>';
+                        $errormessage = "";
+                    }
+                    $errormessage = user::validateUser($email, $password);
+                    if ($errormessage == 1) {
+                        header("Location: dashboard.php");
+                        exit();
+
+                    } else {
+                        echo '<div class="alert alert-warning">';
+                        echo '<strong>Warning! </strong>', $errormessage;
+                        echo '</div>';
+                        $errormessage = "";
+                    }
+
+                }
+
+                 ?>
                 <div class="login-container">
                     <div class="form">
                         <form class="login-form" action="index.php" method="post">
                             <fieldset>
                                 <input type="text" placeholder="Biola Email" name="email" required/>
                                 <input type="password" placeholder="Password" name="password" required/>
-                                <button value="login">login</button>
+                                <input type="submit">
                             </fieldset>
                         </form>
                     </div>

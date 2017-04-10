@@ -1,22 +1,24 @@
 <?php
 
-$config = include('resources/config.php'); //Import Database Settings
-
-$dbhost = $config['dbhost'];
-$dbport = $config['dbport'];
-$dbname = $config['dbname'];
-$dbuser = $config['dbuser'];
-$dbpassword = $config['dbpassword'];
-
 class db {
 
 	/* Connect Function
 	Returns: PDO Database Object
 	*/
 
+	// 'dbhost' => '127.0.0.1',
+	// 'dbname' => 'cscidb',
+	// 'dbuser' => 'root',
+	// 'dbpassword' => 'root',
+	// 'dbport' => '8889'
+
 	private static function connect(){
+
+		$dbuser = "dev_csci";
+		$dbpassword = "na34Unah+t+S";
+
 		try{
-			$pdo = new PDO('mysql:host=$dbhost;port=$dbport;dbname=$dbname;charset=utf8', $dbuser, $dbpassword);
+			$pdo = new PDO('mysql:host=127.0.0.1;port=3306;dbname=cscidb;charset=utf8', $dbuser, $dbpassword);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $pdo;
 		} catch (PDOException $e){
@@ -38,5 +40,7 @@ class db {
 			return $data;
 		}
 	}
+
+	// Multi line connection
 }
 ?>

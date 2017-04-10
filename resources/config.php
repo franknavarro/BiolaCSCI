@@ -6,9 +6,8 @@ Use:
 
 <?php
 $config = include('resources/config.php');
-echo $database['dbhost']; // 'localhost'
+echo $config['dbhost']; // 'localhost'
 ?>
-
 
 */
 
@@ -21,6 +20,5 @@ return [
         'dbpassword' => 'root',
         'dbport' => '8889'
 ];
-
 
 ?>
