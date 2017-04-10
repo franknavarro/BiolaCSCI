@@ -18,14 +18,11 @@ if(isset($_SESSION['user_id'])){
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Default CSS -->
     <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD
 
     <title>Biola CSCI Website</title>
     <link rel="stylesheet" href="css/style.css">
-=======
     <!-- Login Page CSS -->
     <link rel="stylesheet" href="css/login.css">
->>>>>>> 384deb11b3d0646028aff793c1ef3918b82e03ae
 </head>
 
 <body>
@@ -77,7 +74,7 @@ if(isset($_SESSION['user_id'])){
                             <fieldset>
                                 <input type="text" placeholder="Biola Email" name="email" required/>
                                 <input type="password" placeholder="Password" name="password" required/>
-                                <input type="submit">
+                                <input type="submit" class="submit-button">
                             </fieldset>
                         </form>
                     </div>
