@@ -21,13 +21,6 @@ if(isset($_SESSION['user_id'])){
 
     <title>Biola CSCI Website</title>
     <link rel="stylesheet" href="css/style.css">
-
-    <!-- Login Page CSS -->
-    <link rel="stylesheet" href="css/login.css">
-
-    <!-- Login Page CSS -->
-    <link rel="stylesheet" href="css/login.css">
-
 </head>
 
 <body>
