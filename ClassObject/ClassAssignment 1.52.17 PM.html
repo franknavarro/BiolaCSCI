@@ -1,0 +1,27 @@
+<html>
+<body>
+<form action="assignmentProcess.php" method="post">
+    ----Assignment Info------------------------------------<br>
+    Title: <br>
+    <input type="text" name="title" maxlength="45"><br>
+    Due Date: <br>
+    <input type="datetime-local" name="dueDate"><br>
+    Description: <br>
+    <textarea name="description" rows="10" cols="50"></textarea>
+    <br>
+    ----Assignment URL-----------------------------------<br>
+    URL: <br>
+    <input type="url" name="assignmentURL"><br>
+    ----Publish-----------------------------------------------<br>
+    Publish:
+    <input type="radio" name="isLive" value="true" checked="checked"> yes
+    <input type="radio" name="isLive" value="false"> no
+    <br>
+    ----Auto Generated Info-------------------------------<br>
+    Last Edited: <br>
+    Class ID: <br>  <!-- php script for setting up cookies -->
+    ----Submission------------------------------------------<br>
+    <input type="submit">
+</form>
+</body>
+</html>
