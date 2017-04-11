@@ -2,7 +2,7 @@
 Sitewide Styling 
 ****************************************************************/
 
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+@import url('https://fonts.googleapis.com/css?family=Roboto');
 
 a {
     color: #D22030;
@@ -13,7 +13,7 @@ a:hover, a:active, a:focus {
 }
 
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 

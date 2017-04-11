@@ -12,21 +12,18 @@ if(isset($_SESSION['user_id'])){
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Biola CSCI Website</title>
+    <title>Class</title>
 
     <!-- Bootstrap CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Default CSS -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <title>Classes</title>
-    <link rel="stylesheet" href="css/style.css">
-    <!-- Login Page CSS -->
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="/css/style.css">
+    
 </head>
 
 <body>
     
+    <!-- S
     <div id="class-page">
         <div class="container">
             <div class="row">
