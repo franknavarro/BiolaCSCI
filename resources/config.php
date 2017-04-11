@@ -33,6 +33,8 @@ $dbSelection = 1;
         'dbpassword' => 'na34Unah+t+S',
         'dbport' => '3306'
         ];
+    } else {
+        error_log("ERROR: CS-Web Application Configuration Error - $dbSelection not set correctly use (1 or 2)");
     }
 
 ?>
