@@ -34,7 +34,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cscidb`.`log_login` (
   `loginID` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL,
-  `incorrectIP` VARCHAR(45) NOT NULL,
+  `ipAddress` VARCHAR(45) NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`loginID`),
   INDEX `fk_log_login_user1_idx` (`user_email` ASC),
