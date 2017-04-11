@@ -1,15 +1,14 @@
 <?php ob_start(); session_start(); ?>
 
-<html lang="en">
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Use PHP to get page title -->
-    <title>Dope Page</title>
+    <title>Biola Computer Science</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -55,6 +54,9 @@
                     <li class="nav-item">
                         <a href="#">Repo</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/logout.php">Log Out</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -74,7 +76,3 @@
     <!-- Scrolling Navbar JavaScript-->
     <script src="/js/jquery.easing.min.js"></script>
     <script src="/js/navbar.js"></script>
-
-</body>
-
-</html>

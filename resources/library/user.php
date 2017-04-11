@@ -23,7 +23,7 @@ class user{
         }
 
     public static function validateUser($email, $password){
-        $result = DB::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        $result = db::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
         if(!empty($result)){
             $_SESSION['user_id'] = $email;
             return 1;
