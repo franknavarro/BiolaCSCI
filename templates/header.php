@@ -1,15 +1,22 @@
 <?php ob_start(); session_start(); ?>
 
-<html lang="en">
+<?php
+if(isset($_SESSION['user_id'])){
+    //What you want the user to do or see if the user is logged in
+} else {
+    header("Location: ../index.php");
+}
+ ?>
+
 
 <head>
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <!-- Use PHP to get page title -->
-    <title>Dope Page</title>
+    <title>Biola Computer Science</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -55,26 +62,14 @@
                     <li class="nav-item">
                         <a href="#">Repo</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="/logout.php">Log Out</a>
+                    </li>
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
         </div>
         <!-- /.container -->
     </nav>
-
-    <!-- Only used for scroll effect in navbar-->
-    <div style="height: 150%;"></div>
-
-     <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Scrolling Navbar JavaScript-->
-    <script src="/js/jquery.easing.min.js"></script>
-    <script src="/js/navbar.js"></script>
-
-</body>
-
-</html>
+    
+    <div class="container page-content">

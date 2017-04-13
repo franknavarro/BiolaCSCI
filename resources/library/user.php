@@ -2,8 +2,19 @@
 
 include_once('db.php');
 
+
+/*
+Class: User
+Description: Handles login and validation of login form data
+*/
+
 class user{
 
+    /*
+    Function: validateEmail($email)
+    Input: $email = email to be validated
+    Return: Error message after checking for blank as well as if the entered is an email
+    */
     public static function validateEmail($email){
         if (empty($email)) {
             return "Please enter an email";
@@ -13,7 +24,11 @@ class user{
               }
             }
         }
-
+    /*
+    Function: validatePassword($password)
+    Input: $password = password to be validated
+    Return: Error message after checking for blank as well as characters entered
+    */
     public static function validatePassword($password){
         if (empty($password)) {
             return "Please enter a password";
@@ -22,10 +37,20 @@ class user{
             }
         }
 
+    /*
+    Function: ValidateUser($email, $password)
+    Input: $email = the email that is to be validated, $password = password to be validated
+    Return: 1 if the function is able to valide the user or will return an error message
+    */
     public static function validateUser($email, $password){
-        $result = DB::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        $ipAddress = $_SERVER['REMOTE_ADDR']; //Obtains and stores clients ip address
+        $timestamp = date("Y-m-d H:i:s"); //Obtains and stores current date and time
+        //Query: Checks if both email and password entered are a match
+        $result = db::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
         if(!empty($result)){
-            $_SESSION['user_id'] = $email;
+            $_SESSION['user_id'] = $email; // Stores user_id for the sessioning
+            //Insert: Will log when the user logs in and their respective ip address
+            db::query("INSERT INTO log_login (timestamp, ipAddress, user_email) VALUES (:timestamp, :ipAddress, :user_email)", array(':timestamp'=>$timestamp, ':ipAddress'=>$ipAddress, ':user_email'=>$email));
             return 1;
         } else {
             return "The Email or Password is Incorrect";

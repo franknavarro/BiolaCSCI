@@ -2,23 +2,18 @@
 
 class db {
 
-	/* Connect Function
-	Returns: PDO Database Object
-	*/
-
-	// 'dbhost' => '127.0.0.1',
-	// 'dbname' => 'cscidb',
-	// 'dbuser' => 'root',
-	// 'dbpassword' => 'root',
-	// 'dbport' => '8889'
-
 	private static function connect(){
 
-		$dbuser = "dev_csci";
-		$dbpassword = "na34Unah+t+S";
+		$config = include('resources/config.php');
+
+		$dbuser = $config['dbuser'];
+		$dbpassword = $config['dbpassword'];
+		$dbhost = $config['dbhost'];
+		$dbport = $config['dbport'];
+		$dbname = $config['dbname'];
 
 		try{
-			$pdo = new PDO('mysql:host=127.0.0.1;port=8889;dbname=cscidb;charset=utf8', $dbuser, $dbpassword);
+			$pdo = new PDO(sprintf('mysql:host=%s;port=%s;dbname=%s;charset=utf8', $dbhost, $dbport, $dbname), $dbuser, $dbpassword);
 			$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 			return $pdo;
 		} catch (PDOException $e){
