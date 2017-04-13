@@ -16,6 +16,37 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
+.default-button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #D22030;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    -webkit-transition: all 0.3 ease;
+    transition: all 0.3 ease;
+    cursor: pointer;
+}
+.default-button:hover, .default-button:active,
+.default-button:focus {
+    background: #a81926;
+}
+.default-button a {
+    color: white;
+}
+.default-button a:hover, .default-button a:active,
+.default-button a:focus {
+    background: #a81926;
+    text-decoration: none;
+}
+
+.container.page-content {
+    padding-top: 90px;
+    width:100%;
+}
 
 /****************************************************************
 Login Page 
@@ -175,5 +206,58 @@ Nav-bar
         right: 0;
         left: initial;
         white-space: nowrap;
+    }
+}
+
+
+/****************************************************************
+Class Page 
+****************************************************************/
+
+.class-header, .class-navigation {
+    text-align: center;
+}
+
+.class-header h3, .class-navigation {
+    margin-top: 2em;
+}
+
+.class-header label {
+    opacity: 0.6;
+}
+
+.class-navigation>div {
+    border-right: 1px solid grey;  
+}
+.class-navigation > :last-child {
+    border-right: none;
+}
+
+.class-details {
+    margin: 50px 0px;
+}
+
+.class-links>button {
+    display: block;
+    max-width: 90%;
+    margin: 20px auto 0px auto;
+}
+.class-links>button:last-child {
+    margin-bottom: 20px
+}
+
+@media (min-width:768px) {
+    .class-links {
+        position: relative;
+    }
+
+    .class-links:before {
+        content:'';
+        height: 100%;
+        width: 1px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: grey;
     }
 }

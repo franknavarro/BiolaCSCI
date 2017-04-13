@@ -4,7 +4,7 @@ class db {
 
 	private static function connect(){
 
-		$config = include('../config.php');
+		$config = include('resources/config.php');
 
 		$dbuser = $config['dbuser'];
 		$dbpassword = $config['dbpassword'];

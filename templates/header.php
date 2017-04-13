@@ -1,4 +1,14 @@
-<?php ob_start();?>
+<?php ob_start(); session_start(); ?>
+
+<?php
+if(isset($_SESSION['user_id'])){
+    //What you want the user to do or see if the user is logged in
+} else {
+    header("Location: ../index.php");
+}
+ ?>
+
+
 <head>
 
     <meta charset="utf-8">
@@ -61,17 +71,5 @@
         </div>
         <!-- /.container -->
     </nav>
-
-    <!-- Only used for scroll effect in navbar-->
-    <div style="height: 15%;"></div>
-
-     <!-- jQuery -->
-    <script src="/js/jquery.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="/js/bootstrap.min.js"></script>
-
-    <!-- Scrolling Navbar JavaScript-->
-    <script src="/js/jquery.easing.min.js"></script>
-    <script src="/js/navbar.js"></script>
-</body>
+    
+    <div class="container page-content">
