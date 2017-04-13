@@ -4,7 +4,7 @@ class db {
 
 	private static function connect(){
 
-		$config = include('resources/config.php');
+		$config = include('../config.php');
 
 		$dbuser = $config['dbuser'];
 		$dbpassword = $config['dbpassword'];
@@ -22,10 +22,6 @@ class db {
 		}
 	}
 
-	/* Query Function
-	Returns: (Inprogress) Needs to return query results
-	*/
-
 	public static function query($query, $params = array()){
 		$statement = self::connect()->prepare($query);
 		$statement->execute($params);
@@ -35,7 +31,5 @@ class db {
 			return $data;
 		}
 	}
-
-	// Multi line connection
 }
 ?>

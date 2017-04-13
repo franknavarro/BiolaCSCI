@@ -43,6 +43,7 @@ class user{
     Return: 1 if the function is able to valide the user or will return an error message
     */
     public static function validateUser($email, $password){
+        //$hash = password_hash($password)
         $ipAddress = $_SERVER['REMOTE_ADDR']; //Obtains and stores clients ip address
         $timestamp = date("Y-m-d H:i:s"); //Obtains and stores current date and time
         //Query: Checks if both email and password entered are a match
@@ -55,6 +56,10 @@ class user{
         } else {
             return "The Email or Password is Incorrect";
         }
+    }
+
+    public static function createUser($email, $password){
+        $hash = password_hash($password, PASSWORD_DEFAULT);
     }
 }
 

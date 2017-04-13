@@ -2,22 +2,15 @@
 
 /* Biola CS Site Configuration File
 Returns: Array of Configuration Variables
-Use:
-
-<?php
-$config = include('resources/config.php');
-echo $config['dbhost']; // 'localhost'
-?>
-
 */
 
 /* Configuration Variables */
 
-// Database Selection (1 - LocalHost, 2 - Development)
+// Database Selection (0 - Live, 1 - LocalHost)
 
-$dbSelection = 1;
+$debug = 1;
 
-    if ($dbSelection == 1) {
+    if ($debug == 1) {
         return [/* LocalHost Environment Database Configuration Settings */
         'dbhost' => '127.0.0.1',
         'dbname' => 'cscidb',
@@ -25,8 +18,8 @@ $dbSelection = 1;
         'dbpassword' => 'root',
         'dbport' => '8889'
     ];
-    } else if ($dbSelection == 2) {
-        return[/* Development Environment Database Configuration Settings */
+    } else if ($debug == 0) {
+        return[/* Live Environment Database Configuration Settings */
         'dbhost' => '127.0.0.1',
         'dbname' => 'cscidb',
         'dbuser' => 'dev_csci',
@@ -34,7 +27,7 @@ $dbSelection = 1;
         'dbport' => '3306'
         ];
     } else {
-        error_log("ERROR: CS-Web Application Configuration Error - $dbSelection not set correctly use (1 or 2)");
+        error_log("ERROR: CS-Web Application Configuration Error - $debug not set correctly use (0 or 1)");
     }
 
 ?>

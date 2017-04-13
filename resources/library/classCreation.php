@@ -21,9 +21,7 @@
         </form>
 
         <?php
-
         require_once("db.php");
-
         $classID = $_POST["classID"];
         echo $classID;
         echo $className = $_POST["name"];
@@ -37,21 +35,13 @@
         echo $professorName = $_POST["professorName"];
         echo $professorEmail = $_POST["professorEmail"];
         echo $professorHours = $_POST["professorHours"];
-
-
-
         //Create Class Entry
-        db::query("INSERT INTO class VALUES (:classID, :professorName, :name, :sessionID, :syllabusURL, :classTime, :location, :taHours, :professorHours)", array (':classID'=$classID, ':professorName'=$professorName, ':name'=$className, ':sessionID'=$sessionID, ':syllabusURL'=$syllabusURL, ':classTime'=$classTime, ':location'=$location, ':taHours'=$taHours, ':professorHours'=$professorHours));
-
+        db::query("INSERT INTO class VALUES (:classID, :professorName, :name, :sessionID, :syllabusURL, :classTime, :location, :taHours, :professorHours)", array(':classID'=>$classID, ':professorName'=>$professorName, ':name'=>$className, ':sessionID'=>$sessionID, ':syllabusURL'=>$syllabusURL, ':classTime'=>$classTime, ':location'=>$location, ':taHours'=>$taHours, ':professorHours'=>$professorHours));
+        //db::
         //Create TA entry
         //INSERT INTO user_class (role, user_email, class_classID) VALUES (:TA, :taEmail, :classID);
-
         //Create professor entry
         //INSERT INTO user_class (role, user_email, class_classID) VALUES (:Prof, :professorEmail, :classID);
-
-
-
-
         ?>
     </body>
 </html>
