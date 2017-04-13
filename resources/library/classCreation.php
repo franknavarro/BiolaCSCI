@@ -41,8 +41,9 @@
 
 
         //Create Class Entry
-        db::query("INSERT INTO class VALUES (:classID, :professorName, :name, :sessionID, :syllabusURL, :classTime, :location, :taHours, :professorHours)", array (':classID'=$classID, ':professorName'=$professorName, ':name'=$className, ':sessionID'=$sessionID, ':syllabusURL'=$syllabusURL, ':classTime'=$classTime, ':location'=$location, ':taHours'=$taHours, ':professorHours'=$professorHours));
+        db::query("INSERT INTO class VALUES (:classID, :professorName, :name, :sessionID, :syllabusURL, :classTime, :location, :taHours, :professorHours)", array(':classID'=>$classID, ':professorName'=>$professorName, ':name'=>$className, ':sessionID'=>$sessionID, ':syllabusURL'=>$syllabusURL, ':classTime'=>$classTime, ':location'=>$location, ':taHours'=>$taHours, ':professorHours'=>$professorHours));
 
+        //db::
         //Create TA entry
         //INSERT INTO user_class (role, user_email, class_classID) VALUES (:TA, :taEmail, :classID);
 
