@@ -4,6 +4,7 @@
 if(isset($_SESSION['user_id'])){
     //What you want the user to do or see if the user is logged in
 } else {
+
     header("Location: ../index.php");
 }
  ?>

@@ -1,6 +1,5 @@
 <?php include 'header.php'; ?>
 
-    
     <div id="class-page">
             <div class="row">
                 <div class="col-sm-8 class-header-container">
