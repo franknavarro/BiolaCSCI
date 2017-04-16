@@ -35,7 +35,7 @@
                     <!--Here is where you would load the class information details. When you click Info, Announcements, or Assignments above this container adds the information needed -->
                     <div class="class-details">
                         <!-- Loaded Data -->
-                        <?php include 'class-general.php'; ?>
+                        <?php include 'class-ann-single.php'; ?>
                     </div>
                 </div>
                     

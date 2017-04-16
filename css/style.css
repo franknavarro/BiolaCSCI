@@ -1,3 +1,8 @@
+:root {
+    --main-color: #D22030;
+    --darker-main: #a81926;
+}
+
 /****************************************************************
 Sitewide Styling 
 ****************************************************************/
@@ -5,11 +10,11 @@ Sitewide Styling
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
 a {
-    color: #D22030;
+    color: var(--main-color);
 }
 
 a:hover, a:active, a:focus {
-    color: #a81926;
+    color: var(--darker-main);
 }
 
 body {
@@ -24,7 +29,7 @@ body {
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #D22030;
+    background: var(--main-color);
     width: 100%;
     border: 0;
     padding: 15px;
@@ -36,19 +41,25 @@ body {
 }
 .default-button:hover, .default-button:active,
 .default-button:focus {
-    background: #a81926;
+    background: var(--darker-main);
 }
 .default-button a {
     color: white;
 }
 .default-button a:hover, .default-button a:active,
 .default-button a:focus {
-    background: #a81926;
+    background: var(--darker-main);
     text-decoration: none;
 }
 
 .container.page-content {
-    padding-top: 90px;
+    padding-top: 50px;
+}
+
+@media (min-width:768px) {
+    .container.page-content {
+        padding-top: 90px;
+    }
 }
 
 .alert.alert-warning {
@@ -93,7 +104,7 @@ Login Page
     font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     outline: 0;
-    background: #D22030;
+    background: var(--main-color);
     width: 100%;
     border: 0;
     padding: 15px;
@@ -104,11 +115,11 @@ Login Page
     cursor: pointer;
 }
 .form .submit-button:hover,.form .submit-button:active,.form .submit-button:focus {
-    background: #a81926;
+    background: var(--darker-main);
 }
 
 div#login-page {
-    background: #D22030;
+    background: var(--main-color);
     height: 100%;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
@@ -177,6 +188,10 @@ Nav-bar
     width: 90%;
     margin: auto;
     border-color: #464646;
+}
+
+.navbar-fixed-top .navbar-collapse {
+    max-height: 100%;
 }
 
 
@@ -256,7 +271,7 @@ Class Page
 }
 
 .class-details {
-    margin: 40px 0px;
+    margin: 40px 10px;
 }
 
 .class-links>button {
@@ -287,7 +302,8 @@ Class Page
 /****************** Class Info Sub-Page ************************/
 
 #class-info {
-    text-align: center;
+    /*text-align: center;*/
+    padding-left: 40px;
 }
 
 .cinfo-header {
@@ -297,4 +313,41 @@ Class Page
 .cinfo-header.sub-header {
     margin-bottom: 15px;
     margin-top: 15px;
+}
+
+/************* Class Announcements Sub-Page *******************/
+
+.announcement:nth-child(odd) .row {
+    background-color: whitesmoke;
+}
+
+a.announcement:hover .row {
+    background-color: #E8E8E8;
+}
+
+a.announcement:hover .title,
+a.announcement:hover .author
+{
+    text-decoration: underline;
+}
+
+.announcement .row {
+    margin: 0;
+}
+
+.announcement:first-child .ann-content {
+    border-top: 1px solid grey;
+}
+
+.ann-content {
+    border-bottom: 1px solid grey;
+}
+
+.announcement .message {
+    color: black;
+}
+
+/* Single Announcement Page */
+#announcement-single .author {
+    margin-bottom: 25px;
 }
