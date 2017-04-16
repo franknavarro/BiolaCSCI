@@ -13,13 +13,19 @@
                     <!-- Add links that loads relavent content into div.class-deatils below -->
                     <div class="class-navigation">
                         <div class="col-xs-4">
-                            <a href="#">Info</a>
+                            <button class="default-button">
+                                <a href="#">General</a>
+                            </button>
                         </div>
                         <div class="col-xs-4">
-                            <a href="#">Announcements</a>
+                            <button class="default-button">
+                                <a href="#">Announcements</a>
+                            </button>
                         </div>
                         <div class="col-xs-4">
-                            <a href="#">Assignments</a>
+                            <button class="default-button">
+                                <a href="#">Assignments</a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -29,6 +35,7 @@
                     <!--Here is where you would load the class information details. When you click Info, Announcements, or Assignments above this container adds the information needed -->
                     <div class="class-details">
                         <!-- Loaded Data -->
+                        <?php include 'class-general.php'; ?>
                     </div>
                 </div>
                     
