@@ -24,6 +24,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`user` (
   `password` VARCHAR(45) NULL,
   `lastsignin` DATETIME NULL,
   `lastipaddress` VARCHAR(45) NULL,
+  `user_perm` INT NOT NULL,
   PRIMARY KEY (`email`))
 ENGINE = InnoDB;
 
@@ -357,6 +358,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`announcement` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('mark.a.gong-guy@biola.edu', 'Mark', 'Gong-Guy', 'password', '4');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
