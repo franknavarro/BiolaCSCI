@@ -23,7 +23,7 @@ $debug = 0;
         'dbhost' => '127.0.0.1',
         'dbname' => 'cscidb',
         'dbuser' => 'root',
-        'dbpassword' => 'password',
+        'dbpassword' => 'root',
         'dbport' => '3306'
         ];
     } else {
