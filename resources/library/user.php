@@ -47,7 +47,7 @@ class user{
         $ipAddress = $_SERVER['REMOTE_ADDR']; //Obtains and stores clients ip address
         $timestamp = date("Y-m-d H:i:s"); //Obtains and stores current date and time
         //Query: Checks if both email and password entered are a match
-        $result = db::query("SELECT email FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        $result = db::query("SELECT user_perm FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
         if(!empty($result)){
             $_SESSION['user_id'] = $email; // Stores user_id for the sessioning
             //Insert: Will log when the user logs in and their respective ip address
@@ -58,8 +58,11 @@ class user{
         }
     }
 
-    public static function createUser($email, $password){
-        $hash = password_hash($password, PASSWORD_DEFAULT);
+    public static function addUser($email, $firstName, $lastName, $password, $user_perm){
+        $hash = $password;
+        // password_hash($password, PASSWORD_DEFAULT);
+        $perm = $user_perm; // Write Verification
+        db::query("INSERT INTO user (email, firstName, lastName, password, user_perm) VALUES (:email, :firstName, :lastName, :password, :user_perm)", array(':email'=>$email, ':firstName'=>$firstName, ':lastName'=>$lastName, ':password'=>$hash, 'user_perm'=>$perm));
     }
 }
 

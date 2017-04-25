@@ -8,7 +8,7 @@ Returns: Array of Configuration Variables
 
 // Database Selection (0 - Live, 1 - LocalHost)
 
-$debug = 1;
+$debug = 0;
 
     if ($debug == 1) {
         return [/* LocalHost Environment Database Configuration Settings */
@@ -22,8 +22,8 @@ $debug = 1;
         return[/* Live Environment Database Configuration Settings */
         'dbhost' => '127.0.0.1',
         'dbname' => 'cscidb',
-        'dbuser' => 'dev_csci',
-        'dbpassword' => 'na34Unah+t+S',
+        'dbuser' => 'root',
+        'dbpassword' => 'root',
         'dbport' => '3306'
         ];
     } else {
