@@ -321,12 +321,14 @@ Class Page
     background-color: whitesmoke;
 }
 
-a.announcement:hover .row {
+a.announcement:hover .row,
+a.assignment:hover .row{
     background-color: #E8E8E8;
 }
 
 a.announcement:hover .title,
-a.announcement:hover .author
+a.announcement:hover .author,
+a.assignment:hover .title
 {
     text-decoration: underline;
 }
@@ -350,4 +352,60 @@ a.announcement:hover .author
 /* Single Announcement Page */
 #announcement-single .author {
     margin-bottom: 25px;
+}
+
+/************* Class Assignments Sub-Page *******************/
+
+#assignments-page button {
+    background: none;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+#assignments-page .dropdown-menu {
+    position: relative;
+    float: none;
+    padding: 0px;
+    border: 1px solid gray;
+    box-shadow: none;
+}
+
+.assignment .row {
+    border-bottom: 1px solid gray;
+    margin: 0px;
+    padding: 5px 0px 10px 0px;
+}
+
+.assignment:last-child .row {
+    border-bottom: none;
+}
+
+.assignment h4.title {
+    font-weight: 600;
+    font-size: 16px;
+    margin-bottom: 2px;
+    color: black;
+}
+
+.assignment label.due-date {
+    font-weight: normal;
+    color: #929292;
+}
+
+div#upcoming-assignments {
+    margin-top: 40px;
+}
+
+/*From Bootstrap*/
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: .3em;
+    vertical-align: middle;
+    content: "";
+    border-top: .3em solid;
+    border-right: .3em solid transparent;
+    border-left: .3em solid transparent;
 }
