@@ -90,7 +90,9 @@ Accessing
             -Each of these are a text file that you can run manually to see if
             they work. Results are included with a timestamp.
         - PHP Class Test
-            Note: User Add Function will only run one time because it adds a user to the db and if you refresh
+            Note: User Add Function will only run one time because it adds a
+            user to the db and if you refresh
             it tries to add it again but will fail as the user already exists.
-            - To run tests point your browser to (hostip)/runtests.php, results should appear on screen
+            - To run tests point your browser to (hostip)/runtests.php, results
+            should appear on screen
         (More Coming Soon)
