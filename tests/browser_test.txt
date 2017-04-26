@@ -9,10 +9,13 @@ More will be added to this test as more functionality opens up on the website.
 
 This test was run on 4/26/17
 Safari
-Result: Inconclusive Safari wouldn't start up.
+Result: Successful
 
 Firefox
 Result: Successful
 
 Chrome
 Result: Successful
+
+Internet Explorer
+Result: The css is failing on some of the pages but beyond that it works.
