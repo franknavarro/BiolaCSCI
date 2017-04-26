@@ -32,9 +32,14 @@ echo "Configuring Mysql Server"
 sudo mysql_secure_installation
 echo "Installing Database..."
 #Obtains the root password in order to allow for installation of base database
-echo "Please enter mysql server root password"
+echo "Please enter mysql server root password (The one that you created/entered above)"
 read -s mysqlRoot
 sudo mysql -u "root" -p$mysqlRoot < /var/www/html/resources/db/generate_db.sql
 echo "Complete: CS Site has been fully installed"
-echo "Point your browser to "
-echo `ifconfig eth0 2>/dev/null|awk '/inet addr:/ {print $2}'|sed 's/addr://'`
+echo "Installed:"
+echo "Active - Web Server"
+echo "Active - DB Server"
+echo "Complete - Configured Firewall"
+echo "Complete - Placed CSCI Web application files in /var/www/html/"
+echo "Web Directory (Source Code): /var/www/html/"
+echo "Navigate using cd /var/www/html"
