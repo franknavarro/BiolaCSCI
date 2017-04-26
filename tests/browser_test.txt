@@ -1,0 +1,18 @@
+A manual test to run to find out if the website is compatible with multiple
+browsers.
+
+Description: I copied and pasted our jenkins server IP into multiple browsers.
+This brought up the login screen. I logged on using the default email:
+mark.a.gong-guy@biola.edu and password: password. If the login worked and the
+html was formatted as it should be then I marked the test successful. Note:
+More will be added to this test as more functionality opens up on the website.
+
+This test was run on 4/26/17
+Safari
+Result: Inconclusive Safari wouldn't start up.
+
+Firefox
+Result: Successful
+
+Chrome
+Result: Successful
