@@ -1,0 +1,12 @@
+Github
+    Description: The code versioning application that we used.
+Jenkins
+    Description: The test and build server we are using for our code.
+Trello
+    Description: The application we used for our story card system.
+Atom
+    Description: The code editor we used.
+Mamp
+    Description: This is the apache server and database that we used.
+MySQL Workbench
+    Description: The MySQL editor we used for the database.
