@@ -9,3 +9,5 @@ Usability Tests
     3. login_test.txt
 
 Php Unit Tests
+    1. class_test.php
+    
