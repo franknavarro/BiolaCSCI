@@ -32,11 +32,8 @@ class user{
     public static function validatePassword($password){
         if (empty($password)) {
             return "Please enter a password";
-        } else if (preg_match(" /^.*(?=.{8,})(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).*$/",$password)){ //Determine Characters Later
-            return "Invalid Characters Entered";
-            }
         }
-
+    }
     /*
     Function: ValidateUser($email, $password)
     Input: $email = the email that is to be validated, $password = password to be validated
