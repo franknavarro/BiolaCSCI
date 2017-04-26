@@ -1,0 +1,13 @@
+Test Matrix
+
+Description: This is a list of all the tests we have run. It is separated into
+two categories Usability Tests and Php Unit Tests.
+
+Usability Tests
+    1. browser_test.txt
+    2. htmlAndCss_test.txt
+    3. login_test.txt
+
+Php Unit Tests
+    1. class_test.php
+    

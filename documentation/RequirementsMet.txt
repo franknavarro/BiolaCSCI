@@ -1,0 +1,44 @@
+Requirements
+
+Description: This document references our requirements documentation from
+earlier in class and shows you where we are at with those requirements.
+
+-Requirements being met:
+	-Class Creation
+        -Creation*
+        -UI*
+        -Assignment*
+        -Announcement*
+	-Login/Homepage
+        -Login Page
+        -Navigation Bar
+	-Code Collaboration Tool
+        -Screen Sharing*
+-Requirements being pushed to the next Iteration:
+    -Class Creation
+        -Calendar
+    -Code Collaboration Tool
+        -Private Sessioning
+        -Github Access
+        -System Access
+        -Download Finished Code
+    -Login/Homepage
+        -Homepage
+	-Virtual Classroom
+        -Attendance
+        -Whiteboard
+        -Quiz
+	-Code Repository
+        -File viewer
+        -Uploading Files
+    -Forum
+        -Channels
+        -Menu
+        -Window
+        -Text-Entry
+-Requirements being discarded:
+	-Class Creation
+        -Grading Rubric
+
+*These requirements are in the process of being created and aren't fully
+functional yet.
