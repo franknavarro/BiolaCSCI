@@ -1,5 +1,7 @@
 <?php
 
+//Instructions: To run use the runtests.php
+
 include_once('resources/library/user.php');
 
 class class_test{
