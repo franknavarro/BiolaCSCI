@@ -32,10 +32,10 @@
             </div>
             <div class="row">
                 <div class="col-sm-8 class-content">
-                    <!--Here is where you would load the class information details. When you click Info, Announcements, or Assignments above this container adds the information needed -->
+                    <!--Here is where you would load the class information details. When you click General, Announcements, or Assignments above this div container shows the information needed -->
                     <div class="class-details">
-                        <!-- Loaded Data -->
-                        <?php include 'class-assign-single.php'; ?>
+                        <!-- Loaded Data from either class-general.php, class-announcements.php, class-ann-single.php, class-assignments.php, or class-assign-single.php-->
+                        <?php include 'class-assignments.php'; ?>
                     </div>
                 </div>
                     
