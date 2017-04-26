@@ -37,3 +37,10 @@ Steps:
 11. Remove test database and access to it? [Y/n] - Hit Y
 12. Reload Privilege tables now? [Y/n] - Hit Y
 5. Done!
+
+#### 3rd Party Scripts/Classes
+
+Together.js - TogetherJS is a free, open source JavaScript library by Mozilla that adds collaboration features and tools to your website. By adding TogetherJS to your site, your users can help each other out on a website in real time!
+
+URL: https://togetherjs.com
+Usage Information: JS Script can be found in resources/library/together.js. The script usage is primarily in the code collaboration tool as well as the virtual classroom.
