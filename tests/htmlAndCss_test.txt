@@ -7,13 +7,13 @@ are working. Also this is based of the website map included in the tar ball.
 
 This test was run on 4/25/17
 Login       ==>     Main Page               Works: Yes
-Main Page   ==>     Class Page              Works: No
+Main Page   ==>     Class Page              Works: Yes
 Main Page   ==>     Virtual Classroom       Works: No
-Main Page   ==>     Code Collaboration      Works: No
+Main Page   ==>     Code Collaboration      Works: Yes
 Main Page   ==>     Forum                   Works: Not Implemented.
 Main Page   ==>     Code Repository         Works: Not Implemented.
 Classes     ==>     Class Creation          Works: No
-Classes     ==>     Class Page              Works: No
+Classes     ==>     Class Page              Works: Yes
 Class Page  ==>     Announcement Creation   Works: No
 Class Page  ==>     Assignments             Works: No
 Assignments ==>     Assignment Creation     Works: No

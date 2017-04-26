@@ -1,12 +1,18 @@
 Github
     Description: The code versioning application that we used.
+    github.com
 Jenkins
     Description: The test and build server we are using for our code.
+    https://jenkins.io/
 Trello
     Description: The application we used for our story card system.
+    https://trello.com/invite/b/9LM96uub/1febd433e712d664092446126194c388/cs-website-project
 Atom
     Description: The code editor we used.
+    https://atom.io/
 Mamp
     Description: This is the apache server and database that we used.
+    https://www.mamp.info/en/
 MySQL Workbench
     Description: The MySQL editor we used for the database.
+    https://www.mysql.com/products/workbench/
