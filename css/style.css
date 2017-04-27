@@ -409,3 +409,30 @@ div#upcoming-assignments {
     border-right: .3em solid transparent;
     border-left: .3em solid transparent;
 }
+
+/****************************************************************
+Code Collaboration Page 
+****************************************************************/
+
+#code-collaboration label {
+    float: left
+}
+
+#code-collaboration .twrap {
+    overflow: hidden;
+    padding: 0 4px 0 12px
+}
+#code-collaboration textarea {
+    width: 100%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 50px;
+    padding: 25px 20px;
+}
+
+@media (min-width:768px) {
+    #code-collaboration textarea {
+        top: 90px;
+    }
+}
