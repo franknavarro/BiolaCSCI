@@ -1,0 +1,18 @@
+Test Matrix
+
+Description: This is a list of all the tests we have run. It is separated into
+two categories Usability Tests and Php Unit Tests. After that is a record of dry
+that we have done on the machine.
+
+Usability Tests
+    1. browser_test.txt
+    2. htmlAndCss_test.txt
+    3. login_test.txt
+
+Php Unit Tests
+    1. class_test.php
+
+Dry-Run Record
+    1. Philip Stout - 4/26/17 (Phil wasn't here to help with the documentation
+    so it was all new material for him.)
+        -Everything seem to work except the database connection.
