@@ -44,3 +44,8 @@ Together.js - TogetherJS is a free, open source JavaScript library by Mozilla th
 
 URL: https://togetherjs.com
 Usage Information: JS Script can be found in resources/library/together.js. The script usage is primarily in the code collaboration tool as well as the virtual classroom.
+
+BootStrap - With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.
+
+URL: http://getbootstrap.com/
+Usage Information: This framework is used throughout the entire project anywhere where web data is displayed.
