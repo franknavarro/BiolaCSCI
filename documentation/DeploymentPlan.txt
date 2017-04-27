@@ -34,7 +34,7 @@ Deployment Plan
 
 7. Follow the below prompts to instructions to navigate through the database
 setup.
-    a. Set the root password? [Y/n] - Hit Y
+    a. Set the root password? [Y/n] - Hit Y and set the root password to "root"
     b. Remove Anonymous users? [Y/n] - Hit Y
     c. Disallow root login remotely? [Y/n] - Default we would recommend that
     you use Y however if you would like to access the database remotely then
@@ -57,7 +57,12 @@ Accessing
         2. Login using default login
             Email: mark.a.gong-guy@biola.edu
             Password: password
-        3. After login you will find our base dashboard. Use the navigation
+        3. (This is not typical on most systems)
+        When  logging in if you encounter "cannot connect to database error"
+        selinux is preventing the web server from contacting the database. To
+        get around this use the following command in your terminal to disable
+        selinux on the web server.  setsebool -P httpd_can_network_connect=1
+        4. After login you will find our base dashboard. Use the navigation
         bar at the top to navigate to any of the following pages
 
             Site Map (Current Functionality)
