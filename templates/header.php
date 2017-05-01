@@ -55,7 +55,7 @@ if(isset($_SESSION['user_id'])){
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a href="/templates/CodeCollaboration.html">Code Collaboration</a>
+                        <a href="/classroom.php">Create Session</a>
                     </li>
                     <li class="nav-item">
                         <a href="/adduser.php">Add User</a>
