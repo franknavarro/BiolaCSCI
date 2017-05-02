@@ -8,6 +8,16 @@
             </div>
         </div>
     </div>
+
+    <!-- Add additional JS to js/code-collab.js -->
     <script src="js/code-collab.js"></script>
     <script src="resources/library/together.js"></script>
-    <script> TogetherJSConfig_getUserName = function () {return '<?php echo $_SESSION['user_id']; ?>';}; </script>
+
+
+    <script>
+        TogetherJSConfig_getUserName = function () {
+            return '<?php echo $_SESSION['user_id']; ?>';
+        }; 
+    </script>
+
+<?php include 'templates/footer.php'; ?>
