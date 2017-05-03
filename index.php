@@ -41,6 +41,7 @@ if(isset($_SESSION['user_id'])){
                         echo '<strong>Warning! </strong>', $errormessage;
                         echo '</div>';
                         $errormessage = "";
+                        goto end;
                     }
                     $errormessage = user::validatePassword($password);
                     if (!$errormessage == "") {
@@ -48,6 +49,7 @@ if(isset($_SESSION['user_id'])){
                         echo '<strong>Warning! </strong>', $errormessage;
                         echo '</div>';
                         $errormessage = "";
+                        goto end;
                     }
                     $errormessage = user::validateUser($email, $password);
                     if ($errormessage == 1) {
@@ -62,6 +64,8 @@ if(isset($_SESSION['user_id'])){
                     }
 
                 }
+
+                end:
 
                  ?>
                 <div class="login-container">

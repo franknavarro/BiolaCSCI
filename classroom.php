@@ -17,7 +17,7 @@
     <script>
         TogetherJSConfig_getUserName = function () {
             return '<?php echo $_SESSION['user_id']; ?>';
-        }; 
+        };
     </script>
 
 <?php include 'templates/footer.php'; ?>

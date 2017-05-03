@@ -19,6 +19,7 @@ if(isset($_SESSION['user_id'])){
 <html>
 <?php begin: include 'templates/header.php'; ?>
     <body>
+        <h1 class="text-center"> Create a New User </h1>
         <form role="form" action="adduser.php" method="post">
             <fieldset>
             <input type="text" placeholder="Biola Email" name="email" required/>

@@ -32,6 +32,8 @@ class user{
     public static function validatePassword($password){
         if (empty($password)) {
             return "Please enter a password";
+        } else if(preg_match("/\\s/", $password)) {
+            return 'Invalid Password';
         }
     }
     /*
@@ -44,7 +46,7 @@ class user{
         $ipAddress = $_SERVER['REMOTE_ADDR']; //Obtains and stores clients ip address
         $timestamp = date("Y-m-d H:i:s"); //Obtains and stores current date and time
         //Query: Checks if both email and password entered are a match
-        $result = db::query("SELECT user_perm FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        $result = db::query("SELECT firstName FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
         if(!empty($result)){
             $_SESSION['user_id'] = $email; // Stores user_id for the sessioning
             //Insert: Will log when the user logs in and their respective ip address
