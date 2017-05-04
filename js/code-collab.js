@@ -1,6 +1,8 @@
 
 window.onload = function() {
     tabCapableText(); //Enabled Tabbed Text in textarea
+    TogetherJS(); //Run together JS
+    TogetherJS.config("dontShowClicks", true) //Disable Click Ping
 };
 
 //Makes the textarea tab-capable
