@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`user` (
   `password` VARCHAR(45) NULL,
   `lastsignin` DATETIME NULL,
   `lastipaddress` VARCHAR(45) NULL,
-  `activeCookie` VARCHAR(45) NULL,
+  `user_perm` INT NOT NULL,
   PRIMARY KEY (`email`))
 ENGINE = InnoDB;
 
@@ -35,7 +35,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cscidb`.`log_login` (
   `loginID` INT NOT NULL AUTO_INCREMENT,
   `timestamp` DATETIME NOT NULL,
-  `incorrectIP` VARCHAR(45) NOT NULL,
+  `ipAddress` VARCHAR(45) NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`loginID`),
   INDEX `fk_log_login_user1_idx` (`user_email` ASC),
@@ -64,8 +64,9 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`class`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`class` (
-  `classID` VARCHAR(45) NULL,
-  `professorID` VARCHAR(45) NULL,
+  `classID` INT NOT NULL AUTO_INCREMENT,
+  `classCode` VARCHAR(45) NULL,
+  `professorID` VARCHAR (45) NOT NULL,
   `className` VARCHAR(45) NULL,
   `lastSessionID` INT NOT NULL,
   `syllabusURL` VARCHAR(45) NULL,
@@ -73,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`class` (
   `room` VARCHAR(45) NULL,
   `taHours` VARCHAR(45) NULL,
   `instructorHours` VARCHAR(45) NULL,
+  `classDescription` MEDIUMTEXT NULL,
   PRIMARY KEY (`classID`),
   INDEX `fk_class_session1_idx` (`lastSessionID` ASC),
   CONSTRAINT `fk_class_session1`
@@ -291,10 +293,10 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`user_class`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`user_class` (
-  `iduser_class` INT NOT NULL,
+  `iduser_class` INT NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(45) NULL,
   `user_email` VARCHAR(45) NOT NULL,
-  `class_classID` VARCHAR(45) NULL,
+  `class_classID` INT NOT NULL,
   PRIMARY KEY (`iduser_class`),
   INDEX `fk_user_class_user1_idx` (`user_email` ASC),
   INDEX `fk_user_class_class1_idx` (`class_classID` ASC),
@@ -322,7 +324,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`assignment` (
   `url` VARCHAR(45) NULL,
   `classID` VARCHAR(45) NULL,
   `postTime` DATETIME NULL,
-  `class_classID` VARCHAR(45) NULL,
+  `class_classID` INT NOT NULL,
   PRIMARY KEY (`name`),
   INDEX `fk_assignment_class1_idx` (`class_classID` ASC),
   CONSTRAINT `fk_assignment_class1`
@@ -340,23 +342,24 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`announcement` (
   `name` INT NOT NULL,
   `description` VARCHAR(45) NULL,
   `postTime` VARCHAR(45) NULL,
+  `class_classID` INT NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
-  `class_classID` VARCHAR(45) NULL,
   PRIMARY KEY (`name`),
-  INDEX `fk_announcement_user1_idx` (`user_email` ASC),
   INDEX `fk_announcement_class1_idx` (`class_classID` ASC),
-  CONSTRAINT `fk_announcement_user1`
-    FOREIGN KEY (`user_email`)
-    REFERENCES `cscidb`.`user` (`email`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+  INDEX `fk_announcement_user1_idx` (`user_email` ASC),
   CONSTRAINT `fk_announcement_class1`
     FOREIGN KEY (`class_classID`)
     REFERENCES `cscidb`.`class` (`classID`)
     ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_announcement_user1`
+    FOREIGN KEY (`user_email`)
+    REFERENCES `cscidb`.`user` (`email`)
+    ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('mark.a.gong-guy@biola.edu', 'Mark', 'Gong-Guy', 'password', '4');
 
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
