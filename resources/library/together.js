@@ -6,8 +6,8 @@
 (function () {
 
   var defaultConfiguration = {
-    // Disables color bubbles on click
-    dontshowclicks: true,
+
+    dontShowClicks: true,
     // Enable Mozilla or Google analytics on the page when TogetherJS is activated:
     // FIXME: these don't seem to be working, and probably should be removed in favor
     // of the hub analytics
@@ -36,7 +36,7 @@
     // The name of this tool as provided to users.  The UI is updated to use this.
     // Because of how it is used in text it should be a proper noun, e.g.,
     // "MySite's Collaboration Tool"
-    toolName: "Virtual Classroom",
+    toolName: null,
     // Used to auto-start TogetherJS with a {prefix: pageName, max: participants}
     // Also with findRoom: "roomName" it will connect to the given room name
     findRoom: null,
