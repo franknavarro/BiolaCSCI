@@ -16,6 +16,12 @@ $(function() {
 </script>
 
 <script>
+         TogetherJSConfig_getUserName = function () {		 +//Makes the textarea tab-capable
+             return '<?php echo $_SESSION['user_id']; ?>';
+         };
+</script>
+
+<script>
 //Makes the textarea tab-capable
 
 var textareas = document.getElementsByTagName('textarea');
@@ -30,12 +36,6 @@ for(var i=0;i<count;i++){
         }
     }
 }
-</script>
-
-<script>
-         TogetherJSConfig_getUserName = function () {		 +//Makes the textarea tab-capable
-             return '<?php echo $_SESSION['user_id']; ?>';
-         };
 </script>
 </body>
 </html>
