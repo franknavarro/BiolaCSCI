@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>CodeCollab</title>
+<?php include 'templates/header.php'; ?>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
 	<script src="js/jquery-linedtextarea.js"></script>
     <script src="resources/library/together.js"></script>
@@ -34,6 +30,12 @@ for(var i=0;i<count;i++){
         }
     }
 }
+</script>
+
+<script>
+         TogetherJSConfig_getUserName = function () {		 +//Makes the textarea tab-capable
+             return '<?php echo $_SESSION['user_id']; ?>';
+         };
 </script>
 </body>
 </html>
