@@ -49,7 +49,7 @@ if(isset($_SESSION['user_id'])){
                         <a href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classes</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <!-- Here is where each class is displayed. Use PHP to load each item as a link with <a> tag with the class "dropdown-item" -->
-                            <a class="dropdown-item" href="/templates/class.php">Introduction to Computer Science</a>
+                            <a class="dropdown-item" href="/class.php">Introduction to Computer Science</a>
                             <!-- Use horizontal rule to seperate each class -->
                             <!-- <hr> -->
                         </div>

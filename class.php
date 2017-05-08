@@ -1,15 +1,15 @@
-<?php include 'header.php'; ?>
+<?php include 'templates/header.php'; ?>
 
     <div id="class-page">
             <div class="row">
                 <div class="col-sm-8 class-header-container">
-                    
+
                     <!-- Update class title and ID here -->
                     <div class="class-header">
                         <h3>Introduction to Computer Science</h3>
                         <label>CSCI 105</label>
                     </div>
-                    
+
                     <!-- Add links that loads relavent content into div.class-deatils below -->
                     <div class="class-navigation">
                         <div class="col-xs-4">
@@ -35,10 +35,10 @@
                     <!--Here is where you would load the class information details. When you click General, Announcements, or Assignments above this div container shows the information needed -->
                     <div class="class-details">
                         <!-- Loaded Data from either class-general.php, class-announcements.php, class-ann-single.php, class-assignments.php, or class-assign-single.php-->
-                        <?php include 'class-assignments.php'; ?>
+                        <?php include 'templates/class-assignments.php'; ?>
                     </div>
                 </div>
-                    
+
                 <!-- Check permisions to load relavent links -->
                 <div class="col-sm-4 class-links">
                     <button class="default-button"><a href="#">Begin Collab</a></button>
@@ -52,5 +52,5 @@
             </div>
         </div>
     </div>
-    
-<?php include 'footer.php'; ?>
+
+<?php include 'templates/footer.php'; ?>
