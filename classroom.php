@@ -16,7 +16,7 @@ $(function() {
 </script>
 
 <script>
-         TogetherJSConfig_getUserName = function () {		 +//Makes the textarea tab-capable
+         TogetherJSConfig_getUserName = function () {
              return '<?php echo $_SESSION['user_id']; ?>';
          };
 </script>
