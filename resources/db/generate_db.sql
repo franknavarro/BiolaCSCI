@@ -65,7 +65,8 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`class` (
   `classID` INT NOT NULL AUTO_INCREMENT,
-  `professorID` INT UNSIGNED NOT NULL,
+  `classCode` VARCHAR(45) NULL,
+  `professorID` VARCHAR (45) NOT NULL,
   `className` VARCHAR(45) NULL,
   `lastSessionID` INT NOT NULL,
   `syllabusURL` VARCHAR(45) NULL,
@@ -73,7 +74,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`class` (
   `room` VARCHAR(45) NULL,
   `taHours` VARCHAR(45) NULL,
   `instructorHours` VARCHAR(45) NULL,
-  `classcol` VARCHAR(45) NULL,
+  `classDescription` MEDIUMTEXT NULL,
   PRIMARY KEY (`classID`),
   INDEX `fk_class_session1_idx` (`lastSessionID` ASC),
   CONSTRAINT `fk_class_session1`
@@ -292,7 +293,7 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`user_class`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`user_class` (
-  `iduser_class` INT NOT NULL,
+  `iduser_class` INT NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(45) NULL,
   `user_email` VARCHAR(45) NOT NULL,
   `class_classID` INT NOT NULL,
