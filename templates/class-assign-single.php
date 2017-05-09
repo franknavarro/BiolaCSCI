@@ -1,4 +1,4 @@
-<div id="assignment-single">
+<div class="assignment-single" id="assign-idnumber">
     <h2 class="title">
         <!-- Pull Assignment Title from database here -->
         Title

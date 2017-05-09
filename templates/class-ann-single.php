@@ -1,4 +1,4 @@
-<div id="announcement-single">
+<div class="announcement-single" id="ann-idnumber">
     <h3 class="title">
         <!-- Pull Announcement Title from database here -->
         Title

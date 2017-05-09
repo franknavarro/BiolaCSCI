@@ -252,22 +252,32 @@ Class Page
 }
 
 .class-navigation>div {
-    border-right: 1px solid white;
+    border-right: 1px solid grey;
     padding: 0px;
 }
 .class-navigation > :last-child {
     border-right: none;
 }
 
+
 .class-navigation button {
-    text-transform: capitalize;
-    padding: 5px;
+    text-transform: none;
+    color: black;
+    cursor: pointer;
+    cursor: hand;
+    padding: 10px;
+    background-color: inherit;
 }
 
-.class-navigation button:hover, 
+.class-navigation button:hover,
 .class-navigation button:active,
 .class-navigation button:focus {
-    text-decoration: underline;
+    background-color: rgba(0,0,0,.25);
+}
+
+.class-navigation .active-button {
+    background-color: var(--main-color) !important;
+    color: white;
 }
 
 .class-details {
@@ -297,6 +307,12 @@ Class Page
         left: 0;
         background-color: grey;
     }
+}
+
+
+#assignments-page, .assignment-single, 
+#announcement-page, .announcement-single {
+    display: none;
 }
 
 /****************** Class Info Sub-Page ************************/
