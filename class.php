@@ -1,5 +1,34 @@
 <?php include 'templates/header.php'; ?>
 
+<?php
+$currentClass;
+ ?>
+
+
+ <!-- Update class title and ID here
+include '../resources/library/db.php';
+$currentClass = $_COOKIE["currentClass"];
+$classQuery = "SELECT classCode, className, room, classTime, syllabusURL, professorID, instructorHours,  FROM 'cscidb'.'class' WHERE classID = $currentClass";
+$profQuery = "SELECT firstName, lastName, email FROM 'cscidb'.'user' WHERE ??????";
+****** professorID means what? how do I use this to query the user class? *****
+$taQuery = "SELECT firstName, lastName, email FROM 'cscidb'.'user' WHERE ?????";
+****** How do are we signifying the who the TA is? *****
+$assQuery = "SELECT name, description, dueDate, postTime FROM 'cscidb'.'assignment' WHERE classID = $currentClass";
+$annQuery = "SELECT name, description, postTime, user_email FROM 'cscidb'.'announcement' WHERE classID = $currentClass";
+
+$classResult = db::query($nameCodeQuery);
+$profResult = db::query($profQuery);
+$taResult = db::query($taQuery);
+$assResults = db::query($assQuery);
+$annResults = db::query($annQuery);
+
+
+
+$header = $result->fetch_assoc();
+" . $header["className"]. "
+" . $header["classCode"]. "
+-->
+
     <div id="class-page">
             <div class="row">
                 <div class="col-sm-8 class-header-container">
@@ -29,10 +58,10 @@
                     <!--Here is where you would load the class information details. When you click General, Announcements, or Assignments above this div container shows the information needed -->
                     <div class="class-details">
                         <!-- Use PHP to update all relevant values -->
-                        
+
     <!-------------------------------------------------------GENERAL CLASS INFORMATION SECTION
     -------------------------------------------------------->
-    <div id="class-info">   
+    <div id="class-info">
         <h4 class="cinfo-header">Class Information</h4>
         <p><strong>Location: </strong>
             <!-- Pull Class Location from database here -->
@@ -41,7 +70,7 @@
         <p><strong>Class Time: </strong>
             <!-- Pull Class Time from database here -->
             3:00-4:15pm M/W
-        </p> 
+        </p>
         <!-- Change href to location of syllabus saved in database -->
         <p><a href="course-syllabus">Course Syllabus</a></p>
         <h4 class="cinfo-header">Professor Information</h4>
@@ -57,7 +86,7 @@
             <!-- Pull Office Hours for class from database here -->
             4:00-5:00pm T/Th
         </p>
-        <h4 class="cinfo-header">TA Information</h4>    
+        <h4 class="cinfo-header">TA Information</h4>
         <h5 class="cinfo-header sub-header">
             <!-- Get TA Name from database here -->
             Alex Patton
@@ -71,12 +100,12 @@
             12:00-1:15pm M/W
         </p>
     </div>
-         
-                        
-                        
+
+
+
     <!-------------------------------------------------------ALL ASSIGNMENTS SECTION
     -------------------------------------------------------->
-                        
+
     <div id="assignments-page">
 
         <!-- PAST ASSIGNMENTS -->
@@ -190,12 +219,12 @@
             </div><!-- End of dropdown -->
         </div> <!-- End of upcoming assignments -->
     </div> <!-- End of assignments container -->
-               
-                        
-    
+
+
+
     <!-------------------------------------------------------INDIVIDUAL ASSIGNMENTS SECTION
-    --------------------------------------------------------> 
-    
+    -------------------------------------------------------->
+
     <!-- Use PHP to loop through all assignments and Format them as below -->
     <!-- Use PHP to format id value to be assign-1234 -->
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
@@ -224,11 +253,11 @@
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet quam lacinia, scelerisque lorem tempus, facilisis dolor. Vivamus elementum nisl at viverra blandit. Sed ultrices lacinia diam, vitae dapibus urna. Duis id purus viverra, vestibulum purus vitae, bibendum ex. Donec eleifend lobortis libero, vel malesuada nunc elementum vel. Phasellus elit ante, accumsan eu auctor quis, cursus vitae sapien. Aliquam malesuada erat enim, ut ullamcorper eros aliquam eget. Curabitur venenatis quam sit amet est bibendum ultricies.
         </p>
     </div>
-                        
-    
+
+
     <!-------------------------------------------------------ALL ANNOUNCEMENTS SECTION
-    --------------------------------------------------------> 
-                        
+    -------------------------------------------------------->
+
     <div id="announcement-page">
 
         <!-- Loop through and display all announcements for the class -->
@@ -277,11 +306,11 @@
         <!-- END OF EXAMPLES -->
 
     </div> <!-- End of Announcements page -->
-                        
-                        
+
+
     <!-------------------------------------------------------SINGLE ANNOUNCEMENTS SECTION
-    --------------------------------------------------------> 
-    
+    -------------------------------------------------------->
+
     <!-- Use PHP to loop through all assignments and Format them as below -->
     <!-- Use PHP to format id value to be assign-1234 -->
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
@@ -302,7 +331,7 @@
 
         </p>
     </div>
-                        
+
                     </div> <!-- END OF CLASS DETAILS CONTAINER -->
                 </div> <!-- END OF BOOTSTRAP COLUMN -->
 
