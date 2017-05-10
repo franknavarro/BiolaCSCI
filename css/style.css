@@ -251,6 +251,14 @@ Class Page
     opacity: 0.6;
 }
 
+.class-header-container {
+    border-bottom: 1px solid grey;
+    padding: 0px;
+}
+.class-navigation {
+    border-bottom: 1px solid grey;
+}
+
 .class-navigation>div {
     border-right: 1px solid grey;
     padding: 0px;
@@ -276,7 +284,8 @@ Class Page
 }
 
 .class-navigation .active-button {
-    background-color: var(--main-color) !important;
+    background-color: var(--main-color) !important
+        ;
     color: white;
 }
 
@@ -290,7 +299,7 @@ Class Page
     margin: 20px auto 0px auto;
 }
 .class-links>button:last-child {
-    margin-bottom: 20px
+    margin-bottom: 20px;
 }
 
 @media (min-width:768px) {
@@ -304,14 +313,12 @@ Class Page
         width: 1px;
         position: absolute;
         top: 0;
-        left: 0;
+        left: -1px;
         background-color: grey;
     }
 }
 
-
-#assignments-page, .assignment-single, 
-#announcement-page, .announcement-single {
+.class-section {
     display: none;
 }
 
@@ -337,15 +344,16 @@ Class Page
     background-color: whitesmoke;
 }
 
-a.announcement:hover .row,
-a.assignment:hover .row{
+.announcement:hover .row,
+.assignment:hover .row {
     background-color: #E8E8E8;
+    cursor: pointer;
+    cursor: hand;
 }
 
-a.announcement:hover .title,
-a.announcement:hover .author,
-a.assignment:hover .title
-{
+.announcement:hover .title,
+.announcement:hover .author,
+.assignment:hover .title {
     text-decoration: underline;
 }
 
@@ -359,6 +367,7 @@ a.assignment:hover .title
 
 .ann-content {
     border-bottom: 1px solid grey;
+    color: var(--main-color);
 }
 
 .announcement .message {
@@ -372,19 +381,20 @@ a.assignment:hover .title
 
 /************* Class Assignments Sub-Page *******************/
 
-#assignments-page button {
+#class-assignments-page button {
     background: none;
     border: none;
     font-size: 14px;
     font-weight: 600;
 }
 
-#assignments-page .dropdown-menu {
+#class-assignments-page .dropdown-menu {
     position: relative;
     float: none;
     padding: 0px;
     border: 1px solid gray;
     box-shadow: none;
+    display: block;
 }
 
 .assignment .row {
@@ -411,6 +421,10 @@ a.assignment:hover .title
 
 div#upcoming-assignments {
     margin-top: 40px;
+}
+
+.due-date {
+    opacity: 0.75;
 }
 
 /*From Bootstrap*/
