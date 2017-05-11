@@ -110,11 +110,11 @@ $header = $result->fetch_assoc();
 
         <!-- PAST ASSIGNMENTS -->
 
-        <div id="past-assignments" class="dropdown keep-open open">
-            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Past Assignments
+        <div id="past-assignments" class="my-dropdown">
+            <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
+                Past Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
             </button>
-            <div class="dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
+            <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
 
                 <!-- Use PHP to loop through and display all assignments where the due-date is SMALLER than today's date -->
                 <!-- Assignment Format Begins Here -->
@@ -168,11 +168,11 @@ $header = $result->fetch_assoc();
 
         <!-- UPCOMING ASSIGNMENTS -->
 
-        <div id="upcoming-assignments" class="dropdown keep-open open">
-            <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Upcoming Assignments
+        <div id="upcoming-assignments" class="my-dropdown">
+            <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
+                Upcoming Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
             </button>
-            <div class="dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
+            <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
                 <!-- Use PHP to loop through and display all assignments where the due-date is LARGER than today's date -->
                 <!-- Assignment Format Begins Here -->
                 <!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->

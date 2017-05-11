@@ -388,13 +388,17 @@ Class Page
     font-weight: 600;
 }
 
-#class-assignments-page .dropdown-menu {
-    position: relative;
-    float: none;
-    padding: 0px;
-    border: 1px solid gray;
-    box-shadow: none;
-    display: block;
+.my-dropdown-menu.assingments-dropdown {
+    border: 1px solid grey;
+    border-radius: 5px;
+}
+
+span.menu-symbol {
+    padding-left: 10px;
+}
+
+.my-dropdown-toggle:focus {
+    outline: none;
 }
 
 .assignment .row {

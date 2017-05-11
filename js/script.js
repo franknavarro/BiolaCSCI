@@ -35,7 +35,6 @@ $(".assignment").click(function() {
     $(assignmentId).show();
     
 });
-
 $(".announcement").click(function() {
     
     var announcementId = "#" + $(this).attr("id").substring(5);
@@ -44,3 +43,22 @@ $(".announcement").click(function() {
     $(announcementId).show();
     
 });
+
+$(".my-dropdown-toggle").click(function() {
+    
+    var menu = $(this).parent().find(".my-dropdown-menu");
+    var menuSymbol = $(this).find(".menu-symbol");
+    
+    menu.slideToggle(function() {
+        
+        if($(this).css("display") == "none") {
+            menuSymbol.html("<i class='fa fa-plus-square' aria-hidden='true'></i>");
+        } else {
+            menuSymbol.html("<i class='fa fa-minus-square' aria-hidden='true'></i>");
+        }
+        
+    });
+    
+    
+});
+

@@ -24,6 +24,9 @@ if(isset($_SESSION['user_id'])){
 
     <!-- Custom CSS -->
     <link href="/css/style.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/2426b7bc7d.js"></script>
 
 </head>
 
