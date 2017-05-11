@@ -229,6 +229,7 @@ $header = $result->fetch_assoc();
     <!-- Use PHP to format id value to be "assign-1234" -->
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
     <div class="assignment-single class-section" id="assignment-idnumber">
+        <button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
         <h2 class="title">
             <!-- Pull Assignment Title from database here -->
             Title
@@ -315,6 +316,7 @@ $header = $result->fetch_assoc();
     <!-- Use PHP to format id value to be assign-1234 -->
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
     <div class="announcement-single class-section" id="announcement-idnumber">
+        <button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
         <h3 class="title">
             <!-- Pull Announcement Title from database here -->
             Title

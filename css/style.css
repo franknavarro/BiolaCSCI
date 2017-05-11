@@ -69,6 +69,10 @@ body {
     margin: 20px auto 0 auto;
 }
 
+:focus {
+    outline: none;
+}
+
 /****************************************************************
 Login Page 
 ****************************************************************/
@@ -431,17 +435,21 @@ div#upcoming-assignments {
     opacity: 0.75;
 }
 
-/*From Bootstrap*/
-.dropdown-toggle::after {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-left: .3em;
-    vertical-align: middle;
-    content: "";
-    border-top: .3em solid;
-    border-right: .3em solid transparent;
-    border-left: .3em solid transparent;
+button.class-back-button {
+    color: var(--main-color);
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin-bottom: 20px;
+    font-size: large;
+}
+
+button.class-back-button:hover {
+    text-decoration: underline;
+}
+
+.class-back-button .fa.fa-chevron-left {
+    padding-right: 10px;
 }
 
 /****************************************************************

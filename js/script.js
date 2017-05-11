@@ -10,15 +10,19 @@ $('.assingments-dropdown').on('click', function(event){
     event.stopPropagation();
 });
 
+//Switching between two different sections
+function switchSections(hideThis, showThis) {
+    $(hideThis).hide();
+    $(showThis).show();
+}
+
 //Changing Class Sections within the class page
 $(".class-nav-button").click(function() {
     
     //Change the section according to the button pressed
     var sectionId = "#" + $(this).attr("id").slice(0, -7) + "-page";
-    //Rehide all the class sections
-    $(".class-section").hide();
-    //Display the section the user selected
-    $(sectionId).show();
+
+    switchSections(".class-section", sectionId);
     
     //Removes the button as the active page
     $(".class-nav-button").removeClass("active-button");
@@ -27,23 +31,35 @@ $(".class-nav-button").click(function() {
 
 });
 
+//Clicking on an individual assignment in the all assignments view
 $(".assignment").click(function() {
     
     var assignmentId = "#" + $(this).attr("id").substring(5);
     
-    $("#class-assignments-page").hide();
-    $(assignmentId).show();
-    
+    switchSections("#class-assignments-page", assignmentId);
+
 });
+//Clicking on an individual announcement in the all announcements view
 $(".announcement").click(function() {
     
     var announcementId = "#" + $(this).attr("id").substring(5);
     
-    $("#class-announcements-page").hide();
-    $(announcementId).show();
+    switchSections("#class-announcements-page", announcementId);
+
+});
+//Going back to the previous view if on an individual view
+$(".class-back-button").click(function() {
+    
+    var goToPage = "#class-" + $(this).parent().attr("class").replace("-single class-section", "") + "s-page";
+    
+    switchSections(
+        "#" + $(this).parent().attr("id"),
+        goToPage);
     
 });
 
+
+//Drop Down Toggle
 $(".my-dropdown-toggle").click(function() {
     
     var menu = $(this).parent().find(".my-dropdown-menu");
