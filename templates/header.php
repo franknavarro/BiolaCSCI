@@ -24,7 +24,7 @@ if(isset($_SESSION['user_id'])){
 
     <!-- Custom CSS -->
     <link href="/css/style.css" rel="stylesheet">
-    
+
     <!-- Font Awesome -->
     <script src="https://use.fontawesome.com/2426b7bc7d.js"></script>
 
@@ -57,12 +57,27 @@ if(isset($_SESSION['user_id'])){
                             <!-- <hr> -->
                         </div>
                     </li>
-                    <li class="nav-item">
-                        <a href="/classroom.php">Create Session</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="/adduser.php">Add User</a>
-                    </li>
+                    <?php
+                    if($_SESSION['user_perm'] > "2"){
+                        echo '<li class="nav-item">';
+                        echo '<a href="/adduser.php">Create Class</a>';
+                        echo '</li>';
+                    }
+                    ?>
+                    <?php
+                    if($_SESSION['user_perm'] > "1"){
+                        echo '<li class="nav-item">';
+                        echo '<a href="/classroom.php">Start Session</a>';
+                        echo '</li>';
+                    }
+                    ?>
+                    <?php
+                    if($_SESSION['user_perm'] == "4"){
+                        echo '<li class="nav-item">';
+                        echo '<a href="/adduser.php">Add User</a>';
+                        echo '</li>';
+                    }
+                    ?>
                     <li class="nav-item">
                         <a href="/logout.php">Log Out</a>
                     </li>
