@@ -1,33 +1,11 @@
-<?php include 'templates/header.php'; ?>
+<?php include 'templates/header.php';
+      include 'resources/library/db.php';
+?>
+
 
 <?php
-$currentClass;
- ?>
-
-
- <!-- Update class title and ID here
-include '../resources/library/db.php';
-$currentClass = $_COOKIE["currentClass"];
-$classQuery = "SELECT classCode, className, room, classTime, syllabusURL, professorID, instructorHours,  FROM 'cscidb'.'class' WHERE classID = $currentClass";
-$profQuery = "SELECT firstName, lastName, email FROM 'cscidb'.'user' WHERE ??????";
-****** professorID means what? how do I use this to query the user class? *****
-$taQuery = "SELECT firstName, lastName, email FROM 'cscidb'.'user' WHERE ?????";
-****** How do are we signifying the who the TA is? *****
-$assQuery = "SELECT name, description, dueDate, postTime FROM 'cscidb'.'assignment' WHERE classID = $currentClass";
-$annQuery = "SELECT name, description, postTime, user_email FROM 'cscidb'.'announcement' WHERE classID = $currentClass";
-
-$classResult = db::query($nameCodeQuery);
-$profResult = db::query($profQuery);
-$taResult = db::query($taQuery);
-$assResults = db::query($assQuery);
-$annResults = db::query($annQuery);
-
-
-
-$header = $result->fetch_assoc();
-" . $header["className"]. "
-" . $header["classCode"]. "
--->
+ $currentClass = "1";
+?>
 
     <div id="class-page">
             <div class="row">
@@ -35,8 +13,17 @@ $header = $result->fetch_assoc();
 
                     <!-- Update class title and ID here -->
                     <div class="class-header">
-                        <h3>Introduction to Computer Science</h3>
-                        <label>CSCI 105</label>
+                        <h3>
+                            <?php
+                            $classTitleQuery = db::query("SELECT classCode, className from class where classID = $currentClass");
+                            print_r($classTitleQuery[0]["className"]);
+                            ?>
+                        </h3>
+                        <label>
+                            <?php
+                            print_r($classTitleQuery[0]["classCode"]);
+                            ?>
+                        </label>
                     </div>
 
                     <!-- Add links that loads relavent content into div.class-deatils below -->
@@ -65,39 +52,86 @@ $header = $result->fetch_assoc();
         <h4 class="cinfo-header">Class Information</h4>
         <p><strong>Location: </strong>
             <!-- Pull Class Location from database here -->
-            Library 141
+            <?php
+                $locationQuery = db::query("SELECT room from class where classID = $currentClass");
+                print_r($locationQuery[0]["room"]);
+            ?>
         </p>
         <p><strong>Class Time: </strong>
             <!-- Pull Class Time from database here -->
-            3:00-4:15pm M/W
+            <?php
+                $timeQuery = db::query("SELECT classTime from class where classID = $currentClass");
+                print_r($timeQuery[0]["classTime"]);
+            ?>
         </p>
         <!-- Change href to location of syllabus saved in database -->
-        <p><a href="course-syllabus">Course Syllabus</a></p>
+        <p><a href="<?php
+            $syllabusQuery = db::query("SELECT syllabusURL from class where classID = $currentClass");
+            print_r($syllabusQuery[0]["syllabusURL"]);
+        ?>">Course Syllabus</a></p>
+
+
         <h4 class="cinfo-header">Professor Information</h4>
         <h5 class="cinfo-header sub-header">
             <!-- Pull Professor Name from database here -->
-            Dr. Sheui-Hong Lin
+            <?php
+                $profEmailQuery = db::query("SELECT professorEmail from class where classID = $currentClass");
+                $profEmail = $profEmailQuery[0]["professorEmail"];
+                $profNameQuery = db::query("SELECT firstName, lastName from user where email = '$profEmail'");
+                print_r($profNameQuery[0]["firstName"]);
+                echo " ";
+                print_r($profNameQuery[0]["lastName"]);
+            ?>
         </h5>
-        <p><strong>Email: </strong>
+        <p><strong>
+            Email:
+            </strong>
             <!-- Change href="" to hold professors email in between the quotations -->
-            <a href="mailto:shieu-hong.lin@biola.edu">shieu-hong.lin@biola.edu</a>
+            <a href="mailto:
+            <?php
+                print_r($taEmail);
+            ?>
+            ">
+            <?php
+                print_r($profEmail);
+            ?>
+        </a>
         </p>
         <p><strong>Office Hours: </strong>
             <!-- Pull Office Hours for class from database here -->
-            4:00-5:00pm T/Th
+            <?php
+                $profHoursQuery = db::query("SELECT instructorHours from class where classID = $currentClass");
+                print_r($profHoursQuery[0]["instructorHours"]);
+            ?>
         </p>
         <h4 class="cinfo-header">TA Information</h4>
         <h5 class="cinfo-header sub-header">
             <!-- Get TA Name from database here -->
-            Alex Patton
+            <?php
+                $taEmailQuery = db::query("SELECT taEmail from class where classID = $currentClass");
+                $taEmail = $taEmailQuery[0]["taEmail"];
+                $taNameQuery = db::query("SELECT firstName, lastName from user where email = '$taEmail'");
+                print_r($taNameQuery[0]["firstName"]);
+                echo " ";
+                print_r($taNameQuery[0]["lastName"]);
+            ?>
         </h5>
         <p><strong>Email: </strong>
             <!-- Change href="" to hold TA's email in between the quotations -->
-            <a href="mailto:alex.j.patton@biola.edu"> alex.j.patton@biola.edu</a>
+            <a href="mailto:
+            <?php
+                print_r($taEmail);
+            ?>">
+            <?php
+                print_r($taEmail);
+            ?></a>
         </p>
         <p><strong>TA Hours: </strong>
             <!-- Pull TA Office Hours from database here -->
-            12:00-1:15pm M/W
+            <?php
+                $taHoursQuery = db::query("SELECT taHours from class where classID = $currentClass");
+                print_r($taHoursQuery[0]["taHours"]);
+            ?>
         </p>
     </div>
 
