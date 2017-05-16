@@ -18,7 +18,7 @@ class attendance{
         $sessionExpired = 0; //Marks the class as not expired
         $sessionKey = bin2hex(random_bytes(5)); //Returns 5 random characters for attendance code
         //Create Class Information
-        db::query("INSERT INTO session (hostID, sessionName, sessionExpired, sessionKey) VALUES (:hostID, :sessionName, :sessionExpired, :sessionKey)", array (':hostID'=>$hostemail, ':sessionName'=>$sessionName, ':sessionExpired'=>$sessionExpired, ':sessionKey'=>$sessionKey))
+        db::query("INSERT INTO session (hostID, sessionName, sessionExpired, sessionKey) VALUES (:hostID, :sessionName, :sessionExpired, :sessionKey)", array (':hostID'=>$hostemail, ':sessionName'=>$sessionName, ':sessionExpired'=>$sessionExpired, ':sessionKey'=>$sessionKey));
     }
 
     public static function endClass($classID){

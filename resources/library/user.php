@@ -46,13 +46,17 @@ class user{
         $ipAddress = $_SERVER['REMOTE_ADDR']; //Obtains and stores clients ip address
         $timestamp = date("Y-m-d H:i:s"); //Obtains and stores current date and time
         //Query: Checks if both email and password entered are a match
-        $result = db::query("SELECT user_perm FROM user WHERE email=:email AND password=:password", array (':email'=>$email, ':password'=>$password));
+        $result = db::query("SELECT user_perm, firstName FROM user WHERE email=:email AND password=:password", array(':email'=>$email, ':password'=>$password));
         if(!empty($result)){
             $_SESSION['user_id'] = $email; // Stores user_id for the sessioning
-            $_SESSION['user_perm'] = print_r($result[0]['user_perm'], true);
+            $_SESSION['user_perm'] = print_r($result[0]['user_perm'], true); //Stores user permissions for sessioning
+            $_SESSION['user_fName'] = print_r($result[0]['firstName'], true); //Stores user firstname for sessioning
             //Insert: Will log when the user logs in and their respective ip address
             db::query("INSERT INTO log_login (timestamp, ipAddress, user_email) VALUES (:timestamp, :ipAddress, :user_email)", array(':timestamp'=>$timestamp, ':ipAddress'=>$ipAddress, ':user_email'=>$email));
+            //Insert: Will log the date and last ip address in the user table
+            db::query("UPDATE user SET lastsignin=:lastsignin, lastipaddress=:lastipaddress WHERE email=:email", array(':lastsignin'=>$timestamp, ':lastipaddress'=>$ipAddress, ':email'=>$email));
             return 1;
+
         } else {
             return "The Email or Password is Incorrect";
         }

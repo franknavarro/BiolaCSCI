@@ -14,7 +14,7 @@ if(isset($_SESSION['user_id'])){
 <?php begin: include 'templates/header.php'; include 'resources/library/db.php';?>
     <body>
         <div class="page-header" style="padding-left: 1em">
-          <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_id']; ?></small></h1>
+          <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; ?></small></h1>
           <div class="row" style="padding-left: 3em">
             <div class="col-sm-6 col-md-4">
                 <div class="caption">
