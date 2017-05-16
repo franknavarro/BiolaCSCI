@@ -3,7 +3,7 @@
 <?php
 
 if(isset($_SESSION['user_id'])){
-    if($_SESSION['user_id'] == "mark.a.gong-guy@biola.edu"){
+    if($_SESSION['user_perm'] == "4"){
         goto begin;
     } else {
         include 'templates/header.php';
