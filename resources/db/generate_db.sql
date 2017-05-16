@@ -364,8 +364,8 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`announcement` (
 ENGINE = InnoDB;
 
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('mark.a.gong-guy@biola.edu', 'Mark', 'Gong-Guy', 'password', '4');
-INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peter.a.alford@biola.edu', 'Pedro', 'Wilson', 'password', '5');
-INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peteralford13@gmail.com', 'Peter', 'Alford', 'password', '6');
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peter.a.alford@biola.edu', 'Pedro', 'Wilson', 'password', '4');
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peteralford13@gmail.com', 'Peter', 'Alford', 'password', '2');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
