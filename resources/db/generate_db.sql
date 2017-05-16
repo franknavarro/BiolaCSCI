@@ -66,7 +66,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cscidb`.`class` (
   `classID` INT NOT NULL AUTO_INCREMENT,
   `classCode` VARCHAR(45) NULL,
-  `professorID` VARCHAR (45) NOT NULL,
+  `professorEmail` VARCHAR (45) NULL,
+  `taEmail` VARCHAR (45) NULL,
   `className` VARCHAR(45) NULL,
   `lastSessionID` INT NOT NULL,
   `syllabusURL` VARCHAR(45) NULL,
