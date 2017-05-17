@@ -15,17 +15,6 @@ if(isset($_SESSION['user_id'])){
     <body>
         <div class="page-header" style="padding-left: 1em">
           <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; ?></small></h1>
-          <!-- <div class="row" style="padding-left: 3em">
-            <div class="col-sm-6 col-md-4">
-                <div class="caption">
-                  <h3>Introduction to Programming</h3>
-                  <p>
-                      Professor: Dr. Lin </br>
-                      Class Times: TR 10:30am - 12:00am
-                  </p>
-                  <p><a href="#" class="btn btn-success" role="button">Join Session</a> <a href="#" class="btn btn-default" role="button">More Info</a></p>
-                </div>
-             </div> -->
              <?php
 
              include_once 'resources/library/db.php';
