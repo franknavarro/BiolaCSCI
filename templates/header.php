@@ -60,7 +60,14 @@ if(isset($_SESSION['user_id'])){
                     <?php
                     if($_SESSION['user_perm'] > "2"){
                         echo '<li class="nav-item">';
-                        echo '<a href="/adduser.php">Create Class</a>';
+                        echo '<a href="#">Create Class</a>';
+                        echo '</li>';
+                    }
+                    ?>
+                    <?php
+                    if($_SESSION['user_perm'] == "4"){
+                        echo '<li class="nav-item">';
+                        echo '<a href="/adduser.php">Create User</a>';
                         echo '</li>';
                     }
                     ?>
@@ -68,13 +75,6 @@ if(isset($_SESSION['user_id'])){
                     if($_SESSION['user_perm'] > "1"){
                         echo '<li class="nav-item">';
                         echo '<a href="/classroom.php">Start Session</a>';
-                        echo '</li>';
-                    }
-                    ?>
-                    <?php
-                    if($_SESSION['user_perm'] == "4"){
-                        echo '<li class="nav-item">';
-                        echo '<a href="/adduser.php">Add User</a>';
                         echo '</li>';
                     }
                     ?>

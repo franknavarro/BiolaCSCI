@@ -41,10 +41,10 @@
     // Also with findRoom: "roomName" it will connect to the given room name
     findRoom: null,
     // If true, starts TogetherJS automatically (of course!)
-    autoStart: false,
+    autoStart: true,
     // If true, then the "Join TogetherJS Session?" confirmation dialog
     // won't come up
-    suppressJoinConfirmation: false,
+    suppressJoinConfirmation: true,
     // If true, then the "Invite a friend" window won't automatically come up
     suppressInvite: false,
     // A room in which to find people to invite to this session,
@@ -73,7 +73,7 @@
   var baseUrl = "https://togetherjs.com";
   if (baseUrl == "__" + "baseUrl__") {
     // Reset the variable if it doesn't get substituted
-    baseUrl = "";
+    baseUrl = "session";
   }
   // True if this file should use minimized sub-resources:
   var min = "yes" == "__" + "min__" ? false : "yes" == "yes";

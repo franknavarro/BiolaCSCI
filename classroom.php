@@ -16,8 +16,8 @@ $(function() {
 </script>
 
 <script>
-         TogetherJSConfig_getUserName = function () {
-             return '<?php echo $_SESSION['user_id']; ?>';
+         TogetherJSConfig_getUserName = function(){
+             return '<?php echo $_SESSION['user_fName']; ?>';
          };
 </script>
 
