@@ -10,7 +10,6 @@ if(isset($_SESSION['user_id'])){
 }
 ?>
 
-<html>
 <?php begin: include 'templates/header.php'; include 'resources/library/db.php';?>
     <body>
         <div class="page-header" style="padding-left: 1em">
@@ -29,10 +28,10 @@ if(isset($_SESSION['user_id'])){
                  $activeSession = print_r($result[0]["activeSession"], true);
                  $classURL = print_r($result[0]["syllabusURL"], true);
 
-                 echo '<div class="row" style="padding-left: 3em">';
+                 echo '<div class="row">';
                  echo     '<div class="col-sm-6 col-md-4">';
                  echo       '<div class="caption">';
-                 echo           "<h3>$className</h3>";
+                 echo           "<h3 class='dashClassTitle'>$className</h3>";
                  echo               '<p>';
                  echo                   'Professor: Dr. Lin </br>';
                  echo                   "Class Times: $classTime";
@@ -74,10 +73,7 @@ if(isset($_SESSION['user_id'])){
               </div>
             </div>
 
-    </body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-</html>
+<?php include "templates/footer.php"; ?>
 
 <?php
     include_once 'resources/library/attendance.php';

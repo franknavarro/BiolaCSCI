@@ -1,3 +1,23 @@
+function resizeDashTitle() {
+
+        while( $('.dashClassTitle').height() > 
+               parseInt($('.dashClasstitle').css("font-size"))) {
+            var newSize = parseInt($('.dashClasstitle').css('font-size')) - 1;
+            $('.dashClasstitle').css('font-size', newSize + "px" );
+            $(".dashClasstitle").css("line-height", newSize + "px");
+        } 
+}
+
+$(document).ready(function() {
+    resizeDashTitle();
+});
+$(window).resize(function() {
+    resizeDashTitle();
+});
+
+
+
+
 $('.dropdown.keep-open').on({
     "shown.bs.dropdown": function() { this.closable = false; },
     "click":             function() { this.closable = true; },
@@ -10,7 +30,7 @@ $('.assingments-dropdown').on('click', function(event){
     event.stopPropagation();
 });
 
-//Switching between two different sections
+//Switching between two different class sections
 function switchSections(hideThis, showThis) {
     $(hideThis).hide();
     $(showThis).show();
