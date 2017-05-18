@@ -30,12 +30,8 @@ var myCodeMirror = CodeMirror.fromTextArea(textArea, {
 
 //Resize CodeMirror Page to fit the screen
 function resizeCodeMirror() {
-    var currentWindowHeight = $(window).height()-$("nav").height()-$("#langContainer").height();
-    var currentWindowWidth = $(window).width();
+    var currentWindowHeight = $("body").innerHeight()-$("nav").height()-$("#langContainer").outerHeight(true);
     $(".CodeMirror").height(currentWindowHeight);
-    $(".CodeMirror").width(currentWindowWidth);
-    
-    $("#langSelector").width(currentWindowWidth-$("#langLabel").width());
 }
 
 //When file loads resize CodeMirror Screen

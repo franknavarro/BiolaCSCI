@@ -4,28 +4,30 @@ Code Collaboration Page w/ CodeMirror
 .CodeMirror {
     position: absolute;
     left: 0;
-    top: 70px;
+    right: 0;
+    top: 90px;
 }
 
 #langContainer {
     position: absolute;
     left: 0;
+    right: 0;
     height: 20px;
+    margin: 10px;
     z-index: 1;
 }
 
 #langLabel {
-    display: inline-block;
+    float: left;
+    padding-right: 10px;
 }
 
 #langSelector {
-    position: absolute;
-    top: 0;
-    left: 117px
+    width: calc(100% - 126.75px);
 }
 
 @media (min-width:768px) {
     .CodeMirror {
-        top: 110px;
+        top: 130px;
     }
 }
