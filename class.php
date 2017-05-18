@@ -297,49 +297,53 @@
 
         <!-- Loop through and display all announcements for the class -->
         <!-- Change id to be formatted as "list-announcement-idnumber" Changing idnumber to be the assignments id within the database-->
-        <div class="announcement" id="list-announcement-idnumber">
-            <div class="row">
-                <div class="col-xs-12 ann-content">
-                    <h4 class="title">
-                        <!-- Pull Announcement Title from database  here -->
-                        Title
-                    </h4>
-                    <h5 class="author">
-                        <!-- Pull Announcement Author from database here -->
-                        Author
-                    </h5>
-                    <p class="message">
-                        <!-- Pull a 100 character snipit of the content of the announcement from the database here -->
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc lobortis metus mi, et fringilla metus.
-                    </p>
-                </div>
-            </div>
-        </div>
 
-        <!-- All announcements follow the above fromat with all tags and classes-->
-        <!-- Bellow are just examples of how the announcements should look -->
+        <!-- block of code to disply only a certain amount of letters. is currently erroring.
+        if (strlen($announcementQuery[$count]['description']) > 40)
+        {
+            $shortDescription = substr($announcementQuery[$count]['description',0,40).'...';
+            echo $shortDescription;
+        }
+        else {
+            echo $announcementQuery[$count]['description'];
+        }
+        $shortDescription = (strlen($announcementQuery[$count]['description']) > 43) ? substr($announcementQuery[$count]['description',0,40).'...' : $string;
+        echo $shortDescription;
+        -->
 
-        <!-- EXAMPLES -->
-        <div class="announcement" id="list-announcement-idnumber">
-            <div class="row">
-                <div class="col-xs-12 ann-content">
-                    <h4 class="title">Title</h4>
-                    <h5 class="author">Author</h5>
-                    <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pellentesque pulvinar dui. Vivamus commodo finibus nunc, pretium commodo felis ultrices.</p>
-                </div>
-            </div>
-        </div>
-        <div class="announcement" id="list-announcement-idnumber">
-            <div class="row">
-                <div class="col-xs-12 ann-content">
-                    <h4 class="title">Title</h4>
-                    <h5 class="author">Author</h5>
-                    <p class="message">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pellentesque pulvinar dui. Vivamus commodo finibus nunc, pretium commodo felis ultrices.</p>
-                </div>
-            </div>
-        </div>
-        <!-- END OF EXAMPLES -->
+        <?php
 
+            $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
+            for ($count=0; $count < count($announcementQuery); $count++) {
+                #echo '<div class="announcement" id="list-announcement-idnumber">';
+                $annIDNum = $announcementQuery[$count]['annID'];
+                echo "<div class='announcement' id='list-announcement-$annIDNum'>";
+                    echo '<div class="row">';
+                        echo '<div class="col-xs-12 ann-content">';
+                            echo '<h4 class="title">';
+                                echo $announcementQuery[$count]['title'];
+                            echo '</h4>';
+                            echo '<h5 class="author">';
+                                $annEmail = $announcementQuery[$count]['user_email'];
+                                $annNameQuery = db::query("SELECT firstName, lastName from user where email = '$annEmail'");
+                                echo "Name: ";
+                                echo $annNameQuery[0]["firstName"];
+                                echo ' ';
+                                echo $annNameQuery[0]["lastName"];
+                            echo '</h5>';
+                                echo '<p class="message">';
+                                    echo $announcementQuery[$count]['description'];
+                                echo '</p>';
+                            echo '</h5>';
+                            echo '<p class="message">';
+                                echo 'Time of Post: ';
+                                echo $announcementQuery[$count]['postTime'];
+                            echo '</p>';
+                        echo '</div>';
+                    echo '</div>';
+                echo '</div>';
+            }
+        ?>
     </div> <!-- End of Announcements page -->
 
 
@@ -349,27 +353,33 @@
     <!-- Use PHP to loop through all assignments and Format them as below -->
     <!-- Use PHP to format id value to be assign-1234 -->
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
-    <div class="announcement-single class-section" id="announcement-idnumber">
-        <button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
-        <h3 class="title">
-            <!-- Pull Announcement Title from database here -->
-            Title
-        </h3>
-        <h5 class="author">
-            <!-- Pull Announcement Author from database here -->
-            Author
-        </h5>
-        <p class="message">
-            <!-- Pull Announcement Message Content from database here -->
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet quam lacinia, scelerisque lorem tempus, facilisis dolor. Vivamus elementum nisl at viverra blandit. Sed ultrices lacinia diam, vitae dapibus urna. Duis id purus viverra, vestibulum purus vitae, bibendum ex. Donec eleifend lobortis libero, vel malesuada nunc elementum vel. Phasellus elit ante, accumsan eu auctor quis, cursus vitae sapien. Aliquam malesuada erat enim, ut ullamcorper eros aliquam eget. Curabitur venenatis quam sit amet est bibendum ultricies.
 
-            Ut ornare velit eget elit suscipit lobortis. Nunc faucibus, ex in vehicula euismod, mauris turpis pretium risus, id tempus felis elit vulputate felis. Nam varius turpis eget quam semper, in bibendum leo tristique. Nullam sit amet mi et neque mollis rhoncus facilisis id justo. Suspendisse nec porttitor metus. Vestibulum efficitur nisi in ante eleifend, eget ultrices dui interdum. Duis non tellus eget magna scelerisque imperdiet sit amet et arcu. Donec eget arcu sit amet massa cursus euismod a sed est. Maecenas luctus tempus auctor. Sed hendrerit eleifend libero et bibendum. Ut ac vulputate velit. Nunc non lacus enim. Curabitur a laoreet nisl, in faucibus erat. Sed sagittis lorem diam, non vehicula orci consectetur vel.
-
-        </p>
-    </div>
-
-                    </div> <!-- END OF CLASS DETAILS CONTAINER -->
-                </div> <!-- END OF BOOTSTRAP COLUMN -->
+    <?php
+        #single announcement display
+        $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
+        for ($count=0; $count < count($announcementQuery); $count++){
+            $annIDNum = $announcementQuery[$count]['annID'];
+            echo "<div class='announcement-single class-section' id='announcement-$annIDNum'>";
+                echo '<button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>';
+                echo '<h3 class="title">';
+                    echo $announcementQuery[$count]['title'];
+                echo '</h3>';
+                echo '<h5 class="author">';
+                    $annEmail = $announcementQuery[$count]['user_email'];
+                    $annNameQuery = db::query("SELECT firstName, lastName from user where email = '$annEmail'");
+                    echo "Name: ";
+                    echo $annNameQuery[0]["firstName"];
+                    echo ' ';
+                    echo $annNameQuery[0]["lastName"];
+                echo '</h5>';
+                echo '<p class="message">';
+                    echo $announcementQuery[$count]['description'];
+                echo '</p>';
+            echo '</div>';
+        }
+    ?>
+        </div> <!-- END OF CLASS DETAILS CONTAINER -->
+    </div> <!-- END OF BOOTSTRAP COLUMN -->
 
                 <!-- Check permisions to load relavent links -->
                 <div class="col-sm-4 class-links">

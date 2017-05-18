@@ -206,12 +206,12 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `cscidb`.`announcement` (
   `classID` VARCHAR(45) NULL,
   `title` VARCHAR(45) NULL,
-  `name` INT NOT NULL,
-  `description` VARCHAR(45) NULL,
+  `annID` INT NOT NULL AUTO_INCREMENT,
+  `description` LONGTEXT NULL,
   `postTime` VARCHAR(45) NULL,
   `class_classID` INT NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
-  PRIMARY KEY (`name`),
+  PRIMARY KEY (`annID`),
   INDEX `fk_announcement_class1_idx` (`class_classID` ASC),
   INDEX `fk_announcement_user1_idx` (`user_email` ASC),
   CONSTRAINT `fk_announcement_class1`
