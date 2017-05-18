@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`session` (
   `sessionID` INT NOT NULL AUTO_INCREMENT,
   `hostID` INT UNSIGNED NOT NULL,
   `sessionName` VARCHAR(45) NOT NULL,
-  `sessionExpired` TINYINT(1) NOT NULL,
+  `sessionStatus` TINYINT(1) NOT NULL,
   `sessionKey` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`sessionID`))
 ENGINE = InnoDB;

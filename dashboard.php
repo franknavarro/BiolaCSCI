@@ -38,7 +38,7 @@ if(isset($_SESSION['user_id'])){
                  echo                   "Class Times: $classTime";
                  echo               '</p>';
                  if($activeSession == 1){
-                     echo '<p><a href="#" class="btn btn-success" role="button">Join Session</a>';
+                     echo '<p><a data-toggle="modal" data-target="#myModal" class="btn btn-success" role="button">Join Session</a>';
                  } else {
                      echo '<p><a href="#" class="btn btn-danger" role="button">No Session</a>';
                  }
@@ -53,5 +53,42 @@ if(isset($_SESSION['user_id'])){
               ?>
                </div>
         </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Attendance Code</h4>
+              </div>
+              <div class="modal-body">
+                    <form>
+                        <input type="text" name="attendanceCode"/>
+                        <input type="submit" name="submitButton">
+                    </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+
     </body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
+
+<?php
+    include_once 'resources/library/attendance.php';
+
+    if(isset($_POST['attendanceCode'])){
+        $attendanceCode = $_POST['attendanceCode'];
+        $user_id = $_SESSION['user_id'];
+
+        $classID = attendance::checkIn($user_id, $attendanceCode);
+        //If classID returns an error echo out an error message
+    }
+
+
+?>
