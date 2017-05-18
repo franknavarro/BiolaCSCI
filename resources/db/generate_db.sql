@@ -48,7 +48,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`session` (
   `sessionID` INT NOT NULL AUTO_INCREMENT,
   `hostID` INT UNSIGNED NOT NULL,
   `sessionName` VARCHAR(45) NOT NULL,
-  `sessionExpired` TINYINT(1) NOT NULL,
+  `sessionStatus` TINYINT(1) NOT NULL,
   `sessionKey` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`sessionID`))
 ENGINE = InnoDB;
@@ -228,12 +228,12 @@ ENGINE = InnoDB;
 
 -- Inserts Base Users
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('mark.a.gong-guy@biola.edu', 'Mark', 'Gong-Guy', 'password', '4');
-INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peter.a.alford@biola.edu', 'Pedro', 'Wilson', 'password', '4');
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peter.a.alford@biola.edu', 'Pedro', 'Wilson', 'password', '3');
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peteralford13@gmail.com', 'Peter', 'Alford', 'password', '2');
 
 -- Inserts class
-INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('1', 'CSCI 101', 'Introduction to Computer Science', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am', 'Library 101');
-INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('2', 'CSCI 102', 'Data Structures', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am', 'Library 101');
+INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('1', 'CSCI 101', 'Introduction to Computer Science', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am - 11:00 am', 'Library 101');
+INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('2', 'CSCI 102', 'Data Structures', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am - 11:00 am', 'Library 101');
 
 -- Inserts user in class
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('1', 'mark.a.gong-guy@biola.edu', '1');
