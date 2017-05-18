@@ -297,13 +297,27 @@
 
         <!-- Loop through and display all announcements for the class -->
         <!-- Change id to be formatted as "list-announcement-idnumber" Changing idnumber to be the assignments id within the database-->
+
+        <!-- block of code to disply only a certain amount of letters. is currently erroring.
+        if (strlen($announcementQuery[$count]['description']) > 40)
+        {
+            $shortDescription = substr($announcementQuery[$count]['description',0,40).'...';
+            echo $shortDescription;
+        }
+        else {
+            echo $announcementQuery[$count]['description'];
+        }
+        $shortDescription = (strlen($announcementQuery[$count]['description']) > 43) ? substr($announcementQuery[$count]['description',0,40).'...' : $string;
+        echo $shortDescription;
+        -->
+
         <?php
 
             $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
             for ($count=0; $count < count($announcementQuery); $count++) {
                 #echo '<div class="announcement" id="list-announcement-idnumber">';
                 $annIDNum = $announcementQuery[$count]['annID'];
-                echo "<div class='announcement' id='$annIDNum'>";
+                echo "<div class='announcement' id='list-announcement-$annIDNum'>";
                     echo '<div class="row">';
                         echo '<div class="col-xs-12 ann-content">';
                             echo '<h4 class="title">';
@@ -312,12 +326,13 @@
                             echo '<h5 class="author">';
                                 $annEmail = $announcementQuery[$count]['user_email'];
                                 $annNameQuery = db::query("SELECT firstName, lastName from user where email = '$annEmail'");
+                                echo "Name: ";
                                 echo $annNameQuery[0]["firstName"];
                                 echo ' ';
                                 echo $annNameQuery[0]["lastName"];
                             echo '</h5>';
                                 echo '<p class="message">';
-                                echo $announcementQuery[$count]['description'];
+                                    echo $announcementQuery[$count]['description'];
                                 echo '</p>';
                             echo '</h5>';
                             echo '<p class="message">';
@@ -340,12 +355,11 @@
     <!-- Changing the 1234 to whatever the assignments id is in the database -->
 
     <?php
+        #single announcement display
         $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
         for ($count=0; $count < count($announcementQuery); $count++){
-
-            #echo '<div class="announcement-single class-section" id="announcement-idnumber">';
             $annIDNum = $announcementQuery[$count]['annID'];
-            echo "<div class='announcement-single class-section' id='$annIDNum'>";
+            echo "<div class='announcement-single class-section' id='announcement-$annIDNum'>";
                 echo '<button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>';
                 echo '<h3 class="title">';
                     echo $announcementQuery[$count]['title'];
@@ -353,6 +367,7 @@
                 echo '<h5 class="author">';
                     $annEmail = $announcementQuery[$count]['user_email'];
                     $annNameQuery = db::query("SELECT firstName, lastName from user where email = '$annEmail'");
+                    echo "Name: ";
                     echo $annNameQuery[0]["firstName"];
                     echo ' ';
                     echo $annNameQuery[0]["lastName"];
@@ -363,7 +378,7 @@
             echo '</div>';
         }
     ?>
-    </div> <!-- END OF CLASS DETAILS CONTAINER -->
+        </div> <!-- END OF CLASS DETAILS CONTAINER -->
     </div> <!-- END OF BOOTSTRAP COLUMN -->
 
                 <!-- Check permisions to load relavent links -->
