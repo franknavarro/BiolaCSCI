@@ -456,14 +456,14 @@ button.class-back-button:hover {
 Code Collaboration Page 
 ****************************************************************/
 
-#code-collaboration label {
+/*#code-collaboration label {
     float: left
 }
 
 #code-collaboration .twrap {
     overflow: hidden;
     padding: 0 4px 0 12px
-}
+}*/
 #code-collaboration textarea {
     width: 100%;
     position: fixed;
@@ -473,8 +473,37 @@ Code Collaboration Page
     padding: 25px 20px;
 }
 
+.lined {
+    height: 100%;
+    margin-left: 55px;
+    cursor: text;
+}
+.lined:hover {
+    cursor: text;
+}
+
+.linedwrap {
+    position: absolute;
+    left: 0;
+    background-color: white;
+}
+
+.lines {
+    position: fixed;
+    top: 50px;
+    bottom: 0px;
+    background-color: white;
+}
+
+.lines, .linedwrap {
+    padding-top: 15px;
+}
+
 @media (min-width:768px) {
     #code-collaboration textarea {
+        top: 90px;
+    }
+    .lines {
         top: 90px;
     }
 }
