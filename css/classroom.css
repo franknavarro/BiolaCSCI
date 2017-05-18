@@ -1,0 +1,31 @@
+/****************************************************************
+Code Collaboration Page w/ CodeMirror
+****************************************************************/
+.CodeMirror {
+    position: absolute;
+    left: 0;
+    top: 70px;
+}
+
+#langContainer {
+    position: absolute;
+    left: 0;
+    height: 20px;
+    z-index: 1;
+}
+
+#langLabel {
+    display: inline-block;
+}
+
+#langSelector {
+    position: absolute;
+    top: 0;
+    left: 117px
+}
+
+@media (min-width:768px) {
+    .CodeMirror {
+        top: 110px;
+    }
+}

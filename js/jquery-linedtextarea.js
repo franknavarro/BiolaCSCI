@@ -10,11 +10,15 @@
 		  kept up to the current system */
 
 		var fillOutLines = function(codeLines, h, lineNo){
-			while ( (codeLines.height() - h ) <= 0 ){
-				if ( lineNo == opts.selectedLine )
+            var lineNoHeight = 0;
+			while ( (codeLines.height() - h ) <= 0 - lineNoHeight ){
+				if ( lineNo == opts.selectedLine ) {
 					codeLines.append("<div class='lineno lineselect'>" + lineNo + "</div>");
-				else
+                    lineNoHeight = $(".lineno").height();
+                }
+				else {
 					codeLines.append("<div class='lineno'>" + lineNo + "</div>");
+                }
 
 				lineNo++;
 			}
@@ -29,26 +33,31 @@
 			var textarea = $(this);
 
 			// Turn off the wrapping of as we don't want to screw up the line numbers
-			textarea.attr("wrap", "off");
+			textarea.attr("wrap", "on");
 			textarea.css({resize:'none'});
-			var originalTextAreaWidth	= textarea.outerWidth();
-
+			var originalTextAreaWidth	= $(window).width(); 
+            
 			// Wrap the text area in the elements we need
 			textarea.wrap("<div class='linedtextarea'></div>");
-			var linedTextAreaDiv	= textarea.parent().wrap("<div class='linedwrap' style='width:" + originalTextAreaWidth + "px'></div>");
-			var linedWrapDiv 			= linedTextAreaDiv.parent();
+            
+			var linedTextAreaDiv = textarea.parent().wrap("<div class='linedwrap' style='width:" + originalTextAreaWidth + "px;'></div>");
+            
+			var linedWrapDiv = linedTextAreaDiv.parent();
 
 			linedWrapDiv.prepend("<div class='lines' style='width:50px'></div>");
 
-			var linesDiv	= linedWrapDiv.find(".lines");
-			linesDiv.height( textarea.height() + 6 );
+			var linesDiv = linedWrapDiv.find(".lines");
+			/*linesDiv.height( textarea.height() + 6 );*/
+            linesDiv.height($(window).height() - $("body").children("nav").height());
 
 
 			// Draw the number bar; filling it out where necessary
 			linesDiv.append( "<div class='codelines'></div>" );
 			var codeLinesDiv	= linesDiv.find(".codelines");
 			lineNo = fillOutLines( codeLinesDiv, linesDiv.height(), 1 );
+            $(".linedtextarea").height($(".lines").height());
 
+            
 			// Move the textarea to the selected line
 			if ( opts.selectedLine != -1 && !isNaN(opts.selectedLine) ){
 				var fontSize = parseInt( textarea.height() / (lineNo-2) );
@@ -65,8 +74,7 @@
 
 			textarea.width( textareaNewWidth );
 			linedWrapDiv.width( linedWrapDivNewWidth );
-
-
+            
 
 			// React to the scroll event
 			textarea.scroll( function(tn){
@@ -76,10 +84,28 @@
 				codeLinesDiv.css( {'margin-top': (-1*scrollTop) + "px"} );
 				lineNo = fillOutLines( codeLinesDiv, scrollTop + clientHeight, lineNo );
 			});
+            
+            textarea.keyup(function() {
+                var cursorPosition = textarea.prop
+            })
+            
+            
+            //Resize objects on window resize
+            $(window).resize(function(){
+                var width = $(window).width();
+                var height = $(window).height() - $("body").children("nav").height();
+                
+                $(".linedwrap").width(width);
+                $(".lines").height(height);
+                $(".linedtextarea").height(height);
+                
+            });
 
 		});
 	};
 
+    
+    
   // default options
   $.fn.linedtextarea.defaults = {
   	selectedLine: -1,
