@@ -1,4 +1,4 @@
-<?php include '..\templates\header.php'; ?>
+<?php include 'templates\header.php'; ?>
 <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
   <html>
   <body>
@@ -175,7 +175,7 @@
 
 <?php }
   else {
-    require_once("../resources/library/db.php");
+    require_once("resources/library/db.php");
 
     #validate input
 
@@ -252,7 +252,7 @@
 
     #submit the array to the database
     db::query("SET FOREIGN_KEY_CHECKS=0;
-              INSERT INTO class (className, classCode, room, classTime, taHours, professorID, instructorHours, classDescription)
+              INSERT INTO class (className, classCode, room, classTime, taHours, professorEmail, instructorHours, classDescription)
               VALUES (:classCode, :className, :classLocation, :classPeriod, :taHours, :profID, :profHours, :classDescription)", $submit);
 
 
@@ -269,7 +269,7 @@
 
 
     #Syllabus upload
-    $uploaddir = '../ClassObject/Syllabus/';
+    $uploaddir = 'ClassObject/Syllabus/';
     $uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
 
     if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
@@ -278,12 +278,17 @@
     else{
       echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
     }
+    print_r($classID[0][0]);
+
+    $url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
+    $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
+    db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
+
+    #Create class file
 
     $classCode = $_POST["classCode"];
 
-    #Create file in the tree
-
-    $file = "..\\ClassObject\\${classCode}.php";
+    $file = "ClassObject\\${classCode}.php";
     if (!file_exists($file)){
       echo $file;
 
@@ -292,10 +297,9 @@
 
       $class_key = $key_array[0][0];
 
-      $contents = '<?php
-        $currentClass = ';
+      $contents = '<?php $currentClass = ';
         $contents .= $class_key;
-        $contents .= ' include "../templates/class.php";?>';
+        $contents .= '; include "../templates/class.php";?>';
 
       file_put_contents($file, $contents, LOCK_EX);
     }
@@ -304,5 +308,5 @@
       echo '<br>Class Not Created<br>';
     }
   }
-  include '..\templates\footer.php';
+  include 'templates\footer.php';
 ?>
