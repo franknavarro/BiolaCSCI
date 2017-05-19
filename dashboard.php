@@ -17,10 +17,32 @@ if(isset($_SESSION['user_id'])){
 <html>
 <?php begin: include 'templates/header.php'; include 'resources/library/db.php';?>
     <body>
-        <div class="page-header" style="padding-left: 1em">
-          <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; ?></small></h1>
-             <?php
+        <?php
+            include_once 'resources/library/attendance.php';
 
+            if(isset($_POST['attendanceCode'])){
+                $attendanceCode = $_POST['attendanceCode'];
+                $user_id = $_SESSION['user_id'];
+
+                $sessionID = attendance::checkIn($user_id, $attendanceCode);
+
+                if(substr($sessionID, 0, 5) === "Error"){
+                    //Return Error Message
+                    echo '<div class="alert alert-warning">';
+                    echo $sessionID;
+                    echo '</div>';
+                } else {
+                    $SESSION['current_session'] = $sessionID;
+                    echo '<div class="alert alert-warning">';
+                    echo 'Session Started: ';
+                    echo $sessionID;
+                    echo '</div>';
+                }
+            }
+        ?>
+        <div class="page-header" style="padding-left: 1em">
+          <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; echo " "; echo $_SESSION['user_lName'];?></small></h1>
+             <?php
              include_once 'resources/library/db.php';
              $class_id = db::query("SELECT class_classID from user_class where user_email = :user_email", array(':user_email'=>$_SESSION['user_id']));
              for($count = 0; $count < count($class_id); $count++){
@@ -68,7 +90,7 @@ if(isset($_SESSION['user_id'])){
                 <h4 class="modal-title">Attendance Code</h4>
               </div>
               <div class="modal-body">
-                    <form>
+                    <form action="dashboard.php" method="post">
                         <input type="text" name="attendanceCode"/>
                         <input type="submit" name="submitButton">
                     </form>
@@ -82,17 +104,3 @@ if(isset($_SESSION['user_id'])){
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </html>
-
-<?php
-    include_once 'resources/library/attendance.php';
-
-    if(isset($_POST['attendanceCode'])){
-        $attendanceCode = $_POST['attendanceCode'];
-        $user_id = $_SESSION['user_id'];
-
-        $classID = attendance::checkIn($user_id, $attendanceCode);
-        //If classID returns an error echo out an error message
-    }
-
-
-?>
