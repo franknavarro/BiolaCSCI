@@ -153,10 +153,11 @@
                 <!-- Use PHP to loop through and display all assignments where the due-date is SMALLER than today's date -->
                 <?php
                 $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
-                print_r($assignmentQuery[0]['dueDate']);
+
                 for ($count=0; $count < count($assignmentQuery); $count++) {
                 #<!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
-                    #if(date("Y-m-d h:m:s") =< $assignmentQuery[$count]['dueDate']){
+                    $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
+                    if(date("Y-m-d h:m:s") < $assDueDate){
                         $assIDNum = $assignmentQuery[$count]['assID'];
                         echo "<div class='assignment' id='list-assignment-$assIDNum'>";
                         echo    '<div class="row">';
@@ -170,7 +171,7 @@
                         echo        '</div>';
                         echo    '</div>';
                         echo '</div>';
-                    #}
+                    }
                 }
                 ?>
                 <!-- Assignment Format Ends here -->
