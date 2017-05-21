@@ -2,7 +2,7 @@
     ob_start();
     if (session_status() == PHP_SESSION_NONE) {
         session_start();
-    } 
+    }
 
 ?>
 
@@ -66,7 +66,7 @@ if(isset($_SESSION['user_id'])){
                     <?php
                     if($_SESSION['user_perm'] > "2"){
                         echo '<li class="nav-item">';
-                        echo '<a href="#">Create Class</a>';
+                        echo '<a href="/ClassForm.php">Create Class</a>';
                         echo '</li>';
                     }
                     ?>
