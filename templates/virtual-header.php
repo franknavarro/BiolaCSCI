@@ -54,29 +54,21 @@ if(isset($_SESSION['user_id'])){
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="nav-item dropdown">
-                        <a href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classes</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <!-- Here is where each class is displayed. Use PHP to load each item as a link with <a> tag with the class "dropdown-item" -->
-                            <a class="dropdown-item" href="/class.php">Introduction to Computer Science</a>
-                            <!-- Use horizontal rule to seperate each class -->
-                            <!-- <hr> -->
-                        </div>
-                    </li>
                     <?php
                     if($_SESSION['user_perm'] > "2"){
                         echo '<li class="nav-item">';
-                        echo '<a href="/ClassForm.php">Create Class</a>';
+                        echo '<a data-toggle="modal" data-target="#myModal">Attendance</a>';
                         echo '</li>';
                     }
                     ?>
                     <?php
-                    if($_SESSION['user_perm'] == "4"){
+                    if($_SESSION['user_perm'] > "2"){
                         echo '<li class="nav-item">';
-                        echo '<a href="/adduser.php">Create User</a>';
+                        echo '<a href="/end-session.php">End Session</a>';
                         echo '</li>';
                     }
                     ?>
+
                     <li class="nav-item">
                         <a href="/logout.php">Log Out</a>
                     </li>
