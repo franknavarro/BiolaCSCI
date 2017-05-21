@@ -2,31 +2,26 @@
       include 'resources/library/db.php';
 ?>
 
-
 <?php
- $currentClass = '1';
+ $currentClass;
+ //set this to a default value for testing. = '1';
 ?>
-
     <div id="class-page">
             <div class="row">
                 <div class="col-sm-8 class-header-container">
-
-                    <!-- Update class title and ID here -->
                     <div class="class-header">
                         <h3>
                             <?php
-                            $classTitleQuery = db::query("SELECT classCode, className from class where classID = $currentClass");
-                            print_r($classTitleQuery[0]["className"]);
+                                $classTitleQuery = db::query("SELECT classCode, className from class where classID = $currentClass");
+                                print_r($classTitleQuery[0]["className"]);
                             ?>
                         </h3>
                         <label>
                             <?php
-                            print_r($classTitleQuery[0]["classCode"]);
+                                print_r($classTitleQuery[0]["classCode"]);
                             ?>
                         </label>
                     </div>
-
-                    <!-- Add links that loads relavent content into div.class-deatils below -->
                     <div class="class-navigation">
                         <div class="col-xs-4">
                             <button class="default-button class-nav-button active-button" id="class-info-button">General</button>
@@ -42,38 +37,28 @@
             </div>
             <div class="row">
                 <div class="col-sm-8 class-content">
-                    <!--Here is where you would load the class information details. When you click General, Announcements, or Assignments above this div container shows the information needed -->
                     <div class="class-details">
-                        <!-- Use PHP to update all relevant values -->
-
-    <!-------------------------------------------------------GENERAL CLASS INFORMATION SECTION
-    -------------------------------------------------------->
+    <!-------------------------------------------------------GENERAL CLASS INFORMATION SECTION-------------------------------------------------------->
     <div id="class-info-page" class="class-section" style="display:block;">
         <h4 class="cinfo-header">Class Information</h4>
         <p><strong>Location: </strong>
-            <!-- Pull Class Location from database here -->
             <?php
                 $locationQuery = db::query("SELECT room from class where classID = $currentClass");
                 print_r($locationQuery[0]["room"]);
             ?>
         </p>
         <p><strong>Class Time: </strong>
-            <!-- Pull Class Time from database here -->
             <?php
                 $timeQuery = db::query("SELECT classTime from class where classID = $currentClass");
                 print_r($timeQuery[0]["classTime"]);
             ?>
         </p>
-        <!-- Change href to location of syllabus saved in database -->
         <p><a href="<?php
             $syllabusQuery = db::query("SELECT syllabusURL from class where classID = $currentClass");
             print_r($syllabusQuery[0]["syllabusURL"]);
         ?>">Course Syllabus</a></p>
-
-
         <h4 class="cinfo-header">Professor Information</h4>
         <h5 class="cinfo-header sub-header">
-            <!-- Pull Professor Name from database here -->
             <?php
                 $profEmailQuery = db::query("SELECT professorEmail from class where classID = $currentClass");
                 $profEmail = $profEmailQuery[0]["professorEmail"];
@@ -83,22 +68,12 @@
                 print_r($profNameQuery[0]["lastName"]);
             ?>
         </h5>
-        <p><strong>
-            Email:
-            </strong>
-            <!-- Change href="" to hold professors email in between the quotations -->
-            <a href="mailto:
-            <?php
-                print_r($profEmail);
-            ?>
-            ">
-            <?php
-                print_r($profEmail);
-            ?>
-        </a>
-        </p>
+            <p><strong>Email:</strong>
+                <a href="mailto:<?php print_r($profEmail); ?>">
+                <?php print_r($profEmail); ?>
+                </a>
+            </p>
         <p><strong>Office Hours: </strong>
-            <!-- Pull Office Hours for class from database here -->
             <?php
                 $profHoursQuery = db::query("SELECT instructorHours from class where classID = $currentClass");
                 print_r($profHoursQuery[0]["instructorHours"]);
@@ -106,7 +81,6 @@
         </p>
         <h4 class="cinfo-header">TA Information</h4>
         <h5 class="cinfo-header sub-header">
-            <!-- Get TA Name from database here -->
             <?php
                 $taEmailQuery = db::query("SELECT taEmail from class where classID = $currentClass");
                 $taEmail = $taEmailQuery[0]["taEmail"];
@@ -117,7 +91,6 @@
             ?>
         </h5>
         <p><strong>Email: </strong>
-            <!-- Change href="" to hold TA's email in between the quotations -->
             <a href="mailto:
             <?php
                 print_r($taEmail);
@@ -127,7 +100,6 @@
             ?></a>
         </p>
         <p><strong>TA Hours: </strong>
-            <!-- Pull TA Office Hours from database here -->
             <?php
                 $taHoursQuery = db::query("SELECT taHours from class where classID = $currentClass");
                 print_r($taHoursQuery[0]["taHours"]);
@@ -135,183 +107,104 @@
         </p>
     </div>
 
-
-
-    <!-------------------------------------------------------ALL ASSIGNMENTS SECTION
-    -------------------------------------------------------->
-
+    <!-------------------------------------------------------ALL ASSIGNMENTS SECTION-------------------------------------------------------->
     <div id="class-assignments-page" class="class-section">
-
-        <!-- PAST ASSIGNMENTS -->
-
-        <div id="past-assignments" class="my-dropdown">
-            <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
-                Past Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
-            </button>
-            <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
-
-                <!-- Use PHP to loop through and display all assignments where the due-date is SMALLER than today's date -->
-                <?php
-                $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
-
-                for ($count=0; $count < count($assignmentQuery); $count++) {
-                #<!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
-<<<<<<< HEAD
-                    if(date("Y-m-d h:m:s") =< $assignmentQuery[$count]['dueDate']){
-=======
-                    $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
-                    if(date("Y-m-d h:m:s") < $assDueDate){
->>>>>>> 714043dbd4f568adb1c30df0d6ffa89d3b984a36
-                        $assIDNum = $assignmentQuery[$count]['assID'];
-                        echo "<div class='assignment' id='list-assignment-$assIDNum'>";
-                        echo    '<div class="row">';
-                        echo        '<div class="col-xs-12">';
-                        echo            '<h4 class="title">';
-                        echo                $assignmentQuery[$count]['title'];
-                        echo            '</h4>';
-                        echo            '<div class="due-date"><strong>Due </strong>';
-                        echo                $assignmentQuery[$count]['dueDate'];
-                        echo             '</div>';
-                        echo        '</div>';
-                        echo    '</div>';
-                        echo '</div>';
-                    }
-                }
-                ?>
-                <!-- Assignment Format Ends here -->
-                <!-- Loop back to top or end loop if no more assignments meet the loops condition here
-                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Final', '2017-12-01 12:00:00', '1', '1');
-                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Paper', '2017-12-02 12:00:00', '1', '1');
-                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Quiz', '2017-12-03 12:00:00', '1', '1');
-
-            -->
-
-
-
-                <!-- GO TO UPCOMING-ASSIGNMENTS -->
-
-            </div> <!-- End of dropdown -->
-        </div> <!-- End of past assignments -->
-
-
-
         <!-- UPCOMING ASSIGNMENTS -->
-
         <div id="upcoming-assignments" class="my-dropdown">
             <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
                 Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
             </button>
             <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
-                <!-- Use PHP to loop through and display all assignments where the due-date is LARGER than today's date -->
                 <!-- Assignment Format Begins Here -->
                 <?php
                     $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
                     for ($count=0; $count < count($assignmentQuery); $count++) {
-                        #if(){
+                        $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
+                        if(date("Y-m-d h:m:s") < $assDueDate){
                         $assIDNum = $assignmentQuery[$count]['assID'];
                             echo "<div class='assignment' id='list-assignment-$assIDNum'>";
-                            echo    '<div class="row">';
-                            echo        '<div class="col-xs-12">';
-                            echo            '<h4 class="title">';
-                            echo                $assignmentQuery[$count]['title'];
-                            echo           '</h4>';
-                            echo            '<div class="due-date"><strong>Due </strong>';
-                            echo                $assignmentQuery[$count]['description'];
-                            echo            '</div>';
-                            echo        '</div>';
-                            echo    '</div>';
+                                echo '<div class="row">';
+                                    echo '<div class="col-xs-12">';
+                                        echo '<h4 class="title">';
+                                            echo $assignmentQuery[$count]['title'];
+                                        echo '</h4>';
+                                        echo '<div class="due-date"><strong>Due </strong>';
+                                            echo $assignmentQuery[$count]['dueDate'];
+                                        echo '</div>';
+                                    echo '</div>';
+                                echo '</div>';
                             echo '</div>';
-                        #}
+                        }
                     }
                 ?>
-                <!-- Assignment Format Ends here -->
-                <!-- Loop back to top or end loop if no more assignments meet the loops condition here -->
-
-
-
-                <!-- Bellow are just more examples of how the upcoming-assignments should look -->
-                <!-- EXAMPLES -->
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">Lab #5</h4>
-                            <div class="due-date"><strong>Due </strong>April 31 at 11:30pm</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">Lab #6</h4>
-                            <div class="due-date"><strong>Due </strong>April 32 at 11:30pm</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END OF EXAMPLES -->
-
             </div><!-- End of dropdown -->
         </div> <!-- End of upcoming assignments -->
-    </div> <!-- End of assignments container -->
 
-
-
-    <!-------------------------------------------------------INDIVIDUAL ASSIGNMENTS SECTION
-    -------------------------------------------------------->
-
-    <!-- Use PHP to loop through all assignments and Format them as below -->
-    <!-- Use PHP to format id value to be "assign-1234" -->
-    <!-- Changing the 1234 to whatever the assignments id is in the database -->
-    <div class="assignment-single class-section" id="assignment-idnumber">
-        <button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>
-        <h2 class="title">
-            <!-- Pull Assignment Title from database here -->
-            Title
-        </h2>
-
-        <hr style="margin-top:10px;">
-
-        <h5><strong>Due </strong><span class="due-date">
-            <!-- Pull Assignment Due Date from database here -->
-            April 30, 2017
-        </span></h5>
-
-        <h5><strong>URL/File: </strong>
-            <!-- Change in between quotes of href="" to load the relevant link or file link for the homework assignment as stored in database -->
-            <a class="url-file" target="_blank" href="http://heeeeeeeey.com/">Homework Reading Website</a>
-        </h5>
-
-        <hr>
-
-        <p class="assignment-description">
-            <!-- Pull Assignment Description from database here -->
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sit amet quam lacinia, scelerisque lorem tempus, facilisis dolor. Vivamus elementum nisl at viverra blandit. Sed ultrices lacinia diam, vitae dapibus urna. Duis id purus viverra, vestibulum purus vitae, bibendum ex. Donec eleifend lobortis libero, vel malesuada nunc elementum vel. Phasellus elit ante, accumsan eu auctor quis, cursus vitae sapien. Aliquam malesuada erat enim, ut ullamcorper eros aliquam eget. Curabitur venenatis quam sit amet est bibendum ultricies.
-        </p>
+        <!-- PAST ASSIGNMENTS -->
+        <div id="past-assignments" class="my-dropdown">
+            <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
+                Past Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
+            </button>
+            <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
+                <?php
+                $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
+                for ($count=0; $count < count($assignmentQuery); $count++) {
+                    $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
+                    if(date("Y-m-d h:m:s") > $assDueDate){
+                        $assIDNum = $assignmentQuery[$count]['assID'];
+                        echo "<div class='assignment' id='list-assignment-$assIDNum'>";
+                            echo '<div class="row">';
+                                echo '<div class="col-xs-12">';
+                                    echo '<h4 class="title">';
+                                        echo $assignmentQuery[$count]['title'];
+                                    echo '</h4>';
+                                    echo '<div class="due-date"><strong>Due </strong>';
+                                        echo $assignmentQuery[$count]['dueDate'];
+                                    echo '</div>';
+                                echo '</div>';
+                            echo '</div>';
+                        echo '</div>';
+                    }
+                }
+                ?>
+                <!-- Assignment Format Ends here -->
+            </div> <!-- End of dropdown -->
+        </div> <!-- End of past assignments -->
     </div>
+    <!-- End of assignments container -->
 
+    <!-------------------------------------------------------INDIVIDUAL ASSIGNMENTS SECTION-------------------------------------------------------->
+    <?php
+        $assignmentQuery = db::query("SELECT title, dueDate, assID, url, description, postTime FROM assignment WHERE classID = $currentClass");
+        for ($count=0; $count < count($assignmentQuery); $count++) {
+            $assIDNum = $assignmentQuery[$count]['assID'];
+            echo "<div class='assignment-single class-section' id='assignment-$assIDNum'>";
+                echo '<button class="class-back-button"><i class="fa fa-chevron-left" aria-hidden="true"></i>Back</button>';
+                echo '<h2 class="title">';
+                    echo $assignmentQuery[$count]['title'];
+                echo '</h2>';
+                echo '<hr style="margin-top:10px;">';
+                    echo '<h5><strong>Due </strong><span class="due-date">';
+                        echo $assignmentQuery[$count]['dueDate'];
+                    echo '</span></h5>';
+                    echo '<h5><strong>URL/File: </strong>';
+                        $assUrl = $assignmentQuery[$count]['url'];
+                        echo "<a class='url-file' target='_blank' href='$assUrl'>$assUrl</a>";
+                    echo '</h5>';
+                echo '<hr>';
+                echo '<p class="assignment-description">';
+                    echo $assignmentQuery[$count]['description'];
+                echo '</p>';
+                echo '<h5><strong>Post Time: </strong><span class="due-date">';
+                    echo $assignmentQuery[$count]['postTime'];
+                echo '</span></h5>';
+            echo '</div>';
+        }
+    ?>
 
-    <!-------------------------------------------------------ALL ANNOUNCEMENTS SECTION
-    -------------------------------------------------------->
-
+    <!-------------------------------------------------------ALL ANNOUNCEMENTS SECTION-------------------------------------------------------->
     <div id="class-announcements-page" class="class-section">
-
-        <!-- Loop through and display all announcements for the class -->
-        <!-- Change id to be formatted as "list-announcement-idnumber" Changing idnumber to be the assignments id within the database-->
-
-        <!-- block of code to disply only a certain amount of letters. is currently erroring.
-        if (strlen($announcementQuery[$count]['description']) > 40)
-        {
-            $shortDescription = substr($announcementQuery[$count]['description',0,40).'...';
-            echo $shortDescription;
-        }
-        else {
-            echo $announcementQuery[$count]['description'];
-        }
-        $shortDescription = (strlen($announcementQuery[$count]['description']) > 43) ? substr($announcementQuery[$count]['description',0,40).'...' : $string;
-        echo $shortDescription;
-        -->
-
         <?php
-
             $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
             for ($count=0; $count < count($announcementQuery); $count++) {
                 #echo '<div class="announcement" id="list-announcement-idnumber">';
@@ -343,16 +236,10 @@
                 echo '</div>';
             }
         ?>
-    </div> <!-- End of Announcements page -->
+    </div>
+    <!-- End of Announcements page -->
 
-
-    <!-------------------------------------------------------SINGLE ANNOUNCEMENTS SECTION
-    -------------------------------------------------------->
-
-    <!-- Use PHP to loop through all assignments and Format them as below -->
-    <!-- Use PHP to format id value to be assign-1234 -->
-    <!-- Changing the 1234 to whatever the assignments id is in the database -->
-
+    <!-------------------------------------------------------SINGLE ANNOUNCEMENTS SECTION-------------------------------------------------------->
     <?php
         #single announcement display
         $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
@@ -374,6 +261,10 @@
                 echo '<p class="message">';
                     echo $announcementQuery[$count]['description'];
                 echo '</p>';
+                echo '<h5 class="author">';
+                    echo "Post Time: ";
+                    echo $announcementQuery[$count]["postTime"];
+                echo '</h5>';
             echo '</div>';
         }
     ?>
@@ -393,5 +284,18 @@
             </div>
         </div>
     </div>
-
 <?php include 'templates/footer.php'; ?>
+
+<!--
+*****DATA FOR TESTING*****
+Dummy Assignments to add to the database for testing.
+INSERT INTO assignment (title, dueDate, classID, class_classID, description, postTime) VALUES ('Final', '2017-12-01 12:00:00', '1', '1', 'Lorem ipsum dolor sit amet, sanctus tractatos abhorreant vim eu. Accusata oportere cotidieque duo ea, nullam erroribus eos in. Mea paulo accusamus at. Vitae everti consequuntur usu an, nec eu quando omnium feugiat, et assum labores nominavi qui.', '2015-02-03 12:00:00')';
+INSERT INTO assignment (title, dueDate, classID, class_classID, description, postTime) VALUES ('Paper', '1993-12-02 12:00:00', '1', '1', 'Lorem ipsum dolor sit amet, sanctus tractatos abhorreant vim eu. Accusata oportere cotidieque duo ea, nullam erroribus eos in. Mea paulo accusamus at. Vitae everti consequuntur usu an, nec eu quando omnium feugiat, et assum labores nominavi qui.', '2015-02-03 12:00:00');
+INSERT INTO assignment (title, dueDate, classID, class_classID, description, postTime) VALUES ('Quiz', '2017-12-03 12:00:00', '1', '1', 'Lorem ipsum dolor sit amet, sanctus tractatos abhorreant vim eu. Accusata oportere cotidieque duo ea, nullam erroribus eos in. Mea paulo accusamus at. Vitae everti consequuntur usu an, nec eu quando omnium feugiat, et assum labores nominavi qui.', '2015-02-03 12:00:00');
+Dummy announcements to add the database for testing.
+INSERT INTO announcement (classID, title, description, postTime, user_email, class_classID) VALUES ('1', 'Class Tomorrow', 'We will be having a quiz tomorrow in class', '4:50pm', 'peter.a.alford@biola.edu', '1');
+INSERT INTO announcement (classID, title, description, postTime, user_email, class_classID) VALUES ('1', 'Party', 'Come to my house at 7:00pm food and drinks will be provided', '2:50pm', 'peter.a.alford@biola.edu', '1');
+INSERT INTO announcement (classID, title, description, postTime, user_email, class_classID) VALUES ('1', 'Presentations', 'I am getting rid of the group presentation option', '9:50am', 'peter.a.alford@biola.edu', '1');
+Dummy Updatees for current classes in the database.
+UPDATE class Set taHours = '12:00-2:15pm', instructorHours = '5:00-6:15pm', professorEmail = 'shieu-hong.lin@biola.edu', taEmail = 'peter.a.alford@biola.edu' Where classID = '1';
+-->

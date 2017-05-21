@@ -58,9 +58,19 @@ if(isset($_SESSION['user_id'])){
                         <a href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classes</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <!-- Here is where each class is displayed. Use PHP to load each item as a link with <a> tag with the class "dropdown-item" -->
-                            <a class="dropdown-item" href="/class.php">Introduction to Computer Science</a>
-                            <!-- Use horizontal rule to seperate each class -->
-                            <!-- <hr> -->
+                            <a class='dropdown-item' href='$class.php'>Intro to Computer Science</a>
+                            <?php
+                                // include 'resources/library/db.php';
+                                // $headerClassQuery = db::query("SELECT className, classCode FROM class");
+                                // print_r($headerClassQuery[0]['className']);
+                                // for ($count=0; $count < count($headerClassQuery); $count++){
+                                //     $classCode = print_r($headerClassQuery[$count]['classCode'], true);
+                                //     echo "<a class='dropdown-item' href='$classCode.php'>";
+                                //     echo $headerClassQuery[$count]['className'];
+                                //     echo '</a>';
+                                //     echo '<hr>';
+                                // }
+                            ?>
                         </div>
                     </li>
                     <?php
