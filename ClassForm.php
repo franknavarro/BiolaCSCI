@@ -308,5 +308,5 @@
       echo '<br>Class Not Created<br>';
     }
   }
-  include 'templates/footer.php';;
+  include 'templates/footer.php';
 ?>

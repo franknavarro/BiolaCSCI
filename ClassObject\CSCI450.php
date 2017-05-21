@@ -1,1 +1,0 @@
-<?php $currentClass = 3; include "../templates/class.php";?>
