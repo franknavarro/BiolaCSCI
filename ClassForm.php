@@ -1,4 +1,4 @@
-<?php include 'templates\header.php'; ?>
+<?php include 'templates/header.php'; ?>
 <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
   <html>
   <body>
@@ -278,19 +278,18 @@
     else{
       echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
     }
-    print_r($classID[0][0]);
 
     $url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
     $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
+
     db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
 
     #Create class file
 
     $classCode = $_POST["classCode"];
 
-    $file = "ClassObject\\${classCode}.php";
+    $file = "ClassObject/${classCode}.php";
     if (!file_exists($file)){
-      echo $file;
 
       $key_array = db::query("SELECT MAX(classID) from class");
       var_dump($key_array);
@@ -308,5 +307,5 @@
       echo '<br>Class Not Created<br>';
     }
   }
-  include 'templates\footer.php';
+  include 'templates/footer.php';
 ?>
