@@ -156,7 +156,7 @@
                 print_r($assignmentQuery[0]['dueDate']);
                 for ($count=0; $count < count($assignmentQuery); $count++) {
                 #<!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
-                    #if(date("Y-m-d h:m:s") =< $assignmentQuery[$count]['dueDate']){
+                    if(date("Y-m-d h:m:s") =< $assignmentQuery[$count]['dueDate']){
                         $assIDNum = $assignmentQuery[$count]['assID'];
                         echo "<div class='assignment' id='list-assignment-$assIDNum'>";
                         echo    '<div class="row">';
@@ -170,14 +170,14 @@
                         echo        '</div>';
                         echo    '</div>';
                         echo '</div>';
-                    #}
+                    }
                 }
                 ?>
                 <!-- Assignment Format Ends here -->
                 <!-- Loop back to top or end loop if no more assignments meet the loops condition here
-                INSERT INTO assignment (title, dueDate, classID) VALUES ('Final', '2017-12-01 12:00:00', '1');
-                INSERT INTO assignment (title, dueDate, classID) VALUES ('Paper', '2017-12-02 12:00:00', '1');
-                INSERT INTO assignment (title, dueDate, classID) VALUES ('Quiz', '2017-12-03 12:00:00', '1');
+                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Final', '2017-12-01 12:00:00', '1', '1');
+                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Paper', '2017-12-02 12:00:00', '1', '1');
+                INSERT INTO assignment (title, dueDate, classID, class_classID) VALUES ('Quiz', '2017-12-03 12:00:00', '1', '1');
 
             -->
 
