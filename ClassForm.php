@@ -253,7 +253,7 @@
     #submit the array to the database
     db::query("SET FOREIGN_KEY_CHECKS=0;
               INSERT INTO class (className, classCode, room, classTime, taHours, professorEmail, instructorHours, classDescription)
-              VALUES (:classCode, :className, :classLocation, :classPeriod, :taHours, :profID, :profHours, :classDescription)", $submit);
+              VALUES (:className, :classCode, :classLocation, :classPeriod, :taHours, :profID, :profHours, :classDescription)", $submit);
 
 
     #Create professor entry for the class in user_class
@@ -262,7 +262,7 @@
 
     echo "</br>" . $classID[0][0] . "</br>";
     #creates update variable list for user_class query
-    $userUpdate = array(':userID'=>$_SESSION["user_id"], ':role'=>"Professor", ":classID"=>$classID[0][0]);
+    $userUpdate = array(':userID'=>$_SESSION["user_id"], ':role'=>"3", ":classID"=>$classID[0][0]);
 
     #user_class query
     db::query("SET FOREIGN_KEY_CHECKS=0; INSERT INTO user_class (user_email, role, class_classID) VALUES (:userID, :role, :classID)", $userUpdate);
