@@ -54,7 +54,7 @@ class attendance{
     Input: $classID = the ID of the class to create the session under, $hostEmail = The host user_id which will be in the form of an email address
     Return: Returns error messages or if validated the sessionKey
     */
-    public static function createSession($classID, $hostEmail){
+    public static function createSession($classID, $hostEmail, $sessionURL){
 
         $results = db::query("SELECT className from class where classID=:classID", array (':classID'=>$classID));
         if(!empty($results)){
@@ -63,7 +63,8 @@ class attendance{
             $sessionKey = bin2hex(random_bytes(5)); //Returns 5 random characters for attendance code
             $timestamp = date("Y-m-d");
             //Create Class Information
-            db::query("INSERT INTO session (hostID, sessionName, sessionStatus, sessionKey, sessionDate) VALUES (:hostID, :sessionName, :sessionStatus, :sessionKey, :sessionDate)", array(':hostID'=>$hostEmail, ':sessionName'=>$sessionName, ':sessionStatus'=>$sessionStatus, ':sessionKey'=>$sessionKey, ':sessionDate'=>$timestamp));
+            db::query("INSERT INTO session (hostID, sessionName, sessionStatus, sessionKey, sessionDate, sessionURL) VALUES (:hostID, :sessionName, :sessionStatus, :sessionKey, :sessionDate, :sessionURL)", array(':hostID'=>$hostEmail, ':sessionName'=>$sessionName, ':sessionStatus'=>$sessionStatus, ':sessionKey'=>$sessionKey, ':sessionDate'=>$timestamp, ':sessionURL'=>$sessionURL));
+            db::query("UPDATE class SET activeSession = 1 WHERE classID=:classID", array(':classID'=>$classID));
             return $sessionKey;
         } else {
             return "ERROR: Unable to create session";
@@ -84,7 +85,6 @@ class attendance{
 
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
-            db::query("UPDATE class SET activeSession = 1 WHERE classID=:classID", array(':classID'=>$classID));
             return true;
         } else {
             return "ERROR: Unable to start session";
@@ -101,7 +101,8 @@ class attendance{
         $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
         if(!empty($result)){
             $className = print_r($result[0]['sessionName']);
-            $classID = db::query("SELECT classID from session WHERE className=:className", array(':className' => $className));
+            $classIDQuery = db::query("SELECT classID from class WHERE className=:className", array(':className' => $className));
+            $classID = print_r($classID[0]['classID']);
 
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 0 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));

@@ -31,11 +31,9 @@
                     echo $sessionID;
                     echo '</div>';
                 } else {
-                    $SESSION['current_session'] = $sessionID;
-                    echo '<div class="alert alert-warning">';
-                    echo 'Session Started: ';
-                    echo $sessionID;
-                    echo '</div>';
+                    $sessionURLQuery = db::query("SELECT sessionURL from session where sessionID=:sessionID", array(':sessionID'=>$sessionID));
+                    $sessionURL = print_r($sessionURLQuery[0]['sessionURL'], true);
+                     die("<script>location.href = '$sessionURL'</script>");
                 }
             }
         ?>
@@ -53,6 +51,10 @@
                  $classTime = print_r($result[0]["classTime"], true);
                  $activeSession = print_r($result[0]["activeSession"], true);
                  $classURL = print_r($result[0]["syllabusURL"], true);
+                 $sessionData = db::query("SELECT sessionURL from session where sessionName=:className and sessionStatus > 0", array(':className'=>$className));
+                 if(!empty($sessionData)){
+                    $sessionURL = print_r($sessionData[$count]['sessionURL'], true);
+                 }
 
                  echo '<div class="row">';
                  echo     '<div class="col-sm-6 col-md-4">';
@@ -62,11 +64,22 @@
                  echo                   'Professor: Dr. Lin </br>';
                  echo                   "Class Times: $classTime";
                  echo               '</p>';
-                 if($activeSession == 1){
-                     echo '<p><a data-toggle="modal" data-target="#myModal" class="btn btn-success" role="button">Join Session</a>';
+                 if($_SESSION['user_perm'] < 2){
+                     if($activeSession == 1){
+                         echo '<p><a data-toggle="modal" data-target="#myModal" class="btn btn-success" role="button">Join Session</a>';
+                     } else {
+                         echo '<p><a href="#" class="btn btn-danger" role="button">No Session</a>';
+                     }
                  } else {
-                     echo '<p><a href="#" class="btn btn-danger" role="button">No Session</a>';
+                     if($activeSession == 1){
+                         echo '<p><a href="';
+                         echo $sessionURL;
+                         echo '" class="btn btn-warning" role="button">Join Session</a>';
+                     } else {
+                         echo '<p><a href="/classroom.php" class="btn btn-success" role="button">Start Session</a>';
+                     }
                  }
+
                  echo        '<a href="';
                  echo        $classURL;
                  echo        '" class="btn btn-default" role="button">More Info</a></p>';
@@ -101,15 +114,3 @@
 
 
 <?php include "templates/footer.php"; ?>
-
-<?php
-    include_once 'resources/library/attendance.php';
-
-    if(isset($_POST['attendanceCode'])){
-        $attendanceCode = $_POST['attendanceCode'];
-        $user_id = $_SESSION['user_id'];
-
-        $classID = attendance::checkIn($user_id, $attendanceCode);
-        //If classID returns an error echo out an error message
-    }
-?>

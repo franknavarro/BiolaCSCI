@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`session` (
   `sessionStatus` TINYINT(1) NOT NULL,
   `sessionKey` VARCHAR(45) NOT NULL,
   `sessionDate` DATETIME NOT NULL,
+  `sessionURL`  VARCHAR(45) NOT NULL,
   PRIMARY KEY (`sessionID`))
 ENGINE = InnoDB;
 
