@@ -186,6 +186,7 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`assignment` (
   `description` LONGTEXT NULL,
   `dueDate` DATETIME NULL,
   `isLive` TINYINT(1) NULL,
+  `assID` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(45) NULL,
   `classID` VARCHAR(45) NULL,
   `postTime` DATETIME NULL,

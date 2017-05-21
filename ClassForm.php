@@ -1,4 +1,4 @@
-<?php include 'templates\header.php'; ?>
+<?php include 'templates/header.php'; ?>
 <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
   <html>
   <body>
@@ -308,5 +308,5 @@
       echo '<br>Class Not Created<br>';
     }
   }
-  include 'templates\footer.php';
+  include 'templates/footer.php';;
 ?>

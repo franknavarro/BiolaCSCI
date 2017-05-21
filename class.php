@@ -4,7 +4,7 @@
 
 
 <?php
- $currentClass = "1";
+ $currentClass = "4";
 ?>
 
     <div id="class-page">
@@ -89,7 +89,7 @@
             <!-- Change href="" to hold professors email in between the quotations -->
             <a href="mailto:
             <?php
-                print_r($taEmail);
+                print_r($profEmail);
             ?>
             ">
             <?php
