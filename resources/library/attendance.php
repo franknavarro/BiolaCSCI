@@ -2,13 +2,23 @@
 
 include_once('db.php');
 
+/*
+Class: Attendance
+Description: Handles checking in a user to a virtual session and noting it as well as creating sessions and validating them
+*/
 class attendance{
-
+    /*
+    Function: checkIn($user_id, $attendanceCode)
+    Input: $user_id = enter the id of the user to check in, $attendanceCode = enter the attendance Code for a session
+    Return: Returns error messages or if validated the sessionID.
+    */
     public static function checkIn($user_id, $attendanceCode){
         //Verify Attendance Code
         $result = db::query("SELECT sessionStatus, sessionID from session where sessionKey=:sessionKey", array(':sessionKey'=>$attendanceCode));
         //Check if class has started
         if(!empty($result)){
+
+            //Variables to hold
             $sessionStatus = print_r($result[0]['sessionStatus'], true);
             $sessionID = print_r($result[0]['sessionID'], true);
             switch ($sessionStatus) {
@@ -37,31 +47,55 @@ class attendance{
         } else {
             return "Error: Incorrect Attedance Code or Session does not exist!";
         }
-        // if class has started then mark student as tardy
-        // if class has not started them ark student as present
     }
 
+    /*
+    Function: createSession($classID, $hostEmail)
+    Input: $classID = the ID of the class to create the session under, $hostEmail = The host user_id which will be in the form of an email address
+    Return: Returns error messages or if validated the sessionKey
+    */
     public static function createSession($classID, $hostEmail){
 
         $results = db::query("SELECT className from class where classID=:classID", array (':classID'=>$classID));
-        $sessionName = print_r($results[0]['className']);
-        $sessionStatus = 1; //Marks the class as not expired
-        $sessionKey = bin2hex(random_bytes(5)); //Returns 5 random characters for attendance code
-        //Create Class Information
-        db::query("INSERT INTO session (hostID, sessionName, sessionStatus, sessionKey) VALUES (:hostID, :sessionName, :sessionStatus, :sessionKey)", array(':hostID'=>$hostEmail, ':sessionName'=>$sessionName, ':sessionStatus'=>$sessionStatus, ':sessionKey'=>$sessionKey));
+        if(!empty($results)){
+            $sessionName = print_r($results[0]['className'], true);
+            $sessionStatus = 1; //Marks the class as not expired
+            $sessionKey = bin2hex(random_bytes(5)); //Returns 5 random characters for attendance code
+            $timestamp = date("Y-m-d");
+            //Create Class Information
+            db::query("INSERT INTO session (hostID, sessionName, sessionStatus, sessionKey, sessionDate) VALUES (:hostID, :sessionName, :sessionStatus, :sessionKey, :sessionDate)", array(':hostID'=>$hostEmail, ':sessionName'=>$sessionName, ':sessionStatus'=>$sessionStatus, ':sessionKey'=>$sessionKey, ':sessionDate'=>$timestamp));
+            return $sessionKey;
+        } else {
+            return "ERROR: Unable to create session";
+        }
     }
+
+    /*
+    Function: startSession($sessionID)
+    Input: $sessionID = The session ID to start
+    Return: Returns error messages or if validated True
+    */
 
     public static function startSession($sessionID){
         $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
         if(!empty($result)){
-            $className = print_r($result[0]['sessionName']);
+            $className = print_r($result[0]['sessionName'], true);
             $classID = db::query("SELECT classID from session WHERE className=:className", array(':className' => $className));
 
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
             db::query("UPDATE class SET activeSession = 1 WHERE classID=:classID", array(':classID'=>$classID));
+            return true;
+        } else {
+            return "ERROR: Unable to start session";
         }
     }
+
+    /*
+    Function: endSession($sessionID)
+    Input: $sessionID = The session ID to end
+    Return: Returns error messages or if validated True
+    */
 
     public static function endSession($sessionID){
         $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
@@ -72,6 +106,10 @@ class attendance{
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 0 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
             db::query("UPDATE class SET activeSession = 0 WHERE classID=:classID", array(':classID'=>$classID));
+            return true;
+
+        } else {
+            return "ERROR: Unable to end session";
         }
     }
 
