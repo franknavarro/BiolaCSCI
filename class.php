@@ -4,7 +4,7 @@
 
 
 <?php
- $currentClass = "1";
+ $currentClass = '1';
 ?>
 
     <div id="class-page">
@@ -89,7 +89,7 @@
             <!-- Change href="" to hold professors email in between the quotations -->
             <a href="mailto:
             <?php
-                print_r($taEmail);
+                print_r($profEmail);
             ?>
             ">
             <?php
@@ -151,49 +151,39 @@
             <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
 
                 <!-- Use PHP to loop through and display all assignments where the due-date is SMALLER than today's date -->
-                <!-- Assignment Format Begins Here -->
-                <!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">
-                                <!--Pull Title of the Assignment from the database here -->
-                                Lab #1
-                            </h4>
-                            <div class="due-date"><strong>Due </strong>
-                                <!-- Pull the Due Date of the Assignment from the database here -->
-                                April 30 at 11:30pm
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <?php
+                $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
+                print_r($assignmentQuery[0]['dueDate']);
+                for ($count=0; $count < count($assignmentQuery); $count++) {
+                #<!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
+                    #if(date("Y-m-d h:m:s") =< $assignmentQuery[$count]['dueDate']){
+                        $assIDNum = $assignmentQuery[$count]['assID'];
+                        echo "<div class='assignment' id='list-assignment-$assIDNum'>";
+                        echo    '<div class="row">';
+                        echo        '<div class="col-xs-12">';
+                        echo            '<h4 class="title">';
+                        echo                $assignmentQuery[$count]['title'];
+                        echo            '</h4>';
+                        echo            '<div class="due-date"><strong>Due </strong>';
+                        echo                $assignmentQuery[$count]['dueDate'];
+                        echo             '</div>';
+                        echo        '</div>';
+                        echo    '</div>';
+                        echo '</div>';
+                    #}
+                }
+                ?>
                 <!-- Assignment Format Ends here -->
-                <!-- Loop back to top or end loop if no more assignments meet the loops condition here -->
+                <!-- Loop back to top or end loop if no more assignments meet the loops condition here
+                INSERT INTO assignment (title, dueDate, classID) VALUES ('Final', '2017-12-01 12:00:00', '1');
+                INSERT INTO assignment (title, dueDate, classID) VALUES ('Paper', '2017-12-02 12:00:00', '1');
+                INSERT INTO assignment (title, dueDate, classID) VALUES ('Quiz', '2017-12-03 12:00:00', '1');
+
+            -->
 
 
-
-                <!-- Bellow are just examples of how the previous-assignments should look -->
 
                 <!-- GO TO UPCOMING-ASSIGNMENTS -->
-
-                <!-- EXAMPLES -->
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">Lab #2</h4>
-                            <div class="due-date"><strong>Due </strong>April 31 at 11:30pm</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">Lab #3</h4>
-                            <div class="due-date"><strong>Due </strong>April 32 at 11:30pm</div>
-                        </div>
-                    </div>
-                </div>
-                <!-- END OF EXAMPLES -->
 
             </div> <!-- End of dropdown -->
         </div> <!-- End of past assignments -->
@@ -204,27 +194,31 @@
 
         <div id="upcoming-assignments" class="my-dropdown">
             <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
-                Upcoming Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
+                Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
             </button>
             <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
                 <!-- Use PHP to loop through and display all assignments where the due-date is LARGER than today's date -->
                 <!-- Assignment Format Begins Here -->
-                <!-- Change id to be formatted as "list-assignment-idnumber" Changing idnumber to be the assignments id within the database-->
-                <div class="assignment" id="list-assignment-idnumber">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <h4 class="title">
-                                <!--Pull Title of the Assignment from the database here -->
-                                Lab #4
-                            </h4>
-                            <div class="due-date"><strong>Due </strong>
-                                <!-- Pull the Due Date of the Assignment from the database here -->
-                                April 30 at 11:30pm
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
+                <?php
+                    $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
+                    for ($count=0; $count < count($assignmentQuery); $count++) {
+                        #if(){
+                        $assIDNum = $assignmentQuery[$count]['assID'];
+                            echo "<div class='assignment' id='list-assignment-$assIDNum'>";
+                            echo    '<div class="row">';
+                            echo        '<div class="col-xs-12">';
+                            echo            '<h4 class="title">';
+                            echo                $assignmentQuery[$count]['title'];
+                            echo           '</h4>';
+                            echo            '<div class="due-date"><strong>Due </strong>';
+                            echo                $assignmentQuery[$count]['description'];
+                            echo            '</div>';
+                            echo        '</div>';
+                            echo    '</div>';
+                            echo '</div>';
+                        #}
+                    }
+                ?>
                 <!-- Assignment Format Ends here -->
                 <!-- Loop back to top or end loop if no more assignments meet the loops condition here -->
 

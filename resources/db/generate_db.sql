@@ -182,16 +182,16 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`assignment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`assignment` (
-  `name` INT NOT NULL,
   `title` VARCHAR(45) NULL,
   `description` LONGTEXT NULL,
   `dueDate` DATETIME NULL,
   `isLive` TINYINT(1) NULL,
+  `assID` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(45) NULL,
   `classID` VARCHAR(45) NULL,
   `postTime` DATETIME NULL,
   `class_classID` INT NOT NULL,
-  PRIMARY KEY (`name`),
+  PRIMARY KEY (`assID`),
   INDEX `fk_assignment_class1_idx` (`class_classID` ASC),
   CONSTRAINT `fk_assignment_class1`
     FOREIGN KEY (`class_classID`)
