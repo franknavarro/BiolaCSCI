@@ -5,18 +5,19 @@
 <body>
   <div class="row">
     <div class="col-md-12">
+        <h1 class="form-head">Post Announcement</h1>
       <form action="<?php echo htmlentities($_SERVER['SCRIPT_NAME']) ?>" method="post">
           <!--Announcement Info--------------------------------->
           <!--Title-->
           <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" class="form-control" name="title" placeholder="Enter Title">
+            <input type="text" name="title" placeholder="Enter Title">
           </div>
 
           <!--Description-->
           <div class="form-group">
             <label for="description">Description</label>
-            <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+            <textarea id="description" name="description" rows="3"></textarea>
           </div>
 
 
@@ -26,24 +27,28 @@
             <input type="text" class="form-control" name="classID" placeholder="Which Class Is This for?">
           </div>-->
 
-          <select name="class">
-            <?php
-              #Look up all classes which are owned by the professor
-              $classes = db::query("SELECT className, classID
-                                    FROM class LEFT JOIN user_class
-                                    ON class.classID = user_class.class_classID
-                                    AND user_class.user_email = ':email';",
-                                    array(':email'=>$_SESSION['user_id']));
+          <div class="form-group">
+              <div class="selectDropdown">
+              <select name="class">
+                <?php
+                  #Look up all classes which are owned by the professor
+                  $classes = db::query("SELECT className, classID
+                                        FROM class LEFT JOIN user_class
+                                        ON class.classID = user_class.class_classID
+                                        AND user_class.user_email = ':email';",
+                                        array(':email'=>$_SESSION['user_id']));
 
-              #loop through them
-              foreach ($classes as &$class) {
-                echo '<option value="' . $class[1] . '">' . $class[0] . '</option>"';
-              }
-            ?>
-          </select>
+                  #loop through them
+                  foreach ($classes as &$class) {
+                    echo '<option value="' . $class[1] . '">' . $class[0] . '</option>"';
+                  }
+                ?>
+              </select>
+              </div>
+          </div>
 
           <!--Submission-->
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="submit" class="submit-button">Submit</button>
       </form>
     </div>
   </div>

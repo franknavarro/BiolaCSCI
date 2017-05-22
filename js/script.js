@@ -17,8 +17,6 @@ $(window).resize(function() {
 
 
 
-
-
 $(".checkBoxFullBox").click( function () {
     
     var div = $(this);

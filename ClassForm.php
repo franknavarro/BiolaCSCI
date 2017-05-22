@@ -6,7 +6,7 @@
     
     <div class="row">
 
-        <h1 style="text-align:center;">Create a Class</h1>
+        <h1 class="form-head">Create a Class</h1>
         
         <form action="<?php echo htmlentities($_SERVER['SCRIPT_NAME']) ?>" enctype="multipart/form-data" method="post">
 
@@ -41,7 +41,7 @@
             </div>
 
             <!--Class Period input-->
-            <div class="form-group">
+            <div class="form-group time-field">
                 <label for="classTime">Class Period</label>
                 <small class="form-text text-muted">(Select Days the Class meets)</small>
                 <div class="row">
@@ -85,19 +85,73 @@
                 <!--Enter the class start time-->
                 <div class="row">
                     <div class="col-sm-6 left-most">
-                        <input type="time" id="classStartTime" name="classStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
+                        <div class="nativeTimePicker">
+                            <input type="time" id="classStartTime" name="classStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
+                        </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <small class="form-text text-muted timeTextPlaceholder">Enter Class Start Time</small>
                     </div>
 
                     <!-- Enter the Class end time-->
                     <div class="col-sm-6 right-most">
-                        <input type="time" id="classEndTime" name="classEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
+                        <div class="nativeTimePicker">
+                            <input type="time" id="classEndTime" name="classEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
+                        </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
                         <small class="form-text text-muted timeTextPlaceholder">Enter Class End Time</small>
                     </div>
                 </div>
             </div>
 
-            <div class="form-group">
+            <div class="form-group time-field">
                 <label for="taHoursStartTime">TA Office Hours</label>
                 <small class="form-text text-muted">(Select Days the TA has office Hours)</small>
                 <div class="row">
@@ -137,86 +191,197 @@
                         </label>
                     </div>
                 </div>
-                    <!--Enter the taHours start time-->
-                    <div class="row">
-                        <div class="col-sm-6 left-most">
+                <!--Enter the taHours start time-->
+                <div class="row">
+                    <div class="col-sm-6 left-most">
+                        <div class="nativeTimePicker">
                             <input type="time" id="taHoursStartTime" name="taHoursStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
-                            <small class="form-text text-muted timeTextPlaceholder">Enter TA's Office Hours Start Time</small>
                         </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted timeTextPlaceholder">Enter TA's Office Hours Start Time</small>
+                    </div>
 
-                        <!-- Enter the taHours end time-->
-                        <div class="col-sm-6 right-most">
+                    <!-- Enter the taHours end time-->
+                    <div class="col-sm-6 right-most">
+                        <div class="nativeTimePicker">
                             <input type="time" id="taHoursEndTime" name="taHoursEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
-                            <small class="form-text text-muted timeTextPlaceholder">Enter TA's Office Hours End Time</small>
                         </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted timeTextPlaceholder">Enter TA's Office Hours End Time</small>
                     </div>
                 </div>
+            </div>
 
-                <div class="form-group">
-                    <label for="profHoursStartTime">Professor Office Hours</label>
-                    <small class="form-text text-muted">(Select Days the Professor has office Hours)</small>
-                    <div class="row">
-                        <!--Monday check box-->
-                        <div class="col-sm-dow left-most">
-                            <label class="checkboxFullBox">
-                            <input name="profMonday" type="checkbox" class="fullCheckbox" value="M">
-                            <span class="checkboxText">Monday</span>
-                            </label>
-                        </div>
-                        <!--Tuesday check Box-->
-                        <div class="col-sm-dow">
-                            <label class="checkboxFullBox">
-                            <input name="profTuesday" type="checkbox" class="fullCheckbox" value="T">
-                            <span class="checkboxText">Tuesday</span>
-                            </label>
-                        </div>
-                        <!--Wednesday check Box-->
-                        <div class="col-sm-dow">
-                            <label class="checkboxFullBox">
-                            <input name="profWednesday" type="checkbox" class="fullCheckbox" value="W">
-                            <span class="checkboxText">Wednesday</span>
-                            </label>
-                        </div>
-                        <!--Thursday check Box-->
-                        <div class="col-sm-dow">
-                            <label class="checkboxFullBox">
-                            <input name="profThursday" type="checkbox" class="fullCheckbox" value="Tr">
-                            <span class="checkboxText">Thursday</span>
-                            </label>
-                        </div>
-                        <!--Friday check Box-->
-                        <div class="col-sm-dow right-most">
-                            <label class="checkboxFullBox">
-                            <input name="profFriday" type="checkbox" class="fullCheckbox" value="F">
-                            <span class="checkboxText">Friday</span>
-                            </label>
-                        </div>
+            <div class="form-group time-field">
+                <label for="profHoursStartTime">Professor Office Hours</label>
+                <small class="form-text text-muted">(Select Days the Professor has office Hours)</small>
+                <div class="row">
+                    <!--Monday check box-->
+                    <div class="col-sm-dow left-most">
+                        <label class="checkboxFullBox">
+                        <input name="profMonday" type="checkbox" class="fullCheckbox" value="M">
+                        <span class="checkboxText">Monday</span>
+                        </label>
                     </div>
-                    <!--Enter the Professor's start time-->
-                    <div class="row">
-                        <div class="col-sm-6 left-most">
+                    <!--Tuesday check Box-->
+                    <div class="col-sm-dow">
+                        <label class="checkboxFullBox">
+                        <input name="profTuesday" type="checkbox" class="fullCheckbox" value="T">
+                        <span class="checkboxText">Tuesday</span>
+                        </label>
+                    </div>
+                    <!--Wednesday check Box-->
+                    <div class="col-sm-dow">
+                        <label class="checkboxFullBox">
+                        <input name="profWednesday" type="checkbox" class="fullCheckbox" value="W">
+                        <span class="checkboxText">Wednesday</span>
+                        </label>
+                    </div>
+                    <!--Thursday check Box-->
+                    <div class="col-sm-dow">
+                        <label class="checkboxFullBox">
+                        <input name="profThursday" type="checkbox" class="fullCheckbox" value="Tr">
+                        <span class="checkboxText">Thursday</span>
+                        </label>
+                    </div>
+                    <!--Friday check Box-->
+                    <div class="col-sm-dow right-most">
+                        <label class="checkboxFullBox">
+                        <input name="profFriday" type="checkbox" class="fullCheckbox" value="F">
+                        <span class="checkboxText">Friday</span>
+                        </label>
+                    </div>
+                </div>
+                <!--Enter the Professor's start time-->
+                <div class="row">
+                    <div class="col-sm-6 left-most">
+                        <div class="nativeTimePicker">
                             <input type="time" id="profHoursStartTime" name="profHoursStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
-                            <small class="form-text text-muted timeTextPlaceholder">Enter Professor's Office Hours End Time</small>
                         </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted timeTextPlaceholder">Enter Professor's Office Hours End Time</small>
+                    </div>
 
 
-                        <!-- Enter the Professor's end time-->
-                        <div class="col-sm-6 right-most">
+                    <!-- Enter the Professor's end time-->
+                    <div class="col-sm-6 right-most">
+                        <div class="nativeTimePicker">   
                             <input type="time" id="profHoursEndTime" name="profHoursEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
-                            <small class="form-text text-muted timeTextPlaceholder">Enter Professor's Office Hours End Time</small>
                         </div>
+                        <div class="fallbackTimePicker">
+                            <div class="col-xs-4 left-most">
+                                <label for="hour">Hour:</label>
+                                <div class="selectDropdown">
+                                    <select class="hour" name="hour">
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4 right-most">
+                                <label for="minute">Minute:</label>
+                                <div class="selectDropdown">
+                                    <select class="minute" name="minute">
+                                            </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-4">
+                                <label for="minute">TOD:</label>
+                                <div class="selectDropdown">
+                                    <select class="TOD" name="TOD">
+                                        <option>AM</option>
+                                        <option>PM</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <small class="form-text text-muted timeTextPlaceholder">Enter Professor's Office Hours End Time</small>
                     </div>
                 </div>
-                <!--Syllabus Upload-->
-                <label class="custom-file">Syllabus Upload
-                    <input type="file" id="syllabus" name="syllabus" class="custom-file-input">
-                <span class="custom-file-control"></span>
-                </label>
-                <input type="submit" class="submit-button">
+            </div>
+            <!--Syllabus Upload-->
+            <label class="custom-file">Syllabus Upload
+                <input type="file" id="syllabus" name="syllabus" class="custom-file-input">
+            <span class="custom-file-control"></span>
+            </label>
+            <input type="submit" class="submit-button">
         </form>
-        </div>
     </div>
+</div>
 
+
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/timeFallback.js"></script>
 
     <?php }
 else {

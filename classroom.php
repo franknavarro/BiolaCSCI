@@ -35,22 +35,24 @@
 <!-- Code Languages Select Dropdown List -->
 <div id="langContainer">
     <div id="langLabel">Current Language: </div>
-    <select id="langSelector">
-        <option value="text/x-csrc">C</option>
-        <option value="text/x-c++src" selected="selected">C++</option>
-        <option value="text/x-objectivecsrc">Objective-C</option>
-        <option value="text/css">CSS</option>
-        <option value="django">Django</option>
-        <option value="htmlmixed">HTML/XML</option>
-        <option value="text/x-javasrc">Java</option>
-        <option value="text/javascript">JavaScript</option>
-        <option value="application/json">JSON</option>
-        <option value="text/x-lesscss">LESS</option>
-        <option value="text/x-mariadb">MySQL</option>
-        <option value="application/x-httpd-php">PHP</option>
-        <option value="text/x-python">Python</option>
-        <option value="text/x-scss">SCSS</option>
-    </select>
+    <div class="selectDropdown">
+        <select id="langSelector">
+            <option value="text/x-csrc">C</option>
+            <option value="text/x-c++src" selected="selected">C++</option>
+            <option value="text/x-objectivecsrc">Objective-C</option>
+            <option value="text/css">CSS</option>
+            <option value="django">Django</option>
+            <option value="htmlmixed">HTML/XML</option>
+            <option value="text/x-javasrc">Java</option>
+            <option value="text/javascript">JavaScript</option>
+            <option value="application/json">JSON</option>
+            <option value="text/x-lesscss">LESS</option>
+            <option value="text/x-mariadb">MySQL</option>
+            <option value="application/x-httpd-php">PHP</option>
+            <option value="text/x-python">Python</option>
+            <option value="text/x-scss">SCSS</option>
+        </select>
+    </div>
 </div>
 
 <!-- Virtual WhiteBoard -->

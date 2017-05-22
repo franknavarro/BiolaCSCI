@@ -5,32 +5,35 @@ Code Collaboration Page w/ CodeMirror
     position: absolute;
     left: 0;
     right: 0;
-    top: 90px;
+    top: 100px;
 }
 
 #langContainer {
     position: absolute;
     left: 0;
     right: 0;
-    height: 20px;
-    margin: 10px;
+    height: 50px;
+    padding: 10px;
     z-index: 1;
+    background-color: white;
 }
 
 #langLabel {
     float: left;
     padding-right: 10px;
+    padding-top: 5px;
     width: 127px;
     font-size: 14px;
-    white-space: none;
+    white-space: nowrap;
 }
 
 #langSelector {
     width: calc(100% - 147px);
+    position: fixed;
 }
 
 @media (min-width:768px) {
     .CodeMirror {
-        top: 130px;
+        top: 140px;
     }
 }

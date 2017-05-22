@@ -1,53 +1,135 @@
 <?php include 'templates/header.php'; ?>
 <?php require_once 'resources/library/db.php';?>
 <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
-<html>
-<body>
-<form action="<?php echo htmlentities($_SERVER['SCRIPT_NAME']) ?>" method="post" enctype="multipart/form-data">
-    ----Assignment Info------------------------------------<br>
-    Title: <br>
-    <input type="text" name="title" maxlength="45"><br>
-    Due Date: <br>
-    <input type="datetime-local" name="dueDate"><br>
-    Description: <br>
-    <textarea name="description" rows="10" cols="50"></textarea>
-    <br>
-    ----Assignment URL-----------------------------------<br>
 
-    <label class="custom-file">Assignment File Upload
-      <input type="file" id="file" name="file" class="custom-file-input">
-      <span class="custom-file-control"></span>
-    </label>
-    <br>----Publish-----------------------------------------------<br>
-    <div class="form-check">
+<form action="<?php echo htmlentities($_SERVER['SCRIPT_NAME']) ?>" method="post" enctype="multipart/form-data">
+    
+    <h1 class="form-head">Create Assignment</h1>
+    
+    <!----Assignment Info------------------------------------>
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" name="title" maxlength="45" placeholder="Enter Title">
+    </div>
+    <div class="form-group">
+        <label>Due Date</label>
+        <div class="nativeDateTimePicker">
+            <input type="datetime-local" name="dueDate" id="dueDate">
+        </div>
+        <div class="fallbackDateTimePicker">
+            <div class="row">
+                <div class="col-xs-5 col-md-4">
+                <label for="month">Month:</label>
+                    <div class="selectDropdown">
+                <select id="month" name="month">
+                  <option selected value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+                    </div>
+              </div>
+              <div class="col-xs-3 col-md-2">
+                <label for="day">Day:</label>
+                  <div class="selectDropdown">
+                <select id="day" name="day">
+                </select>
+                  </div>
+              </div>
+              
+              <div class="col-xs-4 col-md-3">
+                <label for="year">Year:</label>
+                  <div class="selectDropdown">
+                <select id="year" name="year">
+                </select>
+                  </div>
+              </div>
+              <div class="col-xs-4 col-md-1">
+                <label for="hour">Hour:</label>
+                  <div class="selectDropdown">
+                <select id="hour" name="hour">
+                </select>
+                  </div>
+              </div>
+              <div class="col-xs-4 col-md-1">
+                <label for="minute">Minute:</label>
+                  <div class="selectDropdown">
+                <select id="minute" name="minute">
+                </select>
+                  </div>
+              </div>
+              <div class="col-xs-4 col-md-1">
+                  <label for="minute">TOD:</label>
+                  <div class="selectDropdown">
+                <select id="TOD" name="TOD">
+                    <option>AM</option>
+                    <option>PM</option>
+                </select>
+                  </div>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="form-group">
+        <label>Description</label>
+        <textarea name="description" rows="10" cols="50" placeholder="Enter Description"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label class="custom-file">Assignment File Upload
+          <input type="file" id="file" name="file" class="custom-file-input">
+          <span class="custom-file-control"></span>
+        </label>
+    </div>
+    
+    <!----Class---------------------------------------------->
+    <div class="form-group">
+        <label>Which Class is this For?</label>
+        <div class="selectDropdown">
+            <select name="class">
+              <?php
+                #Look up all classes which are owned by the professor
+                $classes = db::query("SELECT className, classID
+                                      FROM class LEFT JOIN user_class
+                                      ON class.classID = user_class.class_classID
+                                      AND user_class.user_email = ':email';",
+                                      array(':email'=>$_SESSION['user_id']));
+
+                #loop through them
+                foreach ($classes as &$class) {
+                  echo '<option value="' . $class[1] . '">' . $class[0] . '</option>"';
+                }
+              ?>
+            </select>
+        </div>
+    </div>
+    
+    <!----Publish-------------------------------------------->
+    <div class="form-group">
       <label class="form-check-label">
-        <input class="form-check-input" type="radio" name="publish" id="publish" value="publish">
-        Publish Announcement
+        <input class="form-check-input" type="checkbox" name="publish" id="publish" value="publish">
+        Publish Assignment Now
       </label>
     </div>
-    ----Class-----------------------------------------------<br>
-    <select name="class">
-      <?php
-        #Look up all classes which are owned by the professor
-        $classes = db::query("SELECT className, classID
-                              FROM class LEFT JOIN user_class
-                              ON class.classID = user_class.class_classID
-                              AND user_class.user_email = ':email';",
-                              array(':email'=>$_SESSION['user_id']));
-
-        #loop through them
-        foreach ($classes as &$class) {
-          echo '<option value="' . $class[1] . '">' . $class[0] . '</option>"';
-        }
-      ?>
-    </select>
-    <br>----Submission------------------------------------------<br>
-    <input type="submit">
+    
+    <!----Submission----------------------------------------->
+    <input type="submit" class="submit-button">
     <!--Publish-->
 
 </form>
-</body>
-</html>
+
+<script type="text/javascript" src="js/datetimeFallback.js"></script>
+
+
+
 <?php include 'templates/footer.php';}
   else {
 
