@@ -1,4 +1,4 @@
-<?php include "templates/header.php";?>
+<?php include "templates/virtual-header.php";?>
 
 <!--Load jQuery First and Foremost -->
 <script type="text/javascript" src="js/jquery.js"></script>
@@ -84,3 +84,50 @@
 
 <!-- Close off HTML File with Footer -->
 <?php include "templates/footer.php";?>
+
+<!-- Modal for Attendance -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Attendance</h4>
+      </div>
+      <div class="modal-body">
+          <div>
+              <form role="form" action="classroom.php" method="post">
+                  <fieldset>
+                    <p> Please enter the class ID number </p>
+                    <input type="text" placeholder="Class ID" name="classID" required/>
+                    <br><br>
+                    <p> Please Enter Classroom URL: </p>
+                    <input type="text" placeholder="Class URL" name="classURL" required/>
+                    <br><br>
+                    <input type="submit" class="submit-button">
+                  </fieldset>
+              </form>
+
+              <?php
+              include 'resources/library/attendance.php';
+              if(isset($_POST['classID'])){
+                  $classRole = db::query("SELECT role from user_class where user_email=:user_id", array(':user_id'=>$_SESSION['user_id']));
+                  if(print_r($classRole[0]['role'], true) == "3"){
+                      echo "Attendance Code: ";
+                      $attendanceCode = attendance::createSession($_POST['classID'], $_SESSION['user_id'], $_POST['classURL']);
+                      echo $attendanceCode;
+                      $sessionIDQuery = db::query("SELECT sessionID from session where sessionKey=:attendanceCode", array(':attendanceCode'=>$attendanceCode));
+                      $_SESSION['session_id'] = print_r($sessionIDQuery[0]['sessionID'], true);
+
+                  } else {
+                      echo "Error: The user is not a teacher in the class";
+                  }
+              }
+               ?>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
