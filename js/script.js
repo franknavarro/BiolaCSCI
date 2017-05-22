@@ -18,6 +18,32 @@ $(window).resize(function() {
 
 
 
+
+$(".checkBoxFullBox").click( function () {
+    
+    var div = $(this);
+    var durationT = 250;
+    
+    if(div.children(".fullCheckbox").is(":checked")) {
+        div.animate({
+            backgroundColor:"#49B5E4",
+            color:"white",
+            borderColor: "white",
+        }, durationT);
+    } else {
+        div.animate({
+            backgroundColor:"white",
+            color:"black",
+            borderColor: "black"
+        }, durationT);
+    }
+    
+});
+
+
+
+
+
 $('.dropdown.keep-open').on({
     "shown.bs.dropdown": function() { this.closable = false; },
     "click":             function() { this.closable = true; },

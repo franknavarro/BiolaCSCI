@@ -20,10 +20,13 @@ Code Collaboration Page w/ CodeMirror
 #langLabel {
     float: left;
     padding-right: 10px;
+    width: 127px;
+    font-size: 14px;
+    white-space: none;
 }
 
 #langSelector {
-    width: calc(100% - 126.75px);
+    width: calc(100% - 147px);
 }
 
 @media (min-width:768px) {
