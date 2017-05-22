@@ -50,8 +50,6 @@ CREATE TABLE IF NOT EXISTS `cscidb`.`session` (
   `sessionName` VARCHAR(45) NOT NULL,
   `sessionStatus` TINYINT(1) NOT NULL,
   `sessionKey` VARCHAR(45) NOT NULL,
-  `sessionDate` DATETIME NOT NULL,
-  `sessionURL`  VARCHAR(45) NOT NULL,
   PRIMARY KEY (`sessionID`))
 ENGINE = InnoDB;
 
@@ -160,7 +158,7 @@ ENGINE = InnoDB;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`user_class` (
   `iduser_class` INT NOT NULL AUTO_INCREMENT,
-  `role` VARCHAR(45) NULL,
+  `role` INT NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
   `class_classID` INT NOT NULL,
   PRIMARY KEY (`iduser_class`),
@@ -183,13 +181,12 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`assignment`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`assignment` (
+  `assID` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
   `description` LONGTEXT NULL,
   `dueDate` DATETIME NULL,
   `isLive` TINYINT(1) NULL,
-  `assID` INT NOT NULL AUTO_INCREMENT,
   `url` VARCHAR(45) NULL,
-  `classID` VARCHAR(45) NULL,
   `postTime` DATETIME NULL,
   `class_classID` INT NOT NULL,
   PRIMARY KEY (`assID`),
@@ -206,9 +203,9 @@ ENGINE = InnoDB;
 -- Table `cscidb`.`announcement`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `cscidb`.`announcement` (
+  `annID` INT NOT NULL AUTO_INCREMENT,
   `classID` VARCHAR(45) NULL,
   `title` VARCHAR(45) NULL,
-  `annID` INT NOT NULL AUTO_INCREMENT,
   `description` LONGTEXT NULL,
   `postTime` VARCHAR(45) NULL,
   `class_classID` INT NOT NULL,
