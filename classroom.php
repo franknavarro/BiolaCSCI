@@ -28,15 +28,6 @@
 <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
 <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
 
-<!-- Load TogetherJS for Screen Sharing -->
-<script src="resources/library/together.js"></script>
-<!-- Get the username for current user using PHP and JS -->
-<script type="text/javascript">
-    TogetherJSConfig_getUserName = function(){
-        return '<?php echo $_SESSION['user_fName']; ?>';
-    };
-</script>
-
 <!-- Code Languages Select Dropdown List -->
 <div id="langContainer">
     <div id="langLabel">Current Language: </div>
