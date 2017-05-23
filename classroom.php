@@ -92,6 +92,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Attendance</h4>
+
       </div>
       <div class="modal-body">
           <div>
@@ -118,12 +119,22 @@
                       $sessionIDQuery = db::query("SELECT sessionID from session where sessionKey=:attendanceCode", array(':attendanceCode'=>$attendanceCode));
                       $_SESSION['session_id'] = print_r($sessionIDQuery[0]['sessionID'], true);
                       $URL = $_POST['classURL'];
+                      $_SESSION['session_URL'] = $URL;
                       header("Location: $URL");
-
                   } else {
                       echo "Error: The user is not a teacher in the class";
                   }
               }
+               ?>
+
+               <?php
+               $query = db::query("SELECT sessionKey from session where sessionURL=:sessionURL", array(':sessionURL'=>$_SESSION['session_URL']));
+               if(!empty($query)){
+                   $attendanceCode = print_r($query[0]['sessionKey'], true);
+                   echo "<p>Attendance Code: ";
+                   echo $attendanceCode;
+                   echo "</p>";
+               }
                ?>
           </div>
       </div>

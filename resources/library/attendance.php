@@ -114,6 +114,9 @@ class attendance{
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 0 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
             db::query("UPDATE class SET activeSession = 0 WHERE classID=:classID", array(':classID'=>$classID));
+
+            $_SESSION['session_URL'] = "";
+
             return true;
 
         } else {
