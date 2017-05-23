@@ -40,10 +40,10 @@ Steps:
 
 #### 3rd Party Scripts/Classes
 
-Together.js - TogetherJS is a free, open source JavaScript library by Mozilla that adds collaboration features and tools to your website. By adding TogetherJS to your site, your users can help each other out on a website in real time!
+Firepad - Firepad is a free, open source JavaScript library by Google that adds collaboration features and tools to your website. By adding Firepad to your site, your users can help each other out on realtime editor. 
 
-URL: https://togetherjs.com
-Usage Information: JS Script can be found in resources/library/together.js. The script usage is primarily in the code collaboration tool as well as the virtual classroom.
+URL: https://firepad.io
+Usage Information: The script is used for code collaboration in the virtual classroom.
 
 BootStrap - With Bootstrap, you get extensive and beautiful documentation for common HTML elements, dozens of custom HTML and CSS components, and awesome jQuery plugins.
 
