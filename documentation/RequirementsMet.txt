@@ -31,14 +31,11 @@ earlier in class and shows you where we are at with those requirements.
 	-Code Repository
         -File viewer
         -Uploading Files
-    -Forum
-        -Channels
-        -Menu
-        -Window
-        -Text-Entry
+    
 -Requirements being discarded:
 	-Class Creation
         -Grading Rubric
+
 
 *These requirements are in the process of being created and aren't fully
 functional yet.
