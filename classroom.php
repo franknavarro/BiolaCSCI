@@ -116,6 +116,8 @@
                       echo $attendanceCode;
                       $sessionIDQuery = db::query("SELECT sessionID from session where sessionKey=:attendanceCode", array(':attendanceCode'=>$attendanceCode));
                       $_SESSION['session_id'] = print_r($sessionIDQuery[0]['sessionID'], true);
+                      $URL = $_POST['classURL'];
+                      header("Location: $URL");
 
                   } else {
                       echo "Error: The user is not a teacher in the class";
