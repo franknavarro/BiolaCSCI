@@ -17,8 +17,9 @@
             <input type="datetime-local" name="dueDate" id="dueDate">
         </div>
         <div class="fallbackDateTimePicker">
-            <div class="row">
-                <div class="col-xs-5 col-md-4">
+            <div class="row time-field">
+                <div class="col-md-8 left-most time-div">
+                <div class="col-xs-7 left-most">
                 <label for="month">Month:</label>
                     <div class="selectDropdown">
                 <select id="month" name="month">
@@ -37,7 +38,7 @@
                 </select>
                     </div>
               </div>
-              <div class="col-xs-3 col-md-2">
+              <div class="col-xs-2">
                 <label for="day">Day:</label>
                   <div class="selectDropdown">
                 <select id="day" name="day">
@@ -45,28 +46,31 @@
                   </div>
               </div>
               
-              <div class="col-xs-4 col-md-3">
+              <div class="col-xs-3 right-most">
                 <label for="year">Year:</label>
                   <div class="selectDropdown">
                 <select id="year" name="year">
                 </select>
                   </div>
               </div>
-              <div class="col-xs-4 col-md-1">
+                </div>
+                
+                <div class="col-md-4 right-most time-div">
+              <div class="col-xs-4 left-most">
                 <label for="hour">Hour:</label>
                   <div class="selectDropdown">
                 <select id="hour" name="hour">
                 </select>
                   </div>
               </div>
-              <div class="col-xs-4 col-md-1">
+              <div class="col-xs-4">
                 <label for="minute">Minute:</label>
                   <div class="selectDropdown">
                 <select id="minute" name="minute">
                 </select>
                   </div>
               </div>
-              <div class="col-xs-4 col-md-1">
+              <div class="col-xs-4 right-most">
                   <label for="minute">TOD:</label>
                   <div class="selectDropdown">
                 <select id="TOD" name="TOD">
@@ -75,6 +79,7 @@
                 </select>
                   </div>
               </div>
+                </div>
             </div>
           </div>
     </div>

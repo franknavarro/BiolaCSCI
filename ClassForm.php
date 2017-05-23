@@ -17,7 +17,7 @@
             </div>
 
             <!-- Class Code Input-->
-            <div class="col-sm-6 left-most">
+            <div class="col-sm-6 left-most time-div">
                 <div class="form-group">
                     <label for="className">Class Code</label>
                     <input type="text" name="classCode" aria-describedby="idHelp" placeholder="Enter Class Code">
@@ -26,7 +26,7 @@
             </div>
 
             <!--Class Location Input-->
-            <div class="col-sm-6 right-most">
+            <div class="col-sm-6 right-most time-div">
                 <div class="form-group">
                     <label for="classLocation">Class Location</label>
                     <input type="text" name="classLocation" aria-describedby="locationHelp" placeholder="Enter Class Location">
@@ -84,7 +84,7 @@
 
                 <!--Enter the class start time-->
                 <div class="row">
-                    <div class="col-sm-6 left-most">
+                    <div class="col-sm-6 left-most time-div">
                         <div class="nativeTimePicker">
                             <input type="time" id="classStartTime" name="classStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
                         </div>
@@ -113,11 +113,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="throughTime"><i class="fa fa-minus" aria-hidden="true"></i></div>
                         <small class="form-text text-muted timeTextPlaceholder">Enter Class Start Time</small>
                     </div>
 
                     <!-- Enter the Class end time-->
-                    <div class="col-sm-6 right-most">
+                    <div class="col-sm-6 right-most time-div">
                         <div class="nativeTimePicker">
                             <input type="time" id="classEndTime" name="classEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
                         </div>
@@ -193,7 +194,7 @@
                 </div>
                 <!--Enter the taHours start time-->
                 <div class="row">
-                    <div class="col-sm-6 left-most">
+                    <div class="col-sm-6 left-most time-div">
                         <div class="nativeTimePicker">
                             <input type="time" id="taHoursStartTime" name="taHoursStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
                         </div>
@@ -222,11 +223,12 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="throughTime"><i class="fa fa-minus" aria-hidden="true"></i></div>
                         <small class="form-text text-muted timeTextPlaceholder">Enter TA's Office Hours Start Time</small>
                     </div>
 
                     <!-- Enter the taHours end time-->
-                    <div class="col-sm-6 right-most">
+                    <div class="col-sm-6 right-most time-div">
                         <div class="nativeTimePicker">
                             <input type="time" id="taHoursEndTime" name="taHoursEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
                         </div>
@@ -301,8 +303,8 @@
                     </div>
                 </div>
                 <!--Enter the Professor's start time-->
-                <div class="row">
-                    <div class="col-sm-6 left-most">
+                <div class="row time-field">
+                    <div class="col-sm-6 left-most time-div">
                         <div class="nativeTimePicker">
                             <input type="time" id="profHoursStartTime" name="profHoursStartTime" aria-describedby="startTimeHelp" placeholder="Enter Start Time">
                         </div>
@@ -331,12 +333,13 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="throughTime"><i class="fa fa-minus" aria-hidden="true"></i></div>
                         <small class="form-text text-muted timeTextPlaceholder">Enter Professor's Office Hours End Time</small>
                     </div>
 
 
                     <!-- Enter the Professor's end time-->
-                    <div class="col-sm-6 right-most">
+                    <div class="col-sm-6 right-most time-div">
                         <div class="nativeTimePicker">   
                             <input type="time" id="profHoursEndTime" name="profHoursEndTime" aria-describedby="endTimeHelp" placeholder="Enter End Time">
                         </div>

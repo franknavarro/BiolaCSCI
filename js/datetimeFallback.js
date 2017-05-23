@@ -138,7 +138,7 @@ function updateDateTimeField() {
     newDateString += "-";
     newDateString += (day < 10) ? ("0" + day) : day;
     newDateString += "T";
-    newDateString += (tod === "PM" && hour < 12) ? (hour + 12) : (hour < 10) ? ("0" + hour) : hour;
+    newDateString += (tod === "PM" && hour < 12) ? (hour + 12) : (tod === "AM" && hour == 12) ? "00" : (hour < 10) ? ("0" + hour) : hour;
     newDateString += ":";
     newDateString += minute;
     
