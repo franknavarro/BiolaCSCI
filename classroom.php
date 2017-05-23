@@ -23,7 +23,7 @@
 
 
 <!-- Load TogetherJS for Screen Sharing -->
-<script type="text/javascript" src="resources/library/together.js"></script> 
+<script src="resources/library/together.js"></script> 
 <!-- Get the username for current user using PHP and JS -->
 <script type="text/javascript">
     TogetherJSConfig_getUserName = function(){
