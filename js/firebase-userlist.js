@@ -132,6 +132,8 @@ var FirepadUserList = (function() {
 
       var nextElement =  prevChildName ? userId2Element[prevChildName].nextSibling : userList.firstChild;
       userList.insertBefore(userDiv, nextElement);
+        
+        resizeCodeMirror();
     }
 
     this.firebaseOn_(this.ref_, 'child_added', updateChild);
@@ -144,6 +146,8 @@ var FirepadUserList = (function() {
         userList.removeChild(div);
         delete userId2Element[userId];
       }
+        
+        resizeCodeMirror();
     });
 
     return userList;

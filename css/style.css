@@ -159,6 +159,14 @@ div#login-page {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#login-page input {
+    margin-bottom: 15px;
+}
+#login-page input:last-child,
+form.login-form {
+    margin-bottom: 0px;
+}
+
 /****************************************************************
 Nav-bar 
 ****************************************************************/

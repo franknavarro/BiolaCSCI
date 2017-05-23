@@ -123,6 +123,9 @@ firepad.on("ready", function() {
 $(window).resize(function() {
     resizeCodeMirror();
 });
+$("#userlist").resize(function() {
+    
+});
 
 //Change the coding language to what the user selected
 $("#langSelector").change(function() {
