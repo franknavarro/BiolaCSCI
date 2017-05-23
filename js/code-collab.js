@@ -63,8 +63,9 @@ function resizeCodeMirror() {
 
 //// Create Firepad.
 var firepad = Firepad.fromCodeMirror(firepadRef, myCodeMirror, {
-  defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+  defaultText: "// C++ \n#include <iostream>\n\nint main() {\n\tstd::cout << 'hello world!';\n\treturn 0;\n}"
 });
+
 
 //When file loads resize CodeMirror Screen
 resizeCodeMirror();
