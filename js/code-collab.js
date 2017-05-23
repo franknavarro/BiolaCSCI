@@ -1,5 +1,32 @@
-/* Launch TogetherJS */
-$(document).ready(TogetherJS);
+//// Initialize Firebase.
+//// TODO: replace with your Firebase project configuration.
+var config = {
+    apiKey: "AIzaSyCeS-XV1dUirriS_uQb0DVvNESRjtfhpCM",
+    authDomain: "csci-website.firebaseapp.com",
+    databaseURL: "https://csci-website.firebaseio.com",
+    projectId: "csci-website",
+    storageBucket: "csci-website.appspot.com",
+    messagingSenderId: "832854775752"
+};
+firebase.initializeApp(config);
+//// Get Firebase Database reference.
+var firepadRef = getExampleRef();
+
+// Helper to get hash from end of URL or generate a random one.
+function getExampleRef() {
+var ref = firebase.database().ref();
+var hash = window.location.hash.replace(/#/g, '');
+if (hash) {
+  ref = ref.child(hash);
+} else {
+  ref = ref.push(); // generate unique location.
+  window.location = window.location + '#' + ref.key; // add it as a hash to the URL.
+}
+if (typeof console !== 'undefined') {
+  console.log('Firebase data: ', ref.toString());
+}
+return ref;
+}
 
 var textArea = document.getElementById("classroom-code");
 
@@ -25,7 +52,7 @@ var myCodeMirror = CodeMirror.fromTextArea(textArea, {
     autofocus: true,
     matchBrackets: true,
     autoCloseBrackets: true
-    
+
 });
 
 //Resize CodeMirror Page to fit the screen
@@ -37,6 +64,12 @@ function resizeCodeMirror() {
 //When file loads resize CodeMirror Screen
 resizeCodeMirror();
 
+//// Create Firepad.
+var firepad = Firepad.fromCodeMirror(firepadRef, myCodeMirror, {
+  defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
+});
+
+
 //When window is resized resize all CodeMirror Screen
 $(window).resize(function() {
     resizeCodeMirror();
@@ -45,7 +78,7 @@ $(window).resize(function() {
 //Change the coding language to what the user selected
 $("#langSelector").change(function() {
     var newLanguage = $(this).val();
-    
+
     if(newLanguage=="htmlmixed") {
         myCodeMirror.setOption("mode", mixedMode);
         myCodeMirror.setOption("matchTags", true);

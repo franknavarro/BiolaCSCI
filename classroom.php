@@ -21,16 +21,12 @@
 <!-- Load Stylesheet Specifically for Code Sharing -->
 <link rel="stylesheet" type="text/css" href="css/classroom.css">
 
+<!-- Firebase -->
+<script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 
-<!-- Load TogetherJS for Screen Sharing -->
-<script src="resources/library/together.js"></script>
-<!-- Get the username for current user using PHP and JS -->
-<script type="text/javascript">
-    TogetherJSConfig_getUserName = function(){
-        return '<?php echo $_SESSION['user_fName']; ?>';
-    };
-</script>
-
+<!-- Firepad -->
+<link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
+<script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
 
 <!-- Code Languages Select Dropdown List -->
 <div id="langContainer">

@@ -13,26 +13,25 @@ are met.
 System Requirements:
     -CentOS 7 x86
     -Internet Connectivity and Dedicated IP Mapped to eth0
-    -Machine is up to date with current yum update patches
-    -Wget or similar file download tool is available and the user knows how to
+    -Machine is up to date with current yum update patches (Check by running sudo yum update)
+    -Wget or similar file download tool is available and the user knows how to (Download by running sudo yum install wget)
     utilize it
-    -The user currently active is in the sudo file and is able to sudo
+    -The user currently active is in the sudo file and is able to sudo (Add a user by typing “visudo” as root and adding them to the config)
+    https://www.digitalocean.com/community/tutorials/how-to-edit-the-sudoers-file-on-ubuntu-and-centos 
 
 Deployment Plan
 
-1. Download tar file and place it on your Desktop.
+Note: The installation script will download all of the source code and documentation to the directory /var/www/html. See below for instructions on how to access the data.
 
-2. Open up a terminal and enter the command: cd Desktop/
+1. Access the terminal of the machine that you are running the server on either through ssh or locally.
 
-3. Unzip tar file with the command: tar -xvf MidIterationBuild.tar
+2. Download the installation script using this command: wget https://s3-us-west-1.amazonaws.com/csci-webfiles/installer.sh
 
-4. Navigate into the website file using the the command: cd MidIterationBuild/
+3. Change permissions on the installer.sh file with the command: sudo chmod 755 installer.sh
 
-5. Change permissions on the installer.sh file with the command: chmod 755 installer.sh
+4. Run the installer.sh script with the command ./installer.sh
 
-6. Run the installer.sh script with the command ./installer.sh
-
-7. Follow the below prompts to instructions to navigate through the database
+5. Follow the below prompts to instructions to navigate through the database
 setup.
     a. Set the root password? [Y/n] - Hit Y and set the root password to "root"
     b. Remove Anonymous users? [Y/n] - Hit Y
@@ -44,7 +43,7 @@ setup.
     f. When prompted enter the root password that you set above
     (Your input will not display just hit enter after you type your password)
 
-8. Start up a web browser and type (HostIP) into the browser. (It should bring
+6. Start up a web browser and type (HostIP) into the browser. (It should bring
 up a login page.)
 
 You have successfully installed the CSCI website please use the following information
@@ -74,11 +73,13 @@ Accessing
 
     Source Code
         To navigate to the source code. (Web Directory) In the terminal use the
-        command: cd /var/www/html/
+        command: cd /var/www/html/ then ls to view the files and use a text 
+	editor like vi to view them.
 
     Documentation
         To navigate to the documentation. (Web Directory) In the terminal us the
-        command: cd /var/www/html/documentation/
+        command: cd /var/www/html/documentation/ then ls to view the files and use a text 
+	editor like vi to view them.
 
     Database
         If you want to look at the database structure you can do by inputting the
@@ -95,9 +96,5 @@ Accessing
             -Each of these are a text file that you can run manually to see if
             they work. Results are included with a timestamp.
         - PHP Class Test
-            Note: User Add Function will only run one time because it adds a
-            user to the db and if you refresh
-            it tries to add it again but will fail as the user already exists.
             - To run tests point your browser to (hostip)/runtests.php, results
             should appear on screen
-        (More Coming Soon)

@@ -4,9 +4,6 @@ Github
 Jenkins
     Description: The test and build server we are using for our code.
     https://jenkins.io/
-Trello
-    Description: The application we used for our story card system.
-    https://trello.com/invite/b/9LM96uub/1febd433e712d664092446126194c388/cs-website-project
 Atom
     Description: The code editor we used.
     https://atom.io/

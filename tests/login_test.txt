@@ -11,5 +11,5 @@ email and password that is apart of the installation.
 
 3. If you end up on the dashboard page it succeeded.
 
-Ran this test 4/25/17
+Ran this test 5/22/17
 Result: Successful

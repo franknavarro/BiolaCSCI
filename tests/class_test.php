@@ -45,12 +45,14 @@ class class_test{
         echo "Note: Must have the default mark.a.gong-guy@biola.edu user installed</br>";
 
         echo "Adding Test User";
-        echo "</br>Note: Can only run one time any other times will fail because user will exist";
-        user::addUser("tom.doe@biola.edu", "Tom", "Doe", "password", "1");
+
         if(user::validateUser("tom.doe@biola.edu", "password") != "The Email or Password is Incorrect"){
             echo "</br>Test Passed!";
         } else {
-            echo "</br>Test Failed!";
+            user::addUser("tom.doe@biola.edu", "Tom", "Doe", "password", "1");
+            if(user::validateUser("tom.doe@biola.edu", "password") != "The Email or Password is Incorrect"){
+                echo "</br>Test Passed!";
+            }
         }
 
     }

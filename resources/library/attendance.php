@@ -49,6 +49,16 @@ class attendance{
         }
     }
 
+    private static function generateRandomString($length = 5) {
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $charactersLength = strlen($characters);
+        $randomString = '';
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, $charactersLength - 1)];
+        }
+            return $randomString;
+    }
+
     /*
     Function: createSession($classID, $hostEmail)
     Input: $classID = the ID of the class to create the session under, $hostEmail = The host user_id which will be in the form of an email address
@@ -60,7 +70,7 @@ class attendance{
         if(!empty($results)){
             $sessionName = print_r($results[0]['className'], true);
             $sessionStatus = 1; //Marks the class as not expired
-            $sessionKey = bin2hex(random_bytes(5)); //Returns 5 random characters for attendance code
+            $sessionKey = attendance::generateRandomString(5); //Returns 5 random characters for attendance code
             $timestamp = date("Y-m-d");
             //Create Class Information
             db::query("INSERT INTO session (hostID, sessionName, sessionStatus, sessionKey, sessionDate, sessionURL) VALUES (:hostID, :sessionName, :sessionStatus, :sessionKey, :sessionDate, :sessionURL)", array(':hostID'=>$hostEmail, ':sessionName'=>$sessionName, ':sessionStatus'=>$sessionStatus, ':sessionKey'=>$sessionKey, ':sessionDate'=>$timestamp, ':sessionURL'=>$sessionURL));
@@ -78,17 +88,13 @@ class attendance{
     */
 
     public static function startSession($sessionID){
-        $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
-        if(!empty($result)){
-            $className = print_r($result[0]['sessionName'], true);
-            $classID = db::query("SELECT classID from session WHERE className=:className", array(':className' => $className));
-
-            // Mark class as complete
-            db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
+        // Mark class as complete
+        if(db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID))){
             return true;
         } else {
-            return "ERROR: Unable to start session";
+            return "ERROR: Unable to start Session";
         }
+
     }
 
     /*
@@ -100,10 +106,11 @@ class attendance{
     public static function endSession($sessionID){
         $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
         if(!empty($result)){
-            $className = print_r($result[0]['sessionName']);
+            $className = print_r($result[0]['sessionName'], true);
             $classIDQuery = db::query("SELECT classID from class WHERE className=:className", array(':className' => $className));
-            $classID = print_r($classID[0]['classID']);
-
+            if(!empty($classIDQuery)){
+                $classID = print_r($classIDQuery[0]['classID'], true);
+            }
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 0 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
             db::query("UPDATE class SET activeSession = 0 WHERE classID=:classID", array(':classID'=>$classID));

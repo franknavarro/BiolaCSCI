@@ -8,6 +8,7 @@
   var defaultConfiguration = {
 
     dontShowClicks: true,
+    cloneClicks: false,
     // Enable Mozilla or Google analytics on the page when TogetherJS is activated:
     // FIXME: these don't seem to be working, and probably should be removed in favor
     // of the hub analytics
@@ -61,7 +62,7 @@
     // When true, the WebRTC-based mic/chat will be disabled
     disableWebRTC: false,
     // When true, youTube videos will synchronize
-    youtube: true,
+    youtube: false,
     // Ignores the following console messages, disables all messages if set to true
     ignoreMessages: ["cursor-update", "keydown", "scroll-update"],
     // Ignores the following forms (will ignore all forms if set to true):
