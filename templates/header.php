@@ -58,21 +58,21 @@ if(isset($_SESSION['user_id'])){
                         <a href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Classes</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             <!-- Here is where each class is displayed. Use PHP to load each item as a link with <a> tag with the class "dropdown-item" -->
-                            <a class='dropdown-item' href='$class.php'>Intro to Computer Science</a>
+
                             <?php
-                                //This should populate the list of classes from the database but has a
-                                //bug in regards to the html that is messing up the page.
-                                // include 'resources/library/db.php';
-                                // $headerClassQuery = db::query("SELECT className, classCode FROM class");
-                                // print_r($headerClassQuery[0]['className']);
-                                // for ($count=0; $count < count($headerClassQuery); $count++){
-                                //     $classCode = print_r($headerClassQuery[$count]['classCode'], true);
+                                include_once 'resources/library/db.php';
+                                $classIDQuery = db::query("SELECT class_classID FROM user_class WHERE user_email = :email", array(':email'=>$_SESSION['user_id']));
+
+                                //print_r($headerClassQuery[0]['className']);
+                                for ($count=0; $count < count($classIDQuery); $count++){
+                                    $headerClassQuery = db::query("SELECT className, classCode FROM class WHERE classID = :user_email;", array(':user_email'=>$classIDQuery[$count][0]));
+                                    $classCode = print_r($headerClassQuery[0]['classCode'], true);
                                 //This line of code needs to be connected to the correct pages in the database.
-                                //     echo "<a class='dropdown-item' href='$classCode.php'>";
-                                //     echo $headerClassQuery[$count]['className'];
-                                //     echo '</a>';
-                                //     echo '<hr>';
-                                // }
+                                    echo "<a class='dropdown-item' href='${classCode}.php'>";
+                                    echo $headerClassQuery[0]["className"];
+                                    echo '</a>';
+                                    echo '<hr>';
+                                }
                             ?>
                         </div>
                     </li>
