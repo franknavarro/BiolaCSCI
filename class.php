@@ -1,14 +1,10 @@
-<?php include 'templates/header.php';
-      include 'resources/library/db.php';
+<?php include_once 'templates/header.php';
+      include_once 'resources/library/db.php';
 ?>
 
-<?php
- $currentClass;
- //set this to a default value for testing. = '1';
-?>
     <div id="class-page">
             <div class="row">
-                <div class="col-sm-8 class-header-container">
+                <div class="col-xs-12 class-header-container">
                     <div class="class-header">
                         <h3>
                             <?php
@@ -36,7 +32,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-8 class-content">
+                <div class="col-xs-12 class-content">
                     <div class="class-details">
     <!-------------------------------------------------------GENERAL CLASS INFORMATION SECTION-------------------------------------------------------->
     <div id="class-info-page" class="class-section" style="display:block;">
@@ -117,7 +113,7 @@
             <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
                 <!-- Assignment Format Begins Here -->
                 <?php
-                    $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
+                    $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE class_classID = $currentClass");
                     for ($count=0; $count < count($assignmentQuery); $count++) {
                         $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
                         if(date("Y-m-d h:m:s") < $assDueDate){
@@ -139,43 +135,12 @@
                 ?>
             </div><!-- End of dropdown -->
         </div> <!-- End of upcoming assignments -->
-
-        <!-- PAST ASSIGNMENTS -->
-        <div id="past-assignments" class="my-dropdown">
-            <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
-                Past Assignments<span class="menu-symbol"><i class="fa fa-minus-square" aria-hidden="true"></i></span>
-            </button>
-            <div class="my-dropdown-menu assingments-dropdown" aria-labelledby="dropdownMenuButton">
-                <?php
-                $assignmentQuery = db::query("SELECT title, dueDate, assID FROM assignment WHERE classID = $currentClass");
-                for ($count=0; $count < count($assignmentQuery); $count++) {
-                    $assDueDate = print_r($assignmentQuery[$count]['dueDate'], true);
-                    if(date("Y-m-d h:m:s") > $assDueDate){
-                        $assIDNum = $assignmentQuery[$count]['assID'];
-                        echo "<div class='assignment' id='list-assignment-$assIDNum'>";
-                            echo '<div class="row">';
-                                echo '<div class="col-xs-12">';
-                                    echo '<h4 class="title">';
-                                        echo $assignmentQuery[$count]['title'];
-                                    echo '</h4>';
-                                    echo '<div class="due-date"><strong>Due </strong>';
-                                        echo $assignmentQuery[$count]['dueDate'];
-                                    echo '</div>';
-                                echo '</div>';
-                            echo '</div>';
-                        echo '</div>';
-                    }
-                }
-                ?>
-                <!-- Assignment Format Ends here -->
-            </div> <!-- End of dropdown -->
-        </div> <!-- End of past assignments -->
     </div>
     <!-- End of assignments container -->
 
     <!-------------------------------------------------------INDIVIDUAL ASSIGNMENTS SECTION-------------------------------------------------------->
     <?php
-        $assignmentQuery = db::query("SELECT title, dueDate, assID, url, description, postTime FROM assignment WHERE classID = $currentClass");
+        $assignmentQuery = db::query("SELECT title, dueDate, assID, url, description, postTime FROM assignment WHERE class_classID = $currentClass");
         for ($count=0; $count < count($assignmentQuery); $count++) {
             $assIDNum = $assignmentQuery[$count]['assID'];
             echo "<div class='assignment-single class-section' id='assignment-$assIDNum'>";
@@ -205,7 +170,7 @@
     <!-------------------------------------------------------ALL ANNOUNCEMENTS SECTION-------------------------------------------------------->
     <div id="class-announcements-page" class="class-section">
         <?php
-            $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
+            $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE class_classID = $currentClass");
             for ($count=0; $count < count($announcementQuery); $count++) {
                 #echo '<div class="announcement" id="list-announcement-idnumber">';
                 $annIDNum = $announcementQuery[$count]['annID'];
@@ -242,7 +207,7 @@
     <!-------------------------------------------------------SINGLE ANNOUNCEMENTS SECTION-------------------------------------------------------->
     <?php
         #single announcement display
-        $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE classID = $currentClass");
+        $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE class_classID = $currentClass");
         for ($count=0; $count < count($announcementQuery); $count++){
             $annIDNum = $announcementQuery[$count]['annID'];
             echo "<div class='announcement-single class-section' id='announcement-$annIDNum'>";
@@ -270,17 +235,6 @@
     ?>
         </div> <!-- END OF CLASS DETAILS CONTAINER -->
     </div> <!-- END OF BOOTSTRAP COLUMN -->
-
-                <!-- Check permisions to load relavent links -->
-                <div class="col-sm-4 class-links">
-                    <button class="default-button"><a href="#">Begin Collab</a></button>
-                    <button class="default-button"><a href="#">Edit Class Info</a></button>
-                    <button class="default-button"><a href="#">Edit Class Announcements</a></button>
-                    <button class="default-button"><a href="#">Edit Class Assignments</a></button>
-                    <button class="default-button"><a href="#">Start Whiteboard</a></button>
-                    <button class="default-button"><a href="#">Generate Attendance</a></button>
-                    <button class="default-button"><a href="#">Fill Attendance</a></button>
-                </div>
             </div>
         </div>
     </div>
