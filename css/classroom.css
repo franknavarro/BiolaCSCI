@@ -1,11 +1,21 @@
 /****************************************************************
 Code Collaboration Page w/ CodeMirror
 ****************************************************************/
-.CodeMirror {
+.firepad {
     position: absolute;
     left: 0;
     right: 0;
     top: 100px;
+}
+
+a.powered-by-firepad {
+    display: none;
+}
+
+@media (min-width:768px) {
+    .firepad {
+        top: 140px;
+    }
 }
 
 #langContainer {
@@ -30,10 +40,4 @@ Code Collaboration Page w/ CodeMirror
 #langSelector {
     width: calc(100% - 147px);
     position: fixed;
-}
-
-@media (min-width:768px) {
-    .CodeMirror {
-        top: 140px;
-    }
 }
