@@ -79,9 +79,6 @@
 <script type="text/javascript" src="/resources/codemirror-5.25.2/addon/hint/sql-hint.js"></script>
 
 
-<!-- Close off HTML File with Footer -->
-<?php include "templates/footer.php";?>
-
 <!-- Modal for Attendance -->
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
@@ -141,3 +138,6 @@
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
+
+<!-- Close off HTML File with Footer -->
+<?php include "templates/footer.php";?>
