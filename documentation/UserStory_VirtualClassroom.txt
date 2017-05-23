@@ -1,0 +1,14 @@
+Objective: Professor wants to start a virtual classroom session, and have the students log-in for attendance and collaboration/instruction.
+
+1.) Log in as Instructor/Admin profile
+2.) Hit "start session"
+3.) Press "Attendance"
+4.) Enter the class id (i.e. CSCI 450, but for this demo, it is 1)
+5.) Copy the URL into the "Class URL" Box and hit submit.
+6.) Press "Attendance" a second time 
+7.) At this point, an "attendance code" should pop up at the bottom of the prompt. 
+8.) Sign in as a student in a different tab. 
+9.) As the student, hit "join session".
+10.) Enter the provided "attendance code"
+11.) The database should now have logged that the student is present, and allowed for a collaborative session.
+12.) Additionally, there are many languages that will allow for a richer experience with languages and text-highlighting.  
