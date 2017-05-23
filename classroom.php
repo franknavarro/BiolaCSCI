@@ -23,7 +23,7 @@
 
 
 <!-- Load TogetherJS for Screen Sharing -->
-<script src="https://togetherjs.com/togetherjs-min.js"></script>
+<iframe src ="/resources/firepad.html"></iframe> 
 <!-- Get the username for current user using PHP and JS -->
 <script type="text/javascript">
     TogetherJSConfig_getUserName = function(){
