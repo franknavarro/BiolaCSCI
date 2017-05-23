@@ -2,6 +2,8 @@
 
 <!--Load jQuery First and Foremost -->
 <script type="text/javascript" src="js/jquery.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
 
 <!-- Load Base CodeMirror JS File -->
@@ -26,6 +28,18 @@
 
 <!-- Load Stylesheet Specifically for Code Sharing -->
 <link rel="stylesheet" type="text/css" href="css/classroom.css">
+
+
+<script type="text/javascript">
+    var userName = '<?php echo $_SESSION['user_fName']; ?> <?php echo $_SESSION['user_lName']; ?>'
+</script>
+
+<script type="text/javascript" src="js/firebase-userlist.js"></script>
+
+
+
+<div id="userlist"></div>
+
 
 <!-- Code Languages Select Dropdown List -->
 <div id="langContainer">

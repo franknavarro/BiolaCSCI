@@ -57,18 +57,66 @@ var myCodeMirror = CodeMirror.fromTextArea(textArea, {
 
 //Resize CodeMirror Page to fit the screen
 function resizeCodeMirror() {
-    var currentWindowHeight = $("body").innerHeight()-$("nav").height()-$("#langContainer").outerHeight(true);
-    $(".firepad").height(currentWindowHeight);
+    
+    var currentWindowHeight = $("body").innerHeight();
+    var currentWindowWidth = $("body").innerWidth();
+    
+    var newHeight = $("body").innerHeight()-$("nav").height()-$("#langContainer").outerHeight(true);
+    
+    if (currentWindowWidth >= 550) {
+        
+        var leftFloat = $("#userlist").innerWidth();
+        var newWidth = $("body").innerWidth() - leftFloat;
+        var maxHeight = $("#userlist").innerHeight() - $(".firepad-userlist-heading").innerHeight();
+        
+        
+        $(".firepad").height(newHeight);
+        $(".firepad").width(newWidth);
+        $(".firepad").css("left", leftFloat);
+        $("#langContainer").css("left", leftFloat);
+        
+        $(".firepad-userlist-users").css("max-height", maxHeight);
+        
+    } else {
+        
+        newHeight -= $("#userlist").innerHeight(); 
+        
+        $(".firepad").height(newHeight);
+        $(".firepad").width(currentWindowWidth);
+        $(".firepad").css("left", 0);
+        $("#langContainer").css("left", 0);
+        
+        $(".firepad-userlist-users").css("max-height", 150);
+    }
+    
+   
 }
 
-//// Create Firepad.
+// Create a random ID to use as our user ID (we must give this to firepad and FirepadUserList).
+var userId = Math.floor(Math.random() * 9999999999).toString();
+
+// Create Firepad.
 var firepad = Firepad.fromCodeMirror(firepadRef, myCodeMirror, {
-  defaultText: "// C++ \n#include <iostream>\n\nint main() {\n\tstd::cout << 'hello world!';\n\treturn 0;\n}"
+  defaultText: "// C++ \n#include <iostream>\n\nint main() {\n\tstd::cout << 'hello world!';\n\treturn 0;\n}",
+    userId: userId
 });
 
 
-//When file loads resize CodeMirror Screen
-resizeCodeMirror();
+//// Create FirepadUserList (with our desired userId).
+var firepadUserList = FirepadUserList.fromDiv(firepadRef.child('users'), document.getElementById('userlist'), userId, userName);
+
+
+//Resize UserName Field to be Div
+var userName = $(".firepad-userlist-name-input");
+userName.parent().replaceWith(
+    "<div class='firepad-userlist-name'>" +
+    userName.val() + "</div>");
+
+
+//Once firepad is loaded resize CodeMirror Screen
+firepad.on("ready", function() {
+    resizeCodeMirror();
+});
 
 
 //When window is resized resize all CodeMirror Screen
