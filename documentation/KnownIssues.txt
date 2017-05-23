@@ -4,18 +4,6 @@ Description: The following are known issues with our website that we are still
 trying to fix. Most of them we haven't had time to get to while others are of
 a minor nature and aren't worth our time.
 
-1. Database connectivity. We have a database and a server but the website on the
-server is not connecting to the database. We should be able to fix this, We just
-need the people who have worked on the database together in the same room.
-
-2. Integration of the front end and the back end. One our members has been
-working on the front end and is almost to the point of connecting the front end
-to the back end but ran out of time in this iteration.
-
-3. Trying to figure out how we are going to generate the users for the
-website. Whether through forms or manually inserting them into the database.
-
-4. The css in the Internet Explorer browser is not working.
-
-5. There is a clicking error on the class page if you click in between the two
-drop down menus it loses functionality.
+1. Dashboard more than three classes the formatting for the dashboard page displays incorrectly.
+2. If a teacher leaves a session and then reloads the page they may not be on the same session as the student any longer.
+3. If a teacher leaves a session without ending the session then virtual classroom stays open.
