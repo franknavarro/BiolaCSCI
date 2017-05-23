@@ -49,3 +49,6 @@ BootStrap - With Bootstrap, you get extensive and beautiful documentation for co
 
 URL: http://getbootstrap.com/
 Usage Information: This framework is used throughout the entire project anywhere where web data is displayed.
+
+URL: http://codemirror.net/
+Usage Information: This Library is located in the resources folder of the project, and is used mainly for the code collaboration for syntax checking/highlighting. 
