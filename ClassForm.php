@@ -386,130 +386,135 @@
 <script src="js/jquery.js"></script>
 <script type="text/javascript" src="js/timeFallback.js"></script>
 
-    <?php }
-else {
-require_once("resources/library/db.php");
+<?php }
+    else {
+        require_once("resources/library/db.php");
 
-#validate input
+        #validate input
 
-#Operate on the input
-$classPeriod = $taHours = $profHours = "";
-#needs to be concatenated based on entry
-#There are 7 values to consider. The five days need to be correlated to a textual code Monday = M
-if ($_POST["Monday"]){
-$classPeriod = $classPeriod . $_POST["Monday"];
-}
-if ($_POST["Tuesday"]) {
-$classPeriod = $classPeriod . $_POST["Tuesday"];
-}
-if ($_POST["Wednesday"]) {
-$classPeriod = $classPeriod . $_POST["Wednesday"];
-}
-if ($_POST["Thursday"]) {
-$classPeriod = $classPeriod . $_POST["Thursday"];
-}
-if ($_POST["Friday"]) {
-$classPeriod = $classPeriod . $_POST["Friday"];
-}
-#The times, should be outputted as a string, take the start time, and concatenate it to the end of the day code after a space
-$classPeriod = $classPeriod . " " . $_POST["classStartTime"] . " - " . $_POST["classEndTime"];
-#Concatenate the end time to the start time with a dash and two spaces
+        #Operate on the input
+        $classPeriod = $taHours = $profHours = "";
+        #needs to be concatenated based on entry
+        #There are 7 values to consider. The five days need to be correlated to a textual code Monday = M
+        if ($_POST["Monday"]){
+            $classPeriod = $classPeriod . $_POST["Monday"];
+        }
+        if ($_POST["Tuesday"]) {
+            $classPeriod = $classPeriod . $_POST["Tuesday"];
+        }
+        if ($_POST["Wednesday"]) {
+            $classPeriod = $classPeriod . $_POST["Wednesday"];
+        }
+        if ($_POST["Thursday"]) {
+            $classPeriod = $classPeriod . $_POST["Thursday"];
+        }
+        if ($_POST["Friday"]) {
+            $classPeriod = $classPeriod . $_POST["Friday"];
+        }
+        #The times, should be outputted as a string, take the start time, and concatenate it to the end of the day code after a space
+        $classPeriod = $classPeriod . " " . $_POST["classStartTime"] . " - " . $_POST["classEndTime"];
+        #Concatenate the end time to the start time with a dash and two spaces
 
-#TA input
-if ($_POST["taMonday"]){
-$taHours = $taHours . $_POST["taMonday"];
-}
-if ($_POST["taTuesday"]) {
-$taHours = $taHours . $_POST["taTuesday"];
-}
-if ($_POST["taWednesday"]) {
-$taHours = $taHours . $_POST["taWednesday"];
-}
-if ($_POST["taThursday"]) {
-$taHours = $taHours . $_POST["taThursday"];
-}
-if ($_POST["taFriday"]) {
-$taHours = $taHours . $_POST["taFriday"];
-}
-#create taHours variable the same way
-$taHours = $taHours . " " . $_POST["taHoursStartTime"] . " - " . $_POST["taHoursEndTime"];
+        #TA input
+        if ($_POST["taMonday"]){
+            $taHours = $taHours . $_POST["taMonday"];
+        }
+        if ($_POST["taTuesday"]) {
+            $taHours = $taHours . $_POST["taTuesday"];
+        }
+        if ($_POST["taWednesday"]) {
+            $taHours = $taHours . $_POST["taWednesday"];
+        }
+        if ($_POST["taThursday"]) {
+            $taHours = $taHours . $_POST["taThursday"];
+        }
+        if ($_POST["taFriday"]) {
+            $taHours = $taHours . $_POST["taFriday"];
+        }
+        #create taHours variable the same way
+        $taHours = $taHours . " " . $_POST["taHoursStartTime"] . " - " . $_POST["taHoursEndTime"];
 
-#create profHours
-#TA input
-if ($_POST["profMonday"]){
-$profHours = $profHours . $_POST["profMonday"];
-}
-if ($_POST["profTuesday"]) {
-$profHours = $profHours . $_POST["profTuesday"];
-}
-if ($_POST["profWednesday"]) {
-$profHours = $profHours . $_POST["profWednesday"];
-}
-if ($_POST["profThursday"]) {
-$profHours = $profHours . $_POST["profThursday"];
-}
-if ($_POST["profFriday"]) {
-$profHours = $profHours . $_POST["profFriday"];
-}
+        #create profHours
+        #TA input
+        if ($_POST["profMonday"]){
+            $profHours = $profHours . $_POST["profMonday"];
+        }
+        if ($_POST["profTuesday"]) {
+            $profHours = $profHours . $_POST["profTuesday"];
+        }
+        if ($_POST["profWednesday"]) {
+            $profHours = $profHours . $_POST["profWednesday"];
+        }
+        if ($_POST["profThursday"]) {
+            $profHours = $profHours . $_POST["profThursday"];
+        }
+        if ($_POST["profFriday"]) {
+            $profHours = $profHours . $_POST["profFriday"];
+        }
 
-$profHours = $profHours . " " . $_POST["profHoursStartTime"] . " - " . $_POST["profHoursEndTime"];
+        $profHours = $profHours . " " . $_POST["profHoursStartTime"] . " - " . $_POST["profHoursEndTime"];
 
-# create if not exists clause
-#if exists, throw a SQL exception
-#catch block handles sql exception
-#catch block updates the form and clears the post stream
+        # create if not exists clause
+        #if exists, throw a SQL exception
+        #catch block handles sql exception
+        #catch block updates the form and clears the post stream
 
-#create new class element
-#create submission array for class update
-$submit = array(':className' => $_POST["className"], ":classCode"=>$_POST["classCode"], ":classLocation"=>$_POST["classLocation"], ":classPeriod"=>$classPeriod, ":taHours"=>$taHours, ":profID"=>$_SESSION["user_id"], ":profHours"=>$profHours, ":classDescription"=>$_POST["classDescription"]);
+        #create new class element
+        #create submission array for class update
+        $submit = array(':className' => $_POST["className"], ":classCode"=>$_POST["classCode"], ":classLocation"=>$_POST["classLocation"], ":classPeriod"=>$classPeriod, ":taHours"=>$taHours, ":profID"=>$_SESSION["user_id"], ":profHours"=>$profHours, ":classDescription"=>$_POST["classDescription"]);
 
-#submit the array to the database
-db::query("SET FOREIGN_KEY_CHECKS=0;
-INSERT INTO class (className, classCode, room, classTime, taHours, professorEmail, instructorHours, classDescription)
-VALUES (:classCode, :className, :classLocation, :classPeriod, :taHours, :profID, :profHours, :classDescription)", $submit);
-
-
-#Create professor entry for the class in user_class
-#Get max class ID of last class entered
-$classID = db::query("SELECT MAX(classID) from class");
-
-echo "</br>" . $classID[0][0] . "</br>";
-#creates update variable list for user_class query
-$userUpdate = array(':userID'=>$_SESSION["user_id"], ':role'=>"Professor", ":classID"=>$classID[0][0]);
-
-#user_class query
-db::query("SET FOREIGN_KEY_CHECKS=0; INSERT INTO user_class (user_email, role, class_classID) VALUES (:userID, :role, :classID)", $userUpdate);
+        #submit the array to the database
+        db::query("SET FOREIGN_KEY_CHECKS=0;
+        INSERT INTO class (className, classCode, room, classTime, taHours, professorEmail, instructorHours, classDescription)
+        VALUES (:classCode, :className, :classLocation, :classPeriod, :taHours, :profID, :profHours, :classDescription)", $submit);
 
 
-#Syllabus upload
-$uploaddir = 'ClassObject/Syllabus/';
-$uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
+        #Create professor entry for the class in user_class
+        #Get max class ID of last class entered
+        $classID = db::query("SELECT MAX(classID) from class");
 
-if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
-echo "Success! File can be found at $uploadfile</br>";
-}
-else{
-echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
-}
-print_r($classID[0][0]);
+        echo "</br>" . $classID[0][0] . "</br>";
+        #creates update variable list for user_class query
+        $userUpdate = array(':userID'=>$_SESSION["user_id"], ':role'=>"Professor", ":classID"=>$classID[0][0]);
 
-$url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
-$array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
-db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
+        #user_class query
+        db::query("SET FOREIGN_KEY_CHECKS=0; INSERT INTO user_class (user_email, role, class_classID) VALUES (:userID, :role, :classID)", $userUpdate);
 
-#Create class file
 
-$classCode = $_POST["classCode"];
+        #Syllabus upload
+        $uploaddir = 'ClassObject/Syllabus/';
+        $uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
 
-$file = "ClassObject\\${classCode}.php";
-if (!file_exists($file)){
-echo $file;
+        if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
+            echo "Success! File can be found at $uploadfile</br>";
+        }
+        else{
+            echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
+        }
+        print_r($classID[0][0]);
 
-$key_array = db::query("SELECT MAX(classID) from class");
-var_dump($key_array);
+        $url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
+        $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
+        db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
 
-$class_key = $key_array[0][0];
+        #Create class file
 
-$contents = '<?php $currentClass = ';
-$contents .= $class_key;
-$contents .= '; include "../templates/class.php";?>'; file_put_contents($file, $contents, LOCK_EX); } else{ echo '<br>Class Not Created<br>'; } } include 'templates/footer.php'; ?>
+        $classCode = $_POST["classCode"];
+
+        $file = "ClassObject\\${classCode}.php";
+        if (!file_exists($file)){
+            echo $file;
+
+            $key_array = db::query("SELECT MAX(classID) from class");
+            var_dump($key_array);
+
+            $class_key = $key_array[0][0];
+
+            $contents = '<?php $currentClass = ';
+            $contents .= $class_key;
+            $contents .= '; include "../templates/class.php";?>'; file_put_contents($file, $contents, LOCK_EX);
+        } else { 
+            echo '<br>Class Not Created<br>'; 
+        } 
+    } include 'templates/footer.php'; 
+?>
