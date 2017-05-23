@@ -14,7 +14,7 @@
     }
 ?>
 
-<?php begin: include 'templates/header.php'; include 'resources/library/db.php';?>
+<?php begin: include_once 'templates/header.php'; include_once 'resources/library/db.php';?>
     <body>
         <?php
             include_once 'resources/library/attendance.php';
@@ -45,12 +45,13 @@
              for($count = 0; $count < count($class_id); $count++){
 
                  $classID = print_r($class_id[$count]["class_classID"], true); //Variable to hold classID
-                 $result = db::query("SELECT className, syllabusURL, classTime, activeSession from class where classID = :classID", array(':classID'=>$classID));
+                 $result = db::query("SELECT className, syllabusURL, classTime, activeSession, classCode from class where classID = :classID", array(':classID'=>$classID));
                  $className = print_r($result[0]["className"], true);
                 //  //Add Professor Email that links to First and Last Name
                  $classTime = print_r($result[0]["classTime"], true);
                  $activeSession = print_r($result[0]["activeSession"], true);
                  $classURL = print_r($result[0]["syllabusURL"], true);
+                 $classCode = print_r($result[0]["classCode"], true);
                  $sessionData = db::query("SELECT sessionURL from session where sessionName=:className and sessionStatus > 0", array(':className'=>$className));
                  if(!empty($sessionData)){
                     $sessionURL = print_r($sessionData[$count]['sessionURL'], true);
@@ -81,7 +82,7 @@
                  }
 
                  echo        '<a href="';
-                 echo        $classURL;
+                 echo        $classCode . '.php';
                  echo        '" class="btn btn-default" role="button">More Info</a></p>';
                  echo   '</div>';
                  echo '</div>';

@@ -57,13 +57,6 @@
 
 <?php include 'templates/footer.php';}
   else {
-    //include_once '../resources/library/class_validation.php';
-
-    #validate input
-    //$entry_list = validate::announcement_val();
-
-
-
     #get post time
     $timeStamp = date("d-m-Y, h:i:sa");
 
@@ -79,7 +72,7 @@
                 VALUES (:title, :description, :postTime, :user_email, :class_classID)", $insertArray);
 
       #redirect
-      #header("Location: index.php");
+      header("Location: dashboard.php");
 
     }
 

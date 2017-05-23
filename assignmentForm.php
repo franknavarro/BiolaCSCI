@@ -1,11 +1,11 @@
-<?php include 'templates/header.php'; ?>
+<?php include_once 'templates/header.php'; ?>
 <?php require_once 'resources/library/db.php';?>
 <?php if ($_SERVER['REQUEST_METHOD'] == 'GET') { ?>
 
 <form action="<?php echo htmlentities($_SERVER['SCRIPT_NAME']) ?>" method="post" enctype="multipart/form-data">
-    
+
     <h1 class="form-head">Create Assignment</h1>
-    
+
     <!----Assignment Info------------------------------------>
     <div class="form-group">
         <label>Title</label>
@@ -45,7 +45,7 @@
                 </select>
                   </div>
               </div>
-              
+
               <div class="col-xs-3 right-most">
                 <label for="year">Year:</label>
                   <div class="selectDropdown">
@@ -54,7 +54,7 @@
                   </div>
               </div>
                 </div>
-                
+
                 <div class="col-md-4 right-most time-div">
               <div class="col-xs-4 left-most">
                 <label for="hour">Hour:</label>
@@ -94,7 +94,7 @@
           <span class="custom-file-control"></span>
         </label>
     </div>
-    
+
     <!----Class---------------------------------------------->
     <div class="form-group">
         <label>Which Class is this For?</label>
@@ -116,7 +116,7 @@
             </select>
         </div>
     </div>
-    
+
     <!----Publish-------------------------------------------->
     <div class="form-group">
       <label class="form-check-label">
@@ -124,7 +124,7 @@
         Publish Assignment Now
       </label>
     </div>
-    
+
     <!----Submission----------------------------------------->
     <input type="submit" class="submit-button">
     <!--Publish-->
@@ -159,10 +159,10 @@
     try {
       #query database
       db::query("SET FOREIGN_KEY_CHECKS=0; INSERT INTO assignment (title, description, dueDate, isLive, class_classID, postTime)
-                #VALUES (:title, :description, :dueDate, :publish, :classID, :postTime)", $submitArray);
+                VALUES (:title, :description, :dueDate, :publish, :classID, :postTime)", $submitArray);
 
       #File upload
-      $uploaddir = 'ClassObject/assignment/';
+      $uploaddir = 'ClassObject/Assignment/';
       $uploadfile = $uploaddir . basename($_FILES['file']['name']);
       print_r($uploadfile);
       if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)){
@@ -178,11 +178,12 @@
       $array = array(':URL'=>$url, ':id'=>$assID[0][0]);
 
       db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE assignment SET url = :URL WHERE assID = :id;", $array);
+
+      #redirect
+      header("Location: dashboard.php");
     } catch (PDOException $e){
       print_r($e);
     }
-
-
   }
   include 'templates/footer.php';
 ?>
