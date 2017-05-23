@@ -17,16 +17,15 @@
 <script type="text/javascript" src="/resources/codemirror-5.25.2/addon/edit/closebrackets.js"></script>
 <script type="text/javascript" src="/resources/codemirror-5.25.2/addon/hint/show-hint.js"></script>
 
-
-<!-- Load Stylesheet Specifically for Code Sharing -->
-<link rel="stylesheet" type="text/css" href="css/classroom.css">
-
 <!-- Firebase -->
 <script src="https://www.gstatic.com/firebasejs/4.0.0/firebase.js"></script>
 
 <!-- Firepad -->
 <link rel="stylesheet" href="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.css" />
 <script src="https://cdn.firebase.com/libs/firepad/1.4.0/firepad.min.js"></script>
+
+<!-- Load Stylesheet Specifically for Code Sharing -->
+<link rel="stylesheet" type="text/css" href="css/classroom.css">
 
 <!-- Code Languages Select Dropdown List -->
 <div id="langContainer">

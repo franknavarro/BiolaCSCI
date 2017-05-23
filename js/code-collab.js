@@ -58,16 +58,16 @@ var myCodeMirror = CodeMirror.fromTextArea(textArea, {
 //Resize CodeMirror Page to fit the screen
 function resizeCodeMirror() {
     var currentWindowHeight = $("body").innerHeight()-$("nav").height()-$("#langContainer").outerHeight(true);
-    $(".CodeMirror").height(currentWindowHeight);
+    $(".firepad").height(currentWindowHeight);
 }
-
-//When file loads resize CodeMirror Screen
-resizeCodeMirror();
 
 //// Create Firepad.
 var firepad = Firepad.fromCodeMirror(firepadRef, myCodeMirror, {
   defaultText: '// JavaScript Editing with Firepad!\nfunction go() {\n  var message = "Hello, world.";\n  console.log(message);\n}'
 });
+
+//When file loads resize CodeMirror Screen
+resizeCodeMirror();
 
 
 //When window is resized resize all CodeMirror Screen
