@@ -78,17 +78,13 @@ class attendance{
     */
 
     public static function startSession($sessionID){
-        $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
-        if(!empty($result)){
-            $className = print_r($result[0]['sessionName'], true);
-            $classID = db::query("SELECT classID from session WHERE className=:className", array(':className' => $className));
-
-            // Mark class as complete
-            db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
+        // Mark class as complete
+        if(db::query("UPDATE session SET sessionStatus = 2 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID))){
             return true;
         } else {
-            return "ERROR: Unable to start session";
+            return "ERROR: Unable to start Session";
         }
+
     }
 
     /*
@@ -100,10 +96,11 @@ class attendance{
     public static function endSession($sessionID){
         $result = db::query("SELECT sessionName from session WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
         if(!empty($result)){
-            $className = print_r($result[0]['sessionName']);
+            $className = print_r($result[0]['sessionName'], true);
             $classIDQuery = db::query("SELECT classID from class WHERE className=:className", array(':className' => $className));
-            $classID = print_r($classID[0]['classID']);
-
+            if(!empty($classIDQuery)){
+                $classID = print_r($classIDQuery[0]['classID'], true);
+            }
             // Mark class as complete
             db::query("UPDATE session SET sessionStatus = 0 WHERE sessionID=:sessionID", array(':sessionID' => $sessionID));
             db::query("UPDATE class SET activeSession = 0 WHERE classID=:classID", array(':classID'=>$classID));
