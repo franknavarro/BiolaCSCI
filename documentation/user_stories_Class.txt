@@ -1,0 +1,36 @@
+Classes User Stories
+
+Professor Wants to Create a Class
+
+1. Professor Logs in to the site
+
+2. Professor Creates a Class
+
+- Create Title
+- Create code
+- Create Class Period
+- Select TA
+- Set TA Hours
+- Set Professor Hours
+- Upload Syllabus
+
+Professor Wants to Create an Assignment for a Class
+
+3. Professor Creates an Assignment for the class
+
+- Create Title
+- Create Assignment Description
+- Select Class to create assignment for
+
+Professor Wants to send an Announcement to the class
+
+4. Professor Creates an Announcement for the class
+
+- Create Title
+- Create Description
+- Select Class
+
+5. Professor Looks at the syllabus
+
+- Navigate to the Class's Page in ClassObject/<class code>.php
+- Click on the Course Syllabus Link under Class Information
