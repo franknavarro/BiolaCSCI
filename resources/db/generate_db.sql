@@ -232,6 +232,8 @@ ENGINE = InnoDB;
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('mark.a.gong-guy@biola.edu', 'Mark', 'Gong-Guy', 'password', '1');
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('peter.a.alford@biola.edu', 'Peter', 'Alford', 'password', '1');
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('shieu-hong.lin@biola.edu', 'Shieu', 'Lin', 'password', '4');
+INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('philip.a.stout@biola.edu', 'Philip', 'Stout', 'password', '3');
+
 
 -- Inserts class
 INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('1', 'csci101', 'Introduction to Computer Science', 'ClassObject/Syllabus/csci101Syllabus.pdf', 'T/Tr 10:00 am - 11:00 am', 'Library 101');
@@ -242,6 +244,7 @@ INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('1', 'mark.a.gong-guy@biola.edu', '2');
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('3', 'shieu-hong.lin@biola.edu', '1');
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('1', 'peter.a.alford@biola.edu', '1');
+INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('2', 'philip.a.stout@biola.edu', '1');
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
