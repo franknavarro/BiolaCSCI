@@ -152,6 +152,22 @@
                 </div>
             </div>
 
+            <select name="ta">
+              <?php
+                include_once 'resources/library/db.php';
+                #Look up all classes which are owned by the professor
+                $taArray = db::query("SELECT firstName, lastName, email FROM user WHERE user_perm = 2;");
+
+                #add option for no TA
+                echo '<option value="0">No TA</option>';
+
+                #loop through them
+                foreach ($taArray as &$ta) {
+                  echo '<option value="' . $ta[2] . '">' . $ta[0] . ' ' . $ta[1] . '</option>"';
+                }
+              ?>
+            </select>
+
             <div class="form-group time-field">
                 <label for="taHoursStartTime">TA Office Hours</label>
                 <small class="form-text text-muted">(Select Days the TA has office Hours)</small>
@@ -394,7 +410,6 @@
     $searchResults = db::query("SELECT classID FROM class WHERE professorEmail = :profID AND classCode = :classCode;", $searchArray);
     if (!$searchResults[0]){
       #validate input
-
       #Operate on the input
       $classPeriod = $taHours = $profHours = "";
       #needs to be concatenated based on entry
@@ -429,7 +444,6 @@
     	#The times, should be outputted as a string, take the start time, and concatenate it to the end of the day code after a space
       $classPeriod = $classPeriod . " " . $_POST["classStartTime"] . " - " . $_POST["classEndTime"];
     	#Concatenate the end time to the start time with a dash and two spaces
-
       #TA hours manipulation
       if ($_POST["taMonday"]){
         $taHours .= $_POST["taMonday"];
@@ -460,7 +474,6 @@
       }
       #create taHours variable the same way
       $taHours = $taHours . " " . $_POST["taHoursStartTime"] . " - " . $_POST["taHoursEndTime"];
-
       #create profHours
       #TA input
       if ($_POST["profMonday"]){
@@ -493,13 +506,10 @@
       print_r ($_POST["profHoursStartTime"]);
       print_r($_POST["profHoursEndTime"]);
       $profHours = $profHours . " " . $_POST["profHoursStartTime"] . " - " . $_POST["profHoursEndTime"];
-
-
       # create if not exists clause
       #if exists, throw a SQL exception
       #catch block handles sql exception
       #catch block updates the form and clears the post stream
-
       #create new class element
       #create submission array for class update
       $submit = array(':className' => $_POST["className"],
@@ -511,18 +521,13 @@
                       ":taID"=>$_POST['ta'],
                       ":profHours"=>$profHours,
                       ":classDescription"=>$_POST["classDescription"]);
-
       #submit the array to the database
       db::query("SET FOREIGN_KEY_CHECKS=0;
                 INSERT INTO class (className, classCode, room, classTime, taHours, professorEmail, taEmail, instructorHours, classDescription)
                 VALUES (:className, :classCode, :classLocation, :classPeriod, :taHours, :profID, :taID, :profHours, :classDescription)", $submit);
-
-
       #Create professor entry for the class in user_class
       #Get max class ID of last class entered
       $classID = db::query("SELECT MAX(classID) from class");
-
-
       if ($_POST['ta'] != "0"){
         #creates update variable list for user_class query
         $userUpdate = array(':profID'=>$_SESSION["user_id"],
@@ -531,7 +536,6 @@
                             ':taID'=>$_POST['ta'],
                             ':taRole'=>'2',
                             ':taClassID'=>$classID[0][0]);
-
         #create ta and professor in database
         db::query("SET FOREIGN_KEY_CHECKS=0;
                   INSERT INTO user_class (user_email, role, class_classID) VALUES (:profID, :profRole, :profClassID);
@@ -542,58 +546,41 @@
         $profUpdate = array(':profID'=>$_SESSION["user_id"],
                             ':profRole'=>"3",
                             ":profClassID"=>$classID[0][0]);
-
         #create ta and professor in database
         db::query("SET FOREIGN_KEY_CHECKS=0;
                   INSERT INTO user_class (user_email, role, class_classID) VALUES (:profID, :profRole, :profClassID);", $profUpdate);
       }
-
-
-
       #Syllabus upload
       $uploaddir = 'ClassObject/Syllabus/';
       $uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
-
       if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
         echo "Success! File can be found at $uploadfile</br>";
       }
       else{
         echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
       }
-
       $url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
       $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
-
       db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
-
       #Create class file
-
       $classCode = $_POST["classCode"];
-
       $file = "${classCode}.php";
       if (!file_exists($file)){
-
         $key_array = db::query("SELECT MAX(classID) from class");
         var_dump($key_array);
-
         $class_key = $key_array[0][0];
-
         $contents = '<?php $currentClass = ';
           $contents .= $class_key;
           $contents .= '; include "class.php";?>';
-
         file_put_contents($file, $contents, LOCK_EX);
       }
-
       else{
         echo '<br>Class Not Created<br>';
       }
-
       #redirect
       header("Location: ${classCode}.php");
     }
     else{
-
       #redirect
       header("Location: classForm.php");
       #FRAAAAAAANK Can you cause this to spit out a warning saying that the class already exists?
