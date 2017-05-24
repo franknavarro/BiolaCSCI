@@ -106,7 +106,6 @@
       </div>
       <div class="modal-body">
           <div>
-              <?php $_SESSION['session_URL']=""; ?>
               <form role="form" action="classroom.php" method="post">
                   <fieldset>
                     <p> Please enter the class ID number </p>
@@ -145,6 +144,8 @@
                    echo "<p>Attendance Code: ";
                    echo $attendanceCode;
                    echo "</p>";
+               } else {
+                   $_SESSION['session_URL']="";
                }
                ?>
           </div>
