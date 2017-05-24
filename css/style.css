@@ -152,7 +152,7 @@ input:focus, textarea:focus, select:focus {
 }
 
 div#login-page {
-    background: var(--main-color);
+    background: var(--main-color) !important;
     height: 100%;
     font-family: "Roboto", sans-serif;
     -webkit-font-smoothing: antialiased;
