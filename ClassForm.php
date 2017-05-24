@@ -554,7 +554,7 @@
                   INSERT INTO user_class (user_email, role, class_classID) VALUES (:profID, :profRole, :profClassID);", $profUpdate);
       }
       #Syllabus upload
-      $uploaddir = 'ClassObject/Syllabus/';
+      $uploaddir = '/ClassObject/Syllabus/';
       $uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
       if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
         echo "Success! File can be found at $uploadfile</br>";
