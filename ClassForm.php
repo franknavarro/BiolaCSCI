@@ -152,23 +152,28 @@
                 </div>
             </div>
 
-            <select name="ta">
-              <?php
-                include_once 'resources/library/db.php';
-                #Look up all classes which are owned by the professor
-                $taArray = db::query("SELECT firstName, lastName, email FROM user WHERE user_perm = 2;");
+            <div class="form-group">
+                <label>Select TA for this Class</label>
+                <div class="selectDropdown">
+                    <select name="ta" id="taSelector">
+                      <?php
+                        include_once 'resources/library/db.php';
+                        #Look up all classes which are owned by the professor
+                        $taArray = db::query("SELECT firstName, lastName, email FROM user WHERE user_perm = 2;");
 
-                #add option for no TA
-                echo '<option value="0">No TA</option>';
+                        #add option for no TA
+                        echo '<option value="0">No TA</option>';
 
-                #loop through them
-                foreach ($taArray as &$ta) {
-                  echo '<option value="' . $ta[2] . '">' . $ta[0] . ' ' . $ta[1] . '</option>"';
-                }
-              ?>
-            </select>
+                        #loop through them
+                        foreach ($taArray as &$ta) {
+                          echo '<option value="' . $ta[2] . '">' . $ta[0] . ' ' . $ta[1] . '</option>"';
+                        }
+                      ?>
+                    </select>
+                </div>
+            </div>
 
-            <div class="form-group time-field">
+            <div class="form-group time-field" id="ta-fields">
                 <label for="taHoursStartTime">TA Office Hours</label>
                 <small class="form-text text-muted">(Select Days the TA has office Hours)</small>
                 <div class="row">

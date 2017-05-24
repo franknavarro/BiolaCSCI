@@ -1,3 +1,23 @@
+$("#taSelector").change(function () {
+    
+    var currentVal = $(this).val();
+    var taField = $("#ta-fields");
+    var selectorField = $(this).closest(".form-group");
+    
+    if(currentVal == 0) {
+        selectorField.css("margin-bottom", "20px");
+        taField.slideUp()
+    } else {
+        selectorField.css("margin-bottom", "0px");
+        taField.slideDown()  
+    }
+    
+});
+
+
+
+
+
 function resizeDashTitle() {
 
         while( $('.dashClassTitle').height() > 
@@ -14,6 +34,9 @@ $(document).ready(function() {
 $(window).resize(function() {
     resizeDashTitle();
 });
+
+
+
 
 
 

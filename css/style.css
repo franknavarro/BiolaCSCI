@@ -606,6 +606,11 @@ input#publish {
     margin: 0px;
 }
 
+#ta-fields {
+    display: none;
+}
+
+
 @media (min-width:768px) {
     .col-sm-dow {
         width: 20%;
