@@ -160,10 +160,8 @@
                         include_once 'resources/library/db.php';
                         #Look up all classes which are owned by the professor
                         $taArray = db::query("SELECT firstName, lastName, email FROM user WHERE user_perm = 2;");
-
                         #add option for no TA
                         echo '<option value="0">No TA</option>';
-
                         #loop through them
                         foreach ($taArray as &$ta) {
                           echo '<option value="' . $ta[2] . '">' . $ta[0] . ' ' . $ta[1] . '</option>"';
@@ -564,7 +562,7 @@
       else{
         echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
       }
-      $url = 'Syllabus/' . basename($_FILES['syllabus']['name']);
+      $url = 'ClassObject/Syllabus/' . basename($_FILES['syllabus']['name']);
       $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
       db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
       #Create class file
