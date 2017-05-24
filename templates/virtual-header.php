@@ -55,14 +55,14 @@ if(isset($_SESSION['user_id'])){
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav">
                     <?php
-                    if($_SESSION['user_perm'] > "2"){
+                    if($_SESSION['user_perm'] > "1"){
                         echo '<li class="nav-item">';
                         echo '<a data-toggle="modal" data-target="#myModal">Attendance</a>';
                         echo '</li>';
                     }
                     ?>
                     <?php
-                    if($_SESSION['user_perm'] > "2"){
+                    if($_SESSION['user_perm'] > "1"){
                         echo '<li class="nav-item">';
                         echo '<a href="/end-session.php">End Session</a>';
                         echo '</li>';
