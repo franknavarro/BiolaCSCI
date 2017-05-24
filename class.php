@@ -59,14 +59,20 @@
                 $profEmailQuery = db::query("SELECT professorEmail from class where classID = $currentClass");
                 $profEmail = $profEmailQuery[0]["professorEmail"];
                 $profNameQuery = db::query("SELECT firstName, lastName from user where email = '$profEmail'");
-                print_r($profNameQuery[0]["firstName"]);
-                echo " ";
-                print_r($profNameQuery[0]["lastName"]);
+                if ($profNameQuery){
+                  print_r($profNameQuery[0]["firstName"]);
+                  echo " ";
+                  print_r($profNameQuery[0]["lastName"]);
+                }
+
             ?>
         </h5>
             <p><strong>Email:</strong>
                 <a href="mailto:<?php print_r($profEmail); ?>">
-                <?php print_r($profEmail); ?>
+                <?php if ($profEmail){
+                        print_r($profEmail);
+                      }
+                ?>
                 </a>
             </p>
         <p><strong>Office Hours: </strong>
@@ -81,18 +87,21 @@
                 $taEmailQuery = db::query("SELECT taEmail from class where classID = $currentClass");
                 $taEmail = $taEmailQuery[0]["taEmail"];
                 $taNameQuery = db::query("SELECT firstName, lastName from user where email = '$taEmail'");
-                print_r($taNameQuery[0]["firstName"]);
-                echo " ";
-                print_r($taNameQuery[0]["lastName"]);
+                if ($taNameQuery){
+                  print_r($taNameQuery[0]["firstName"]);
+                  echo " ";
+                  print_r($taNameQuery[0]["lastName"]);
+                }
+
             ?>
         </h5>
         <p><strong>Email: </strong>
             <a href="mailto:
             <?php
-                print_r($taEmail);
+                if ($taEmail){print_r($taEmail);}
             ?>">
             <?php
-                print_r($taEmail);
+                if ($taEmail){print_r($taEmail);}
             ?></a>
         </p>
         <p><strong>TA Hours: </strong>
