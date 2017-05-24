@@ -39,6 +39,7 @@
         ?>
         <div class="page-header" style="padding-left: 1em">
           <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; echo " "; echo $_SESSION['user_lName'];?></small></h1>
+        </div>
             <div class="row">
              <?php
              include_once 'resources/library/db.php';
@@ -90,7 +91,6 @@
 
              }
               ?>
-                    </div>
                </div>
         </div>
         <!-- Modal -->
