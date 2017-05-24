@@ -85,6 +85,7 @@
                  echo        $classCode . '.php';
                  echo        '" class="btn btn-default" role="button">More Info</a></p>';
                  echo   '</div>';
+                 echo   '</div>'
 
 
              }
