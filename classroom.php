@@ -138,14 +138,16 @@
                ?>
 
                <?php
-               $query = db::query("SELECT sessionKey from session where sessionURL=:sessionURL", array(':sessionURL'=>$_SESSION['session_URL']));
-               if(!empty($query)){
-                   $attendanceCode = print_r($query[0]['sessionKey'], true);
-                   echo "<p>Attendance Code: ";
-                   echo $attendanceCode;
-                   echo "</p>";
+               if(!empty($_SESSION['session_URL'])){
+                   $query = db::query("SELECT sessionKey from session where sessionURL=:sessionURL", array(':sessionURL'=>$_SESSION['session_URL']));
+                   if(!empty($query)){
+                       $attendanceCode = print_r($query[0]['sessionKey'], true);
+                       echo "<p>Attendance Code: ";
+                       echo $attendanceCode;
+                       echo "</p>";
+                   }
                } else {
-                   $_SESSION['session_URL']="";
+                   $_SESSION['session_URL'] = "";
                }
                ?>
           </div>
