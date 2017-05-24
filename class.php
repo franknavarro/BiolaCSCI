@@ -105,6 +105,12 @@
 
     <!-------------------------------------------------------ALL ASSIGNMENTS SECTION-------------------------------------------------------->
     <div id="class-assignments-page" class="class-section">
+        <?php
+          if ($_SESSION['user_perm'] >= 3){
+            echo "<button class='button'><a href='assignmentForm.php'>Add Assignment</a></button>";
+          }
+        ?>
+
         <!-- UPCOMING ASSIGNMENTS -->
         <div id="upcoming-assignments" class="my-dropdown">
             <button class="my-dropdown-toggle" type="button" id="dropdownMenuButton">
@@ -169,6 +175,11 @@
 
     <!-------------------------------------------------------ALL ANNOUNCEMENTS SECTION-------------------------------------------------------->
     <div id="class-announcements-page" class="class-section">
+        <?php
+          if ($_SESSION['user_perm'] >= 3){
+            echo "<button class='button'><a href='announcementForm.php'>Add Announcement</a></button>";
+          }
+        ?>
         <?php
             $announcementQuery = db::query("SELECT title, description, postTime, user_email, annID FROM announcement WHERE class_classID = $currentClass");
             for ($count=0; $count < count($announcementQuery); $count++) {
