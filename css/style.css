@@ -432,7 +432,7 @@ Class Page
 
 /************* Class Assignments Sub-Page *******************/
 
-#class-assignments-page button {
+#class-assignments-page #dropdownMenuButton {
     background: none;
     border: none;
     font-size: 14px;

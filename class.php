@@ -107,7 +107,7 @@
     <div id="class-assignments-page" class="class-section">
         <?php
           if ($_SESSION['user_perm'] >= 3){
-            echo "<button class='button'><a href='assignmentForm.php'>Add Assignment</a></button>";
+            echo "<a href='/assignmentForm.php'><button class='default-button'>Add Assignment</button></a>";
           }
         ?>
 
@@ -177,7 +177,7 @@
     <div id="class-announcements-page" class="class-section">
         <?php
           if ($_SESSION['user_perm'] >= 3){
-            echo "<button class='button'><a href='announcementForm.php'>Add Announcement</a></button>";
+            echo "<a href='/announcementForm.php'><button class='default-button'>Add Announcement</button></a>";
           }
         ?>
         <?php
