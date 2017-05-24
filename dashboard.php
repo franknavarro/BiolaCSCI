@@ -39,6 +39,7 @@
         ?>
         <div class="page-header" style="padding-left: 1em">
           <h1><center>CSCI Dashboard</center></br></br><small> Welcome, <?php echo $_SESSION['user_fName']; echo " "; echo $_SESSION['user_lName'];?></small></h1>
+            <div class="row">
              <?php
              include_once 'resources/library/db.php';
              $class_id = db::query("SELECT class_classID from user_class where user_email = :user_email", array(':user_email'=>$_SESSION['user_id']));
@@ -57,7 +58,6 @@
                     $sessionURL = print_r($sessionData[$count]['sessionURL'], true);
                  }
 
-                 echo '<div class="row">';
                  echo     '<div class="col-sm-6 col-md-4">';
                  echo       '<div class="caption">';
                  echo           "<h3 class='dashClassTitle'>$className</h3>";
@@ -85,11 +85,11 @@
                  echo        $classCode . '.php';
                  echo        '" class="btn btn-default" role="button">More Info</a></p>';
                  echo   '</div>';
-                 echo '</div>';
 
 
              }
               ?>
+                    </div>
                </div>
         </div>
         <!-- Modal -->
