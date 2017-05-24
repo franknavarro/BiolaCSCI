@@ -234,11 +234,12 @@ INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user
 INSERT INTO `cscidb`.`user` (`email`, `firstName`, `lastName`, `password`, `user_perm`) VALUES ('shieu-hong.lin@biola.edu', 'Shieu', 'Lin', 'password', '3');
 
 -- Inserts class
-INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('1', 'CSCI 101', 'Introduction to Computer Science', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am - 11:00 am', 'Library 101');
-INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('2', 'CSCI 102', 'Data Structures', 'http://csci.biola.edu/csci105Lin/index.htm', '10:00 am - 11:00 am', 'Library 101');
+INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('1', 'csci101', 'Introduction to Computer Science', 'ClassObject/Syllabus/csci101Syllabus.pdf', 'T/Tr 10:00 am - 11:00 am', 'Library 101');
+INSERT INTO `cscidb`.`class` (`classID`, `classCode`, `className`, `syllabusURL`, `classTime`, `room`) VALUES ('2', 'csci102', 'Data Structures', 'ClassObject/Syllabus/csci102Syllabus.pdf', 'M/W 10:00 am - 11:00 am', 'Library 101');
 
 -- Inserts user in class
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('1', 'mark.a.gong-guy@biola.edu', '1');
+INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('1', 'mark.a.gong-guy@biola.edu', '2');
 INSERT INTO `cscidb`.`user_class` (`role`, `user_email`, `class_classID`) VALUES ('3', 'shieu-hong.lin@biola.edu', '1');
 
 
