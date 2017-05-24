@@ -59,19 +59,19 @@
                 $profEmailQuery = db::query("SELECT professorEmail from class where classID = $currentClass");
                 $profEmail = $profEmailQuery[0]["professorEmail"];
                 $profNameQuery = db::query("SELECT firstName, lastName from user where email = '$profEmail'");
-                if ($profNameQuery){
+                //if ($profNameQuery){
                   print_r($profNameQuery[0]["firstName"]);
                   echo " ";
                   print_r($profNameQuery[0]["lastName"]);
-                }
+                //}
 
             ?>
         </h5>
             <p><strong>Email:</strong>
                 <a href="mailto:<?php print_r($profEmail); ?>">
-                <?php if ($profEmail){
+                <?php //if ($profEmail){
                         print_r($profEmail);
-                      }
+                      //}
                 ?>
                 </a>
             </p>
@@ -87,11 +87,10 @@
                 $taEmailQuery = db::query("SELECT taEmail from class where classID = $currentClass");
                 $taEmail = $taEmailQuery[0]["taEmail"];
                 $taNameQuery = db::query("SELECT firstName, lastName from user where email = '$taEmail'");
-                if ($taNameQuery){
+
                   print_r($taNameQuery[0]["firstName"]);
                   echo " ";
                   print_r($taNameQuery[0]["lastName"]);
-                }
 
             ?>
         </h5>
