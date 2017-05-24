@@ -553,16 +553,16 @@
         db::query("SET FOREIGN_KEY_CHECKS=0;
                   INSERT INTO user_class (user_email, role, class_classID) VALUES (:profID, :profRole, :profClassID);", $profUpdate);
       }
+
       #Syllabus upload
-      $uploaddir = '/ClassObject/Syllabus/';
-      $uploadfile = $uploaddir . basename($_FILES['syllabus']['name']);
+      $uploadfile = basename($_FILES['syllabus']['name']);
       if (move_uploaded_file($_FILES['syllabus']['tmp_name'], $uploadfile)){
         echo "Success! File can be found at $uploadfile</br>";
       }
       else{
         echo (basename($_FILES['syllabus']['tmp_name']) . " Not Uploaded!");
       }
-      $url = 'ClassObject/Syllabus/' . basename($_FILES['syllabus']['name']);
+      $url = '/' . basename($_FILES['syllabus']['name']);
       $array = array(':URL'=>$url, ':classID'=>$classID[0][0]);
       db::query("SET FOREIGN_KEY_CHECKS=0; UPDATE class SET syllabusURL= :URL WHERE classID = :classID;", $array);
       #Create class file
